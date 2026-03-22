@@ -1,0 +1,7 @@
+node_modules/
+temporary screenshots/
+*.mjs
+package-lock.json
+package.json
+CLAUDE.md
+framer-prompt.md

@@ -1,0 +1,1311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>UKIYO AI — AI Transformation for Enterprises in UAE & Saudi Arabia</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Barlow:wght@300;400;500;600;700;800&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet" />
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          brand: '#C8172A',
+          'brand-dim': '#9E1221',
+          gold: '#C9A84C',
+        },
+        fontFamily: {
+          display: ['Barlow', 'sans-serif'],
+          body: ['Roboto', 'sans-serif'],
+        },
+      }
+    }
+  };
+</script>
+<style>
+  *, *::before, *::after { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: #080808;
+    color: #F0F0F0;
+    font-family: 'Roboto', sans-serif;
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  h1, h2, h3, h4 { font-family: 'Barlow', sans-serif; letter-spacing: -0.02em; }
+
+  /* Scrollbar */
+  ::-webkit-scrollbar { width: 4px; }
+  ::-webkit-scrollbar-track { background: #080808; }
+  ::-webkit-scrollbar-thumb { background: #C8172A; border-radius: 2px; }
+
+  /* ========== NAVBAR ========== */
+  .nav-link {
+    color: rgba(255,255,255,0.85);
+    font-size: 0.875rem;
+    font-weight: 600;
+    font-family: 'Barlow', sans-serif;
+    transition: color 0.2s;
+    position: relative;
+    text-decoration: none;
+  }
+  .nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: -2px; left: 0; right: 100%;
+    height: 2px;
+    background: rgba(255,255,255,0.7);
+    transition: right 0.25s ease;
+  }
+  .nav-link:hover { color: #fff; }
+  .nav-link:hover::after { right: 0; }
+
+  /* ========== BUTTONS ========== */
+  .btn-primary {
+    background: #fff;
+    color: #C8172A;
+    font-family: 'Barlow', sans-serif;
+    font-weight: 700;
+    font-size: 0.875rem;
+    padding: 0.65rem 1.5rem;
+    border-radius: 6px;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.2);
+    transition: transform 0.18s ease, box-shadow 0.18s ease, opacity 0.18s ease;
+    display: inline-block;
+    text-decoration: none;
+    letter-spacing: 0.01em;
+  }
+  .btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+    opacity: 0.93;
+  }
+  .btn-primary:focus-visible { outline: 2px solid #fff; outline-offset: 3px; }
+  .btn-primary:active { transform: translateY(0); }
+
+  .btn-ghost-nav {
+    background: transparent;
+    color: #fff;
+    font-family: 'Barlow', sans-serif;
+    font-weight: 600;
+    font-size: 0.875rem;
+    padding: 0.65rem 1.5rem;
+    border-radius: 6px;
+    border: 1.5px solid rgba(255,255,255,0.4);
+    cursor: pointer;
+    transition: transform 0.18s ease, border-color 0.18s ease, background 0.18s ease;
+    display: inline-block;
+    text-decoration: none;
+    letter-spacing: 0.01em;
+  }
+  .btn-ghost-nav:hover {
+    border-color: rgba(255,255,255,0.8);
+    background: rgba(255,255,255,0.1);
+    transform: translateY(-2px);
+  }
+  .btn-ghost-nav:focus-visible { outline: 2px solid #fff; outline-offset: 3px; }
+  .btn-ghost-nav:active { transform: translateY(0); }
+
+  /* Section buttons (dark theme) */
+  .btn-red {
+    background: #C8172A;
+    color: #fff;
+    font-family: 'Barlow', sans-serif;
+    font-weight: 700;
+    font-size: 0.9rem;
+    padding: 0.8rem 2rem;
+    border-radius: 6px;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 4px 20px rgba(200,23,42,0.35);
+    transition: transform 0.18s ease, box-shadow 0.18s ease;
+    display: inline-block;
+    text-decoration: none;
+  }
+  .btn-red:hover { transform: translateY(-2px); box-shadow: 0 12px 36px rgba(200,23,42,0.45); }
+  .btn-red:focus-visible { outline: 2px solid #C8172A; outline-offset: 3px; }
+  .btn-red:active { transform: translateY(0); }
+
+  .btn-outline-dark {
+    background: transparent;
+    color: #F0F0F0;
+    font-family: 'Barlow', sans-serif;
+    font-weight: 600;
+    font-size: 0.9rem;
+    padding: 0.8rem 2rem;
+    border-radius: 6px;
+    border: 1.5px solid rgba(255,255,255,0.18);
+    cursor: pointer;
+    transition: transform 0.18s ease, border-color 0.18s ease, background 0.18s ease;
+    display: inline-block;
+    text-decoration: none;
+  }
+  .btn-outline-dark:hover { border-color: rgba(200,23,42,0.5); background: rgba(200,23,42,0.08); transform: translateY(-2px); color: #fff; }
+  .btn-outline-dark:focus-visible { outline: 2px solid #C8172A; outline-offset: 3px; }
+  .btn-outline-dark:active { transform: translateY(0); }
+
+  /* ========== CARDS ========== */
+  .card {
+    background: #111111;
+    border: 1px solid rgba(255,255,255,0.07);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 2px 16px rgba(0,0,0,0.4);
+    transition: transform 0.22s ease, box-shadow 0.22s ease, border-color 0.22s ease;
+  }
+  .card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 16px 48px rgba(200,23,42,0.18), 0 4px 16px rgba(0,0,0,0.5);
+    border-color: rgba(200,23,42,0.3);
+  }
+
+  .section-label {
+    font-family: 'Barlow', sans-serif;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: #C8172A;
+  }
+
+  .gradient-text {
+    background: linear-gradient(135deg, #fff 0%, #ff8080 50%, #C8172A 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .red-line {
+    display: inline-block;
+    width: 40px;
+    height: 3px;
+    background: #C8172A;
+    border-radius: 2px;
+    vertical-align: middle;
+  }
+
+  .stat-number {
+    font-family: 'Barlow', sans-serif;
+    font-size: 3rem;
+    font-weight: 800;
+    letter-spacing: -0.04em;
+    color: #F0F0F0;
+    line-height: 1;
+  }
+
+  /* Service card image */
+  .svc-img-wrap {
+    position: relative;
+    height: 180px;
+    overflow: hidden;
+  }
+  .svc-img-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+  }
+  .card:hover .svc-img-wrap img { transform: scale(1.05); }
+  .svc-img-wrap::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(200,23,42,0.25) 0%, transparent 60%);
+  }
+
+  /* Tag pills */
+  .tag-red {
+    font-size: 0.72rem;
+    padding: 0.25rem 0.625rem;
+    background: rgba(200,23,42,0.15);
+    border: 1px solid rgba(200,23,42,0.3);
+    border-radius: 20px;
+    color: #ff8080;
+    font-family: 'Barlow', sans-serif;
+    font-weight: 600;
+  }
+  .tag-gray {
+    font-size: 0.72rem;
+    padding: 0.25rem 0.625rem;
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 20px;
+    color: #888;
+    font-family: 'Barlow', sans-serif;
+    font-weight: 500;
+  }
+
+  /* ========== BANNER SLIDER ========== */
+  .slider-wrap {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+  }
+  .slide {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    transition: opacity 0.85s ease;
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 0;
+  }
+  .slide.active { opacity: 1; z-index: 1; }
+  .slide-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(0,0,0,0.72) 0%, rgba(0,0,0,0.45) 100%);
+  }
+  .slide-content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    color: #fff;
+    max-width: 860px;
+    padding: 0 2rem;
+    padding-top: 72px; /* nav height */
+  }
+  .slide-label {
+    font-family: 'Barlow', sans-serif;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.6);
+    margin-bottom: 1.25rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+  }
+  .slide-label::before, .slide-label::after {
+    content: '';
+    display: inline-block;
+    width: 32px;
+    height: 1px;
+    background: rgba(255,255,255,0.35);
+  }
+  .slide h1 {
+    font-size: clamp(2.25rem, 5vw, 4.25rem);
+    font-weight: 800;
+    line-height: 1.1;
+    margin-bottom: 1.25rem;
+    color: #fff;
+  }
+  .slide h1 span { color: #ff8080; }
+  .slide p {
+    font-size: 1.0625rem;
+    color: rgba(255,255,255,0.75);
+    margin-bottom: 2.5rem;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+    line-height: 1.75;
+  }
+  .slide-btns { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+
+  /* Slider arrows */
+  .slider-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 10;
+    width: 48px;
+    height: 48px;
+    background: rgba(255,255,255,0.12);
+    border: 1px solid rgba(255,255,255,0.2);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background 0.18s ease, transform 0.18s ease;
+    color: #fff;
+  }
+  .slider-arrow:hover { background: rgba(200,23,42,0.6); transform: translateY(-50%) scale(1.1); }
+  .slider-arrow:focus-visible { outline: 2px solid #C8172A; outline-offset: 3px; }
+  .slider-arrow.prev { left: 2rem; }
+  .slider-arrow.next { right: 2rem; }
+
+  /* Slider dots */
+  .slider-dots {
+    position: absolute;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10;
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+  }
+  .slider-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.3);
+    cursor: pointer;
+    transition: background 0.25s ease, transform 0.25s ease;
+    border: none;
+  }
+  .slider-dot.active {
+    background: #C8172A;
+    transform: scale(1.35);
+  }
+
+  /* ========== HERO FLOATING CARDS (in slide 1) ========== */
+  @keyframes float {
+    0%,100% { transform: translateY(0px); }
+    50% { transform: translateY(-12px); }
+  }
+  @keyframes float2 {
+    0%,100% { transform: translateY(0px); }
+    50% { transform: translateY(-8px); }
+  }
+  @keyframes pulse-ring {
+    0% { transform: scale(1); opacity: 0.5; }
+    100% { transform: scale(1.22); opacity: 0; }
+  }
+  @keyframes fadeSlideIn {
+    from { opacity: 0; transform: translateY(16px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes ai-blink {
+    0%,100% { opacity: 1; }
+    50% { opacity: 0.3; }
+  }
+
+  /* Slide 1 two-column layout */
+  .slide-1-inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    align-items: center;
+    max-width: 1280px;
+    width: 100%;
+    padding: 0 2rem;
+    padding-top: 72px;
+    text-align: left;
+  }
+  .slide-1-text h1 {
+    font-size: clamp(2.25rem, 4vw, 4rem);
+    text-align: left;
+  }
+  .slide-1-text p { text-align: left; margin-left: 0; }
+  .slide-1-text .slide-btns { justify-content: flex-start; }
+  .slide-1-text .slide-label { justify-content: flex-start; }
+  .slide-1-text .slide-label::before { display: none; }
+
+  .hero-float-card {
+    position: absolute;
+    background: rgba(255,255,255,0.96);
+    border: 1px solid rgba(0,0,0,0.1);
+    border-radius: 12px;
+    padding: 0.75rem 1rem;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.25);
+    min-width: 130px;
+    animation: fadeSlideIn 0.8s ease both;
+    color: #111;
+  }
+  .hero-float-card.c1 { animation-name: fadeSlideIn, float; animation-duration: 0.8s, 4s; animation-delay: 0.4s, 0.8s; animation-iteration-count: 1, infinite; animation-fill-mode: both, none; }
+  .hero-float-card.c2 { animation-name: fadeSlideIn, float2; animation-duration: 0.8s, 5s; animation-delay: 0.7s, 1.2s; animation-iteration-count: 1, infinite; animation-fill-mode: both, none; }
+  .hero-float-card.c3 { animation-name: fadeSlideIn, float; animation-duration: 0.8s, 3.5s; animation-delay: 1s, 1.5s; animation-iteration-count: 1, infinite; animation-fill-mode: both, none; }
+
+  @media (max-width: 900px) {
+    .slide-1-inner { grid-template-columns: 1fr; }
+    .slide-1-right { display: none !important; }
+    .slide-1-text h1, .slide-1-text p, .slide-1-text .slide-btns, .slide-1-text .slide-label { text-align: center; justify-content: center; }
+    .slider-arrow { display: none; }
+    .hidden-mobile { display: none !important; }
+    /* Hamburger: force to right column of the 3-col nav grid */
+    #menu-toggle { display: block !important; grid-column: 3; grid-row: 1; justify-self: end; }
+    /* Logo: center column */
+    .nav-logo { grid-column: 2; grid-row: 1; }
+    /* Industry panels: stack vertically */
+    .ind-panel.active { display: flex !important; flex-direction: column !important; gap: 2rem !important; }
+    /* 2-col → 1-col grids */
+    #why-grid { grid-template-columns: 1fr !important; gap: 3rem !important; }
+    #contact-grid { grid-template-columns: 1fr !important; gap: 3rem !important; }
+    #footer-grid { grid-template-columns: 1fr 1fr !important; gap: 2rem !important; }
+    #form-name-row { grid-template-columns: 1fr !important; }
+    /* Larger touch targets for slider dots */
+    .slider-dot { width: 10px; height: 10px; }
+    .slider-dots { bottom: 1.25rem; gap: 0.625rem; }
+  }
+
+  /* ========== PHONE / IPHONE ========== */
+  @media (max-width: 600px) {
+    /* ---- Hero: fix overflow (content taller than 100vh) ---- */
+    /* Convert slider to display-based switching so content isn't clipped */
+    .slider-wrap { height: auto !important; min-height: 100svh; }
+    .slide { position: relative !important; height: auto !important; min-height: 100svh; align-items: flex-start !important; display: none !important; }
+    .slide.active { display: flex !important; opacity: 1 !important; }
+    .slide-1-inner { padding-top: 90px !important; padding-bottom: 2.5rem !important; padding-left: 1.25rem !important; padding-right: 1.25rem !important; gap: 1.5rem !important; }
+    .slide-content { padding-top: 90px !important; padding-left: 1.25rem !important; padding-right: 1.25rem !important; padding-bottom: 2.5rem !important; }
+    /* Smaller h1 so it wraps less */
+    .slide h1 { font-size: 1.875rem !important; }
+    .slide p { font-size: 0.9rem !important; margin-bottom: 1.5rem !important; }
+    /* Trust badges: hide on mobile hero to save height */
+    .slide-trust { display: none !important; }
+    /* Slide CTAs: stack full-width */
+    .slide-btns { flex-direction: column; align-items: stretch; gap: 0.75rem; }
+    .slide-btns a { text-align: center; width: 100%; box-sizing: border-box; }
+    /* Slider dots: push inside since slider is now auto-height */
+    .slider-dots { position: relative !important; bottom: auto !important; left: auto !important; transform: none !important; justify-content: center; padding: 1.25rem 0 1.5rem; background: rgba(0,0,0,0.5); margin-top: -1px; }
+
+    /* ---- Stats strip: 2 columns ---- */
+    #stats-grid { grid-template-columns: repeat(2, 1fr) !important; gap: 2rem !important; }
+    .stat-number { font-size: 2.25rem; }
+
+    /* ---- Section padding: tighter ---- */
+    section { padding-top: 3.5rem !important; padding-bottom: 3.5rem !important; }
+
+    /* ---- ROI outcomes: 2×2 grid ---- */
+    #roi-grid { grid-template-columns: repeat(2, 1fr) !important; gap: 1rem !important; }
+    #roi-grid > div { padding: 1.5rem !important; }
+    #roi-grid > div > div:first-child { font-size: 2.5rem !important; }
+
+    /* ---- Footer: single column ---- */
+    #footer-grid { grid-template-columns: 1fr !important; gap: 2rem !important; }
+
+    /* ---- Package cards ---- */
+    .pkg-card { padding: 1.5rem !important; }
+
+    /* ---- Prevent iOS input zoom (min 16px) ---- */
+    input, select, textarea { font-size: 16px !important; }
+
+    /* ---- Logo in nav: slightly smaller ---- */
+    .nav-logo img { height: 52px !important; }
+
+    /* ---- Hamburger: bigger touch target ---- */
+    #menu-toggle { padding: 0.75rem !important; }
+  }
+
+  /* ========== FAQ ========== */
+  .faq-item { border-bottom: 1px solid rgba(255,255,255,0.07); }
+  .faq-btn {
+    width: 100%; text-align: left; background: none; border: none; cursor: pointer;
+    color: #F0F0F0; font-family: 'Barlow', sans-serif; font-size: 1rem; font-weight: 600;
+    padding: 1.5rem 0; display: flex; justify-content: space-between; align-items: center;
+    transition: color 0.18s;
+  }
+  .faq-btn:hover { color: #C8172A; }
+  .faq-btn:focus-visible { outline: 2px solid #C8172A; outline-offset: 2px; }
+  .faq-icon { font-size: 1.25rem; transition: transform 0.25s ease; color: #C8172A; flex-shrink: 0; margin-left: 1rem; }
+  .faq-icon.open { transform: rotate(45deg); }
+  .faq-body { overflow: hidden; max-height: 0; transition: max-height 0.35s ease; }
+  .faq-body.open { max-height: 300px; }
+  .faq-body p { padding-bottom: 1.5rem; color: #777; font-size: 0.9375rem; }
+
+  /* ========== PACKAGE CARDS ========== */
+  .pkg-card {
+    background: #111111;
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 16px;
+    padding: 2.5rem;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 2px 24px rgba(0,0,0,0.4);
+    transition: transform 0.22s ease, box-shadow 0.22s ease;
+  }
+  .pkg-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 24px 64px rgba(200,23,42,0.2), 0 4px 16px rgba(0,0,0,0.5);
+  }
+  .pkg-card.featured {
+    border-color: rgba(200,23,42,0.4);
+    background: linear-gradient(135deg, #1A0608 0%, #111111 100%);
+  }
+  .pkg-card.featured::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, transparent, #C8172A, transparent);
+  }
+
+  /* ========== STEP NUMBERS ========== */
+  .step-num {
+    width: 48px; height: 48px;
+    border: 2px solid rgba(200,23,42,0.35);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Barlow', sans-serif; font-weight: 800; font-size: 1rem;
+    color: #C8172A; flex-shrink: 0;
+    background: rgba(200,23,42,0.06);
+  }
+
+  /* ========== INDUSTRY TABS ========== */
+  .ind-tab {
+    padding: 0.625rem 1.25rem;
+    border-radius: 6px;
+    border: 1.5px solid rgba(255,255,255,0.1);
+    background: transparent;
+    color: #777;
+    font-family: 'Barlow', sans-serif;
+    font-size: 0.875rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.18s, color 0.18s, border-color 0.18s;
+  }
+  .ind-tab:hover { color: #F0F0F0; border-color: rgba(200,23,42,0.3); }
+  .ind-tab:focus-visible { outline: 2px solid #C8172A; outline-offset: 2px; }
+  .ind-tab.active {
+    background: rgba(200,23,42,0.15);
+    border-color: rgba(200,23,42,0.45);
+    color: #F0F0F0;
+  }
+  .ind-panel { display: none; }
+  .ind-panel.active { display: grid; }
+
+  /* ========== MOBILE MENU ========== */
+  #mobile-menu { display: none; }
+  #mobile-menu.open { display: block; }
+
+  /* ========== REVEAL ANIMATION ========== */
+  .reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+</style>
+</head>
+<body>
+
+<!-- ======================== RED NAVBAR ======================== -->
+<nav id="navbar" style="position:fixed;top:0;left:0;right:0;z-index:100;background:#C8172A;border-bottom:1px solid rgba(0,0,0,0.15);" role="navigation" aria-label="Main navigation">
+  <div class="nav-inner" style="max-width:1280px;margin:0 auto;padding:0 2rem;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;height:72px;">
+    <!-- LEFT: nav links -->
+    <div style="display:flex;align-items:center;gap:2rem;" id="nav-links" class="hidden-mobile">
+      <a href="#services" class="nav-link">Services</a>
+      <a href="#offer" class="nav-link">90-Day Program</a>
+      <a href="#industries" class="nav-link">Industries</a>
+      <a href="#process" class="nav-link">Process</a>
+      <a href="#faq" class="nav-link">FAQ</a>
+    </div>
+    <!-- CENTER: logo -->
+    <a href="#" class="nav-logo" style="display:flex;align-items:center;justify-content:center;text-decoration:none;">
+      <img src="yukiyo.png" alt="UKIYO AI" style="height:64px;width:auto;" />
+    </a>
+    <!-- RIGHT: CTA buttons -->
+    <div style="display:flex;align-items:center;gap:1rem;justify-content:flex-end;" class="hidden-mobile">
+      <a href="#contact" class="btn-ghost-nav">Talk to an Expert</a>
+      <a href="#contact" class="btn-primary">Book a Strategy Call</a>
+    </div>
+    <button id="menu-toggle" aria-label="Open menu" aria-expanded="false" style="display:none;background:none;border:none;color:#fff;cursor:pointer;padding:0.5rem;">
+      <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+    </button>
+  </div>
+  <div id="mobile-menu" style="background:#9E1221;border-top:1px solid rgba(255,255,255,0.1);padding:1.5rem 2rem 2rem;">
+    <div style="display:flex;flex-direction:column;gap:1.25rem;margin-bottom:1.5rem;">
+      <a href="#services" class="nav-link" onclick="closeMobileMenu()">Services</a>
+      <a href="#offer" class="nav-link" onclick="closeMobileMenu()">90-Day Program</a>
+      <a href="#industries" class="nav-link" onclick="closeMobileMenu()">Industries</a>
+      <a href="#process" class="nav-link" onclick="closeMobileMenu()">Process</a>
+      <a href="#faq" class="nav-link" onclick="closeMobileMenu()">FAQ</a>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:0.75rem;">
+      <a href="#contact" class="btn-ghost-nav" style="text-align:center;" onclick="closeMobileMenu()">Talk to an Expert</a>
+      <a href="#contact" class="btn-primary" style="text-align:center;" onclick="closeMobileMenu()">Book a Strategy Call</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ======================== BANNER SLIDER ======================== -->
+<div class="slider-wrap" id="banner-slider" onmouseenter="pauseSlider()" onmouseleave="resumeSlider()">
+
+  <!-- SLIDE 1: Main hero — two-column with AI visual -->
+  <div class="slide active" style="background-image:url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=1600&q=85');">
+    <div class="slide-overlay" style="background:linear-gradient(135deg,rgba(0,0,0,0.80) 0%,rgba(0,0,0,0.40) 100%);"></div>
+    <div class="slide-1-inner" style="position:relative;z-index:2;">
+      <!-- Text left -->
+      <div class="slide-1-text">
+        <div class="slide-label">AI Agency — UAE &amp; Saudi Arabia</div>
+        <h1>We Don't Sell AI.<br /><span>We Deliver Measurable Business Outcomes.</span></h1>
+        <p>UKIYO AI helps enterprises in UAE &amp; Saudi Arabia reduce costs and increase revenue using AI, automation, and intelligent systems — with guaranteed ROI.</p>
+        <div class="slide-btns">
+          <a href="#contact" class="btn-primary" style="font-size:1rem;padding:0.9rem 2.25rem;">Book a Strategy Call</a>
+          <a href="#offer" class="btn-ghost-nav" style="font-size:1rem;padding:0.9rem 2.25rem;">See the 90-Day Program &rarr;</a>
+        </div>
+        <div class="slide-trust" style="display:flex;flex-wrap:wrap;align-items:center;gap:1.5rem;margin-top:2rem;">
+          <div style="display:flex;align-items:center;gap:0.5rem;"><svg width="15" height="15" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="8" fill="rgba(200,23,42,0.4)"/><path d="M5 8l2 2 4-4" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg><span style="font-size:0.8rem;color:rgba(255,255,255,0.7);font-family:'Barlow',sans-serif;">Guaranteed ROI</span></div>
+          <div style="display:flex;align-items:center;gap:0.5rem;"><svg width="15" height="15" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="8" fill="rgba(200,23,42,0.4)"/><path d="M5 8l2 2 4-4" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg><span style="font-size:0.8rem;color:rgba(255,255,255,0.7);font-family:'Barlow',sans-serif;">UAE &amp; KSA Specialists</span></div>
+          <div style="display:flex;align-items:center;gap:0.5rem;"><svg width="15" height="15" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="8" fill="rgba(200,23,42,0.4)"/><path d="M5 8l2 2 4-4" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg><span style="font-size:0.8rem;color:rgba(255,255,255,0.7);font-family:'Barlow',sans-serif;">AI in 90 Days</span></div>
+        </div>
+      </div>
+      <!-- AI image right -->
+      <div class="slide-1-right" style="position:relative;display:flex;align-items:center;justify-content:center;padding:2.5rem 3rem;">
+        <!-- Pulsing rings -->
+        <div style="position:absolute;top:50%;left:50%;width:340px;height:340px;margin:-170px 0 0 -170px;border-radius:50%;border:2px solid rgba(200,23,42,0.2);animation:pulse-ring 2.5s ease-out infinite;pointer-events:none;"></div>
+        <div style="position:absolute;top:50%;left:50%;width:340px;height:340px;margin:-170px 0 0 -170px;border-radius:50%;border:2px solid rgba(200,23,42,0.12);animation:pulse-ring 2.5s ease-out infinite;animation-delay:0.8s;pointer-events:none;"></div>
+        <!-- Main AI image -->
+        <div style="position:relative;border-radius:20px;overflow:hidden;box-shadow:0 24px 64px rgba(0,0,0,0.5),0 4px 16px rgba(200,23,42,0.15);border:1px solid rgba(200,23,42,0.2);width:100%;max-width:420px;">
+          <img src="https://images.unsplash.com/photo-1677442135703-1787eea5ce01?w=800&q=85" alt="AI Transformation" style="width:100%;height:320px;object-fit:cover;display:block;" />
+          <div style="position:absolute;inset:0;background:linear-gradient(135deg,rgba(200,23,42,0.1) 0%,transparent 50%,rgba(0,0,0,0.3) 100%);"></div>
+          <div style="position:absolute;bottom:0;left:0;right:0;padding:1rem 1.25rem;background:linear-gradient(to top,rgba(0,0,0,0.65),transparent);display:flex;align-items:center;gap:0.5rem;">
+            <span style="width:8px;height:8px;border-radius:50%;background:#22c55e;display:inline-block;animation:ai-blink 1.8s ease-in-out infinite;flex-shrink:0;"></span>
+            <span style="font-size:0.78rem;color:rgba(255,255,255,0.9);font-family:'Barlow',sans-serif;font-weight:600;letter-spacing:0.04em;">AI Systems Active — UKIYO AI</span>
+          </div>
+        </div>
+        <!-- Floating cards -->
+        <div class="hero-float-card c1" style="top:0.5rem;left:0.5rem;z-index:10;">
+          <div style="font-size:0.68rem;color:#999;font-family:'Barlow',sans-serif;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;margin-bottom:0.2rem;">Cost Reduced</div>
+          <div style="font-size:1.4rem;font-weight:800;color:#C8172A;font-family:'Barlow',sans-serif;line-height:1;">40%</div>
+          <div style="font-size:0.68rem;color:#aaa;margin-top:0.2rem;">In 90 days</div>
+        </div>
+        <div class="hero-float-card c2" style="bottom:0.5rem;right:0.5rem;z-index:10;">
+          <div style="font-size:0.68rem;color:#999;font-family:'Barlow',sans-serif;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;margin-bottom:0.2rem;">Lead Conversion</div>
+          <div style="font-size:1.4rem;font-weight:800;color:#C8172A;font-family:'Barlow',sans-serif;line-height:1;">3× Uplift</div>
+          <div style="font-size:0.68rem;color:#aaa;margin-top:0.2rem;">Sales pipeline</div>
+        </div>
+        <div class="hero-float-card c3" style="right:0;top:42%;z-index:10;">
+          <div style="display:flex;align-items:center;gap:0.5rem;">
+            <span style="width:8px;height:8px;border-radius:50%;background:#22c55e;display:inline-block;animation:ai-blink 2.2s ease-in-out infinite;flex-shrink:0;"></span>
+            <span style="font-size:0.8rem;font-family:'Barlow',sans-serif;font-weight:700;color:#111;">AI Active</span>
+          </div>
+          <div style="font-size:0.7rem;color:#888;margin-top:0.3rem;">Processing leads</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SLIDE 2: 90-Day Program -->
+  <div class="slide" style="background-image:url('https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1600&q=85');">
+    <div class="slide-overlay"></div>
+    <div class="slide-content">
+      <div class="slide-label">Flagship Program</div>
+      <h1>AI Transformation in 90 Days<br /><span>— Guaranteed ROI</span></h1>
+      <p>Three outcome-focused packages: AI Cost Killer, AI Revenue Engine, and Autonomous Business System. Pick your path to measurable growth.</p>
+      <div class="slide-btns">
+        <a href="#offer" class="btn-primary" style="font-size:1rem;padding:0.9rem 2.25rem;">Explore the Program</a>
+        <a href="#contact" class="btn-ghost-nav" style="font-size:1rem;padding:0.9rem 2.25rem;">Talk to an Expert</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- SLIDE 3: Industries -->
+  <div class="slide" style="background-image:url('https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=1600&q=85');">
+    <div class="slide-overlay" style="background:linear-gradient(135deg,rgba(0,0,0,0.75) 0%,rgba(200,23,42,0.25) 100%);"></div>
+    <div class="slide-content">
+      <div class="slide-label">Industry Solutions</div>
+      <h1>Built for UAE &amp; Saudi Arabia<br /><span>Enterprises</span></h1>
+      <p>Specialized AI solutions for Real Estate, Healthcare, and Retail — with sector-specific ROI models proven in the Gulf market.</p>
+      <div class="slide-btns">
+        <a href="#industries" class="btn-primary" style="font-size:1rem;padding:0.9rem 2.25rem;">Explore Industries</a>
+        <a href="#contact" class="btn-ghost-nav" style="font-size:1rem;padding:0.9rem 2.25rem;">Request AI Audit</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- SLIDE 4: ROI -->
+  <div class="slide" style="background-image:url('https://images.unsplash.com/photo-1614064641938-3bbee52942c7?w=1600&q=85');">
+    <div class="slide-overlay" style="background:linear-gradient(135deg,rgba(0,0,0,0.78) 0%,rgba(0,0,0,0.50) 100%);"></div>
+    <div class="slide-content">
+      <div class="slide-label">Proven Results</div>
+      <h1>Reduce Costs. Increase Revenue.<br /><span>Run Smarter.</span></h1>
+      <p>Our enterprise clients average 40% cost reduction, 3× lead conversion uplift, and 60% less manual dependency — in just 90 days.</p>
+      <div class="slide-btns">
+        <a href="#contact" class="btn-primary" style="font-size:1rem;padding:0.9rem 2.25rem;">Book a Strategy Call</a>
+        <a href="#contact" class="btn-ghost-nav" style="font-size:1rem;padding:0.9rem 2.25rem;">Request AI Opportunity Audit</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Arrow controls -->
+  <button class="slider-arrow prev" onclick="changeSlide(-1)" aria-label="Previous slide">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+  </button>
+  <button class="slider-arrow next" onclick="changeSlide(1)" aria-label="Next slide">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+  </button>
+
+  <!-- Dot indicators -->
+  <div class="slider-dots">
+    <button class="slider-dot active" onclick="goToSlide(0)" aria-label="Slide 1"></button>
+    <button class="slider-dot" onclick="goToSlide(1)" aria-label="Slide 2"></button>
+    <button class="slider-dot" onclick="goToSlide(2)" aria-label="Slide 3"></button>
+    <button class="slider-dot" onclick="goToSlide(3)" aria-label="Slide 4"></button>
+  </div>
+</div>
+
+<!-- ======================== STATS STRIP ======================== -->
+<section style="border-top:1px solid rgba(255,255,255,0.06);border-bottom:1px solid rgba(255,255,255,0.06);padding:4rem 2rem;background:#0D0D0D;">
+  <div id="stats-grid" style="max-width:1280px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:3rem;text-align:center;">
+    <div class="reveal">
+      <div class="stat-number" data-target="50" data-suffix="+">0+</div>
+      <div style="font-size:0.875rem;color:#666;margin-top:0.5rem;font-family:'Barlow',sans-serif;font-weight:500;">Enterprise Clients</div>
+    </div>
+    <div class="reveal">
+      <div class="stat-number" data-target="2" data-suffix=" Markets">0 Markets</div>
+      <div style="font-size:0.875rem;color:#666;margin-top:0.5rem;font-family:'Barlow',sans-serif;font-weight:500;">UAE &amp; Saudi Arabia</div>
+    </div>
+    <div class="reveal">
+      <div class="stat-number" data-target="40" data-suffix="% Avg">0% Avg</div>
+      <div style="font-size:0.875rem;color:#666;margin-top:0.5rem;font-family:'Barlow',sans-serif;font-weight:500;">Cost Reduction</div>
+    </div>
+    <div class="reveal">
+      <div class="stat-number" data-target="90" data-suffix=" Days">0 Days</div>
+      <div style="font-size:0.875rem;color:#666;margin-top:0.5rem;font-family:'Barlow',sans-serif;font-weight:500;">To Measurable ROI</div>
+    </div>
+    <div class="reveal">
+      <div class="stat-number" style="color:#C8172A;">100%</div>
+      <div style="font-size:0.875rem;color:#666;margin-top:0.5rem;font-family:'Barlow',sans-serif;font-weight:500;">ROI Guarantee</div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================== SERVICES ======================== -->
+<section id="services" style="padding:7rem 2rem;background:#080808;">
+  <div style="max-width:1280px;margin:0 auto;">
+    <div style="max-width:560px;margin-bottom:4rem;" class="reveal">
+      <span class="section-label">What We Do</span>
+      <h2 style="font-size:clamp(2rem,4vw,3rem);font-weight:800;margin-top:1rem;margin-bottom:1.25rem;color:#F0F0F0;">Full-Spectrum AI &amp; Digital<br />Transformation Services</h2>
+      <p style="color:#777;font-size:1rem;">From intelligent automation to cloud architecture — everything your enterprise needs to lead in the AI era.</p>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:1.5rem;">
+
+      <div class="card reveal">
+        <div class="svc-img-wrap"><img src="https://images.unsplash.com/photo-1677442135703-1787eea5ce01?w=600&q=80" alt="AI and Automation" loading="lazy" /></div>
+        <div style="padding:1.75rem;">
+          <h3 style="font-size:1.125rem;font-weight:700;margin-bottom:0.75rem;color:#F0F0F0;">AI + Automation</h3>
+          <p style="color:#777;font-size:0.9rem;margin-bottom:1.25rem;line-height:1.7;">AI-powered customer support, sales automation, business process automation, and AI analytics dashboards that run 24/7.</p>
+          <div style="display:flex;flex-wrap:wrap;gap:0.5rem;"><span class="tag-red">AI Agents</span><span class="tag-gray">Sales Automation</span><span class="tag-gray">BPA</span></div>
+        </div>
+      </div>
+
+      <div class="card reveal">
+        <div class="svc-img-wrap"><img src="https://images.unsplash.com/photo-1544197150-b99a580bb7a8?w=600&q=80" alt="Cloud and DevOps" loading="lazy" /></div>
+        <div style="padding:1.75rem;">
+          <h3 style="font-size:1.125rem;font-weight:700;margin-bottom:0.75rem;color:#F0F0F0;">Cloud &amp; DevOps</h3>
+          <p style="color:#777;font-size:0.9rem;margin-bottom:1.25rem;line-height:1.7;">Cloud migration, cost optimization, DevOps pipelines, and multi-cloud architecture designed to cut infrastructure costs by up to 45%.</p>
+          <div style="display:flex;flex-wrap:wrap;gap:0.5rem;"><span class="tag-red">Migration</span><span class="tag-gray">Cost Optimization</span><span class="tag-gray">Multi-Cloud</span></div>
+        </div>
+      </div>
+
+      <div class="card reveal">
+        <div class="svc-img-wrap"><img src="https://images.unsplash.com/photo-1551434678-e076c223a692?w=600&q=80" alt="SaaS Products" loading="lazy" /></div>
+        <div style="padding:1.75rem;">
+          <h3 style="font-size:1.125rem;font-weight:700;margin-bottom:0.75rem;color:#F0F0F0;">SaaS Products</h3>
+          <p style="color:#777;font-size:0.9rem;margin-bottom:1.25rem;line-height:1.7;">Industry-ready SaaS: Influencer Marketplace CRM, HR Automation Platform, Real Estate CRM, Facility Management SaaS.</p>
+          <div style="display:flex;flex-wrap:wrap;gap:0.5rem;"><span class="tag-red">Real Estate CRM</span><span class="tag-gray">HR Platform</span></div>
+        </div>
+      </div>
+
+      <div class="card reveal">
+        <div class="svc-img-wrap"><img src="https://images.unsplash.com/photo-1614064641938-3bbee52942c7?w=600&q=80" alt="Cybersecurity" loading="lazy" /></div>
+        <div style="padding:1.75rem;">
+          <h3 style="font-size:1.125rem;font-weight:700;margin-bottom:0.75rem;color:#F0F0F0;">Cybersecurity</h3>
+          <p style="color:#777;font-size:0.9rem;margin-bottom:1.25rem;line-height:1.7;">Vulnerability assessments, SOC-as-a-Service, compliance frameworks, and cloud security — protecting enterprise data in regulated markets.</p>
+          <div style="display:flex;flex-wrap:wrap;gap:0.5rem;"><span class="tag-red">SOC-as-a-Service</span><span class="tag-gray">Compliance</span></div>
+        </div>
+      </div>
+
+      <div class="card reveal">
+        <div class="svc-img-wrap"><img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&q=80" alt="Data and Analytics" loading="lazy" /></div>
+        <div style="padding:1.75rem;">
+          <h3 style="font-size:1.125rem;font-weight:700;margin-bottom:0.75rem;color:#F0F0F0;">Data &amp; Analytics</h3>
+          <p style="color:#777;font-size:0.9rem;margin-bottom:1.25rem;line-height:1.7;">Power BI dashboards, data engineering pipelines, and predictive analytics that transform raw data into executive-ready insights.</p>
+          <div style="display:flex;flex-wrap:wrap;gap:0.5rem;"><span class="tag-red">Power BI</span><span class="tag-gray">Predictive Analytics</span></div>
+        </div>
+      </div>
+
+      <div class="card reveal">
+        <div class="svc-img-wrap"><img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=600&q=80" alt="Digital Transformation" loading="lazy" /></div>
+        <div style="padding:1.75rem;">
+          <h3 style="font-size:1.125rem;font-weight:700;margin-bottom:0.75rem;color:#F0F0F0;">Digital Transformation</h3>
+          <p style="color:#777;font-size:0.9rem;margin-bottom:1.25rem;line-height:1.7;">End-to-end transformation bundles: CRM + automation + mobile app + analytics — packaged for speed and immediate ROI.</p>
+          <div style="display:flex;flex-wrap:wrap;gap:0.5rem;"><span class="tag-red">CRM Bundles</span><span class="tag-gray">Full Stack</span></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ======================== FLAGSHIP OFFER ======================== -->
+<section id="offer" style="padding:7rem 2rem;background:linear-gradient(180deg,#0A0A0A 0%,#0D0408 50%,#0A0A0A 100%);position:relative;overflow:hidden;">
+  <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:900px;height:900px;border-radius:50%;background:radial-gradient(circle,rgba(200,23,42,0.05) 0%,transparent 70%);pointer-events:none;"></div>
+  <div style="max-width:1280px;margin:0 auto;position:relative;z-index:1;">
+    <div style="text-align:center;max-width:680px;margin:0 auto 4.5rem;" class="reveal">
+      <span class="section-label">Flagship Program</span>
+      <h2 style="font-size:clamp(2rem,4vw,3.25rem);font-weight:800;margin-top:1rem;margin-bottom:1.25rem;color:#F0F0F0;">AI Transformation in 90 Days<br /><span style="color:#C8172A;">— Guaranteed ROI</span></h2>
+      <p style="color:#777;font-size:1rem;">Three outcome-focused packages built for enterprises that need measurable results fast. Choose your growth path.</p>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:1.5rem;">
+
+      <div class="pkg-card reveal">
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:1.5rem;">
+          <span style="font-size:0.75rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:#555;font-family:'Barlow',sans-serif;">Program 01</span>
+          <span style="font-size:0.75rem;padding:0.25rem 0.75rem;background:rgba(201,168,76,0.1);border:1px solid rgba(201,168,76,0.25);border-radius:20px;color:#a07a20;font-family:'Barlow',sans-serif;font-weight:600;">Cost Reduction</span>
+        </div>
+        <h3 style="font-size:1.5rem;font-weight:800;margin-bottom:0.75rem;color:#F0F0F0;">AI Cost Killer<br />Program</h3>
+        <p style="color:#777;font-size:0.9rem;margin-bottom:1.5rem;line-height:1.7;">Systematically identify and eliminate operational waste using cloud cost optimization, process automation, and AI-based process redesign.</p>
+        <ul style="list-style:none;padding:0;margin:0 0 2rem;display:flex;flex-direction:column;gap:0.75rem;">
+          <li style="display:flex;align-items:center;gap:0.625rem;font-size:0.9rem;color:#bbb;"><span style="color:#C8172A;flex-shrink:0;">✓</span> Cloud cost optimization audit</li>
+          <li style="display:flex;align-items:center;gap:0.625rem;font-size:0.9rem;color:#bbb;"><span style="color:#C8172A;flex-shrink:0;">✓</span> Automated process mapping</li>
+          <li style="display:flex;align-items:center;gap:0.625rem;font-size:0.9rem;color:#bbb;"><span style="color:#C8172A;flex-shrink:0;">✓</span> AI-based process redesign</li>
+          <li style="display:flex;align-items:center;gap:0.625rem;font-size:0.9rem;color:#bbb;"><span style="color:#C8172A;flex-shrink:0;">✓</span> 90-day ROI reporting</li>
+        </ul>
+        <div style="border-top:1px solid rgba(255,255,255,0.07);padding-top:1.5rem;">
+          <div style="font-size:0.8rem;color:#555;margin-bottom:0.35rem;font-family:'Barlow',sans-serif;">Promise</div>
+          <div style="font-size:1rem;font-weight:700;color:#C9A84C;font-family:'Barlow',sans-serif;">Up to 40% cost reduction in 90 days</div>
+        </div>
+        <a href="#contact" class="btn-outline-dark" style="display:block;text-align:center;margin-top:1.5rem;">Request Audit &rarr;</a>
+      </div>
+
+      <div class="pkg-card featured reveal">
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:1.5rem;">
+          <span style="font-size:0.75rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:#555;font-family:'Barlow',sans-serif;">Program 02</span>
+          <span style="font-size:0.75rem;padding:0.25rem 0.75rem;background:rgba(200,23,42,0.15);border:1px solid rgba(200,23,42,0.4);border-radius:20px;color:#C8172A;font-family:'Barlow',sans-serif;font-weight:600;">Most Popular</span>
+        </div>
+        <h3 style="font-size:1.5rem;font-weight:800;margin-bottom:0.75rem;color:#F0F0F0;">AI Revenue<br />Engine</h3>
+        <p style="color:#777;font-size:0.9rem;margin-bottom:1.5rem;line-height:1.7;">Deploy AI-driven lead scoring, automated follow-up sequences, and CRM intelligence that converts more leads into closed deals.</p>
+        <ul style="list-style:none;padding:0;margin:0 0 2rem;display:flex;flex-direction:column;gap:0.75rem;">
+          <li style="display:flex;align-items:center;gap:0.625rem;font-size:0.9rem;color:#bbb;"><span style="color:#C8172A;flex-shrink:0;">✓</span> AI lead scoring &amp; segmentation</li>
+          <li style="display:flex;align-items:center;gap:0.625rem;font-size:0.9rem;color:#bbb;"><span style="color:#C8172A;flex-shrink:0;">✓</span> Automated follow-up sequences</li>
+          <li style="display:flex;align-items:center;gap:0.625rem;font-size:0.9rem;color:#bbb;"><span style="color:#C8172A;flex-shrink:0;">✓</span> CRM intelligence layer</li>
+          <li style="display:flex;align-items:center;gap:0.625rem;font-size:0.9rem;color:#bbb;"><span style="color:#C8172A;flex-shrink:0;">✓</span> Sales performance dashboards</li>
+        </ul>
+        <div style="border-top:1px solid rgba(200,23,42,0.15);padding-top:1.5rem;">
+          <div style="font-size:0.8rem;color:#555;margin-bottom:0.35rem;font-family:'Barlow',sans-serif;">Promise</div>
+          <div style="font-size:1rem;font-weight:700;color:#C9A84C;font-family:'Barlow',sans-serif;">30%+ uplift in sales conversion rate</div>
+        </div>
+        <a href="#contact" class="btn-red" style="display:block;text-align:center;margin-top:1.5rem;">Book a Strategy Call</a>
+      </div>
+
+      <div class="pkg-card reveal">
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:1.5rem;">
+          <span style="font-size:0.75rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:#555;font-family:'Barlow',sans-serif;">Program 03</span>
+          <span style="font-size:0.75rem;padding:0.25rem 0.75rem;background:rgba(201,168,76,0.1);border:1px solid rgba(201,168,76,0.25);border-radius:20px;color:#a07a20;font-family:'Barlow',sans-serif;font-weight:600;">Full Autonomy</span>
+        </div>
+        <h3 style="font-size:1.5rem;font-weight:800;margin-bottom:0.75rem;color:#F0F0F0;">Autonomous<br />Business System</h3>
+        <p style="color:#777;font-size:0.9rem;margin-bottom:1.5rem;line-height:1.7;">Deploy AI agents for sales, support, and operations. Real-time dashboards and decision automation — your business runs smarter with less manual effort.</p>
+        <ul style="list-style:none;padding:0;margin:0 0 2rem;display:flex;flex-direction:column;gap:0.75rem;">
+          <li style="display:flex;align-items:center;gap:0.625rem;font-size:0.9rem;color:#bbb;"><span style="color:#C8172A;flex-shrink:0;">✓</span> AI agents: sales, support, ops</li>
+          <li style="display:flex;align-items:center;gap:0.625rem;font-size:0.9rem;color:#bbb;"><span style="color:#C8172A;flex-shrink:0;">✓</span> Real-time decision dashboards</li>
+          <li style="display:flex;align-items:center;gap:0.625rem;font-size:0.9rem;color:#bbb;"><span style="color:#C8172A;flex-shrink:0;">✓</span> Automated decision workflows</li>
+          <li style="display:flex;align-items:center;gap:0.625rem;font-size:0.9rem;color:#bbb;"><span style="color:#C8172A;flex-shrink:0;">✓</span> Executive reporting suite</li>
+        </ul>
+        <div style="border-top:1px solid rgba(255,255,255,0.07);padding-top:1.5rem;">
+          <div style="font-size:0.8rem;color:#555;margin-bottom:0.35rem;font-family:'Barlow',sans-serif;">Promise</div>
+          <div style="font-size:1rem;font-weight:700;color:#C9A84C;font-family:'Barlow',sans-serif;">Business runs 60% more efficiently</div>
+        </div>
+        <a href="#contact" class="btn-outline-dark" style="display:block;text-align:center;margin-top:1.5rem;">Explore Program &rarr;</a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ======================== INDUSTRIES ======================== -->
+<section id="industries" style="padding:7rem 2rem;background:#080808;">
+  <div style="max-width:1280px;margin:0 auto;">
+    <div style="max-width:560px;margin-bottom:3rem;" class="reveal">
+      <span class="section-label">Industry Solutions</span>
+      <h2 style="font-size:clamp(2rem,4vw,3rem);font-weight:800;margin-top:1rem;margin-bottom:1.25rem;color:#F0F0F0;">Built for Your Industry</h2>
+      <p style="color:#777;font-size:1rem;">Sector-specific AI solutions with proven ROI models for the industries that drive UAE &amp; KSA growth.</p>
+    </div>
+    <div style="display:flex;flex-wrap:wrap;gap:0.75rem;margin-bottom:2.5rem;" class="reveal">
+      <button class="ind-tab active" onclick="showIndustry('real-estate')" aria-selected="true">Real Estate</button>
+      <button class="ind-tab" onclick="showIndustry('healthcare')" aria-selected="false">Healthcare</button>
+      <button class="ind-tab" onclick="showIndustry('retail')" aria-selected="false">Retail &amp; eCommerce</button>
+    </div>
+
+    <div class="ind-panel active" id="ind-real-estate" style="grid-template-columns:1fr 1fr;gap:4rem;align-items:center;">
+      <div class="reveal">
+        <div style="display:inline-flex;padding:0.5rem 1rem;background:rgba(200,23,42,0.1);border:1px solid rgba(200,23,42,0.2);border-radius:6px;font-size:0.8125rem;font-weight:700;color:#C8172A;margin-bottom:1.5rem;font-family:'Barlow',sans-serif;">Real Estate</div>
+        <h3 style="font-size:2rem;font-weight:800;margin-bottom:1rem;line-height:1.2;color:#F0F0F0;">Convert More Property Leads with AI-Driven Automation</h3>
+        <p style="color:#777;margin-bottom:2rem;line-height:1.8;">Real estate developers and agencies in UAE &amp; KSA are losing deals to slow follow-up and poor lead prioritization. UKIYO AI deploys intelligent lead scoring, automated WhatsApp/email follow-ups, and predictive deal-close analytics.</p>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:2rem;">
+          <div style="background:#1A1A1A;border:1px solid rgba(255,255,255,0.07);border-radius:10px;padding:1.25rem;">
+            <div style="font-size:1.75rem;font-weight:800;color:#C8172A;margin-bottom:0.25rem;font-family:'Barlow',sans-serif;">3x</div>
+            <div style="font-size:0.8125rem;color:#666;">Lead conversion rate</div>
+          </div>
+          <div style="background:#1A1A1A;border:1px solid rgba(255,255,255,0.07);border-radius:10px;padding:1.25rem;">
+            <div style="font-size:1.75rem;font-weight:800;color:#C8172A;margin-bottom:0.25rem;font-family:'Barlow',sans-serif;">-60%</div>
+            <div style="font-size:0.8125rem;color:#666;">Sales cycle time</div>
+          </div>
+        </div>
+        <a href="#contact" class="btn-red">Get Real Estate AI Audit</a>
+      </div>
+      <div style="position:relative;" class="reveal">
+        <div style="border-radius:16px;overflow:hidden;box-shadow:0 16px 48px rgba(0,0,0,0.5);">
+          <img src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=700&q=80" alt="Real Estate AI" style="width:100%;display:block;" />
+          <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(200,23,42,0.2) 0%,transparent 50%);border-radius:16px;"></div>
+        </div>
+        <div style="position:absolute;bottom:-1.5rem;left:1rem;background:#111;border:1px solid rgba(200,23,42,0.25);border-radius:12px;padding:1rem 1.5rem;box-shadow:0 8px 32px rgba(0,0,0,0.5);">
+          <div style="font-size:0.75rem;color:#666;margin-bottom:0.25rem;font-family:'Barlow',sans-serif;">AI Lead Score</div>
+          <div style="font-size:1.25rem;font-weight:800;color:#C8172A;font-family:'Barlow',sans-serif;">94 / 100</div>
+          <div style="font-size:0.75rem;color:#555;margin-top:0.25rem;">Hot Prospect — Follow up now</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="ind-panel" id="ind-healthcare" style="grid-template-columns:1fr 1fr;gap:4rem;align-items:center;">
+      <div class="reveal">
+        <div style="display:inline-flex;padding:0.5rem 1rem;background:rgba(200,23,42,0.1);border:1px solid rgba(200,23,42,0.2);border-radius:6px;font-size:0.8125rem;font-weight:700;color:#C8172A;margin-bottom:1.5rem;font-family:'Barlow',sans-serif;">Healthcare</div>
+        <h3 style="font-size:2rem;font-weight:800;margin-bottom:1rem;line-height:1.2;color:#F0F0F0;">Reduce Operational Costs with Intelligent Healthcare Automation</h3>
+        <p style="color:#777;margin-bottom:2rem;line-height:1.8;">Healthcare providers in the Gulf are managing complex operations manually. UKIYO AI automates patient scheduling, billing workflows, inventory management, and staff allocation — cutting administrative overhead dramatically.</p>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:2rem;">
+          <div style="background:#1A1A1A;border:1px solid rgba(255,255,255,0.07);border-radius:10px;padding:1.25rem;">
+            <div style="font-size:1.75rem;font-weight:800;color:#C8172A;margin-bottom:0.25rem;font-family:'Barlow',sans-serif;">-35%</div>
+            <div style="font-size:0.8125rem;color:#666;">Operational costs</div>
+          </div>
+          <div style="background:#1A1A1A;border:1px solid rgba(255,255,255,0.07);border-radius:10px;padding:1.25rem;">
+            <div style="font-size:1.75rem;font-weight:800;color:#C8172A;margin-bottom:0.25rem;font-family:'Barlow',sans-serif;">+40%</div>
+            <div style="font-size:0.8125rem;color:#666;">Staff productivity</div>
+          </div>
+        </div>
+        <a href="#contact" class="btn-red">Get Healthcare AI Audit</a>
+      </div>
+      <div class="reveal" style="border-radius:16px;overflow:hidden;box-shadow:0 16px 48px rgba(0,0,0,0.5);">
+        <img src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=700&q=80" alt="Healthcare AI" style="width:100%;display:block;" />
+      </div>
+    </div>
+
+    <div class="ind-panel" id="ind-retail" style="grid-template-columns:1fr 1fr;gap:4rem;align-items:center;">
+      <div class="reveal">
+        <div style="display:inline-flex;padding:0.5rem 1rem;background:rgba(200,23,42,0.1);border:1px solid rgba(200,23,42,0.2);border-radius:6px;font-size:0.8125rem;font-weight:700;color:#C8172A;margin-bottom:1.5rem;font-family:'Barlow',sans-serif;">Retail &amp; eCommerce</div>
+        <h3 style="font-size:2rem;font-weight:800;margin-bottom:1rem;line-height:1.2;color:#F0F0F0;">Increase Revenue Per Customer with AI Personalization</h3>
+        <p style="color:#777;margin-bottom:2rem;line-height:1.8;">Retail and eCommerce businesses in UAE &amp; KSA are leaving revenue on the table. UKIYO AI deploys product recommendation engines, dynamic pricing, churn prediction, and hyper-personalized marketing automation.</p>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:2rem;">
+          <div style="background:#1A1A1A;border:1px solid rgba(255,255,255,0.07);border-radius:10px;padding:1.25rem;">
+            <div style="font-size:1.75rem;font-weight:800;color:#C8172A;margin-bottom:0.25rem;font-family:'Barlow',sans-serif;">+28%</div>
+            <div style="font-size:0.8125rem;color:#666;">Revenue per customer</div>
+          </div>
+          <div style="background:#1A1A1A;border:1px solid rgba(255,255,255,0.07);border-radius:10px;padding:1.25rem;">
+            <div style="font-size:1.75rem;font-weight:800;color:#C8172A;margin-bottom:0.25rem;font-family:'Barlow',sans-serif;">-45%</div>
+            <div style="font-size:0.8125rem;color:#666;">Customer churn rate</div>
+          </div>
+        </div>
+        <a href="#contact" class="btn-red">Get Retail AI Audit</a>
+      </div>
+      <div class="reveal" style="border-radius:16px;overflow:hidden;box-shadow:0 16px 48px rgba(0,0,0,0.5);">
+        <img src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=700&q=80" alt="Retail AI" style="width:100%;display:block;" />
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================== WHY UKIYO AI ======================== -->
+<section style="padding:7rem 2rem;background:#0D0D0D;border-top:1px solid rgba(255,255,255,0.05);border-bottom:1px solid rgba(255,255,255,0.05);">
+  <div style="max-width:1280px;margin:0 auto;">
+    <div id="why-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:start;">
+      <div class="reveal">
+        <span class="section-label">Why UKIYO AI</span>
+        <h2 style="font-size:clamp(2rem,4vw,3rem);font-weight:800;margin-top:1rem;margin-bottom:1.5rem;color:#F0F0F0;">The Standard for Enterprise AI in the Gulf</h2>
+        <p style="color:#777;font-size:1rem;margin-bottom:2.5rem;line-height:1.8;">We don't just implement technology. We architect systems designed to deliver specific, measurable outcomes — within a defined timeline and with a performance guarantee.</p>
+        <a href="#contact" class="btn-red">Request an AI Opportunity Audit</a>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.25rem;">
+        <div class="card reveal" style="padding:1.5rem;"><div style="font-size:1.5rem;margin-bottom:0.75rem;">⚡</div><h4 style="font-size:1rem;font-weight:700;margin-bottom:0.5rem;color:#F0F0F0;">Speed to Value</h4><p style="font-size:0.875rem;color:#666;">From audit to production deployment in 90 days — not quarters.</p></div>
+        <div class="card reveal" style="padding:1.5rem;"><div style="font-size:1.5rem;margin-bottom:0.75rem;">🎯</div><h4 style="font-size:1rem;font-weight:700;margin-bottom:0.5rem;color:#F0F0F0;">Outcome Guarantee</h4><p style="font-size:0.875rem;color:#666;">We guarantee measurable ROI or we work until the numbers are there.</p></div>
+        <div class="card reveal" style="padding:1.5rem;"><div style="font-size:1.5rem;margin-bottom:0.75rem;">🌍</div><h4 style="font-size:1rem;font-weight:700;margin-bottom:0.5rem;color:#F0F0F0;">Gulf Market Expertise</h4><p style="font-size:0.875rem;color:#666;">Deep understanding of UAE &amp; KSA enterprise culture, compliance, and regulations.</p></div>
+        <div class="card reveal" style="padding:1.5rem;"><div style="font-size:1.5rem;margin-bottom:0.75rem;">🏢</div><h4 style="font-size:1rem;font-weight:700;margin-bottom:0.5rem;color:#F0F0F0;">Enterprise-Grade</h4><p style="font-size:0.875rem;color:#666;">Security-first architecture built to enterprise compliance standards from day one.</p></div>
+        <div class="card reveal" style="padding:1.5rem;"><div style="font-size:1.5rem;margin-bottom:0.75rem;">📊</div><h4 style="font-size:1rem;font-weight:700;margin-bottom:0.5rem;color:#F0F0F0;">Data Transparency</h4><p style="font-size:0.875rem;color:#666;">Executive dashboards so you see exactly where ROI is being generated.</p></div>
+        <div class="card reveal" style="padding:1.5rem;"><div style="font-size:1.5rem;margin-bottom:0.75rem;">🤝</div><h4 style="font-size:1rem;font-weight:700;margin-bottom:0.5rem;color:#F0F0F0;">Dedicated Team</h4><p style="font-size:0.875rem;color:#666;">A dedicated AI architect and implementation team from kick-off to go-live.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================== ROI OUTCOMES ======================== -->
+<section style="padding:7rem 2rem;background:#080808;position:relative;overflow:hidden;">
+  <div style="position:absolute;inset:0;pointer-events:none;background:radial-gradient(ellipse at 20% 50%,rgba(200,23,42,0.06) 0%,transparent 60%);"></div>
+  <div style="max-width:1280px;margin:0 auto;position:relative;z-index:1;">
+    <div style="text-align:center;max-width:600px;margin:0 auto 5rem;" class="reveal">
+      <span class="section-label">Proven Results</span>
+      <h2 style="font-size:clamp(2rem,4vw,3rem);font-weight:800;margin-top:1rem;color:#F0F0F0;">Real Outcomes.<br />Real Numbers.</h2>
+    </div>
+    <div id="roi-grid" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1.5rem;">
+      <div style="border:1px solid rgba(200,23,42,0.2);border-radius:12px;padding:2rem;text-align:center;background:rgba(200,23,42,0.04);" class="reveal">
+        <div style="font-family:'Barlow',sans-serif;font-size:3.5rem;font-weight:800;color:#C8172A;line-height:1;margin-bottom:0.5rem;">40%</div>
+        <div style="font-size:0.9rem;font-weight:600;margin-bottom:0.5rem;font-family:'Barlow',sans-serif;color:#F0F0F0;">Average Cost Reduction</div>
+        <div style="font-size:0.8125rem;color:#555;">Across cloud &amp; process automation programs</div>
+      </div>
+      <div style="border:1px solid rgba(201,168,76,0.2);border-radius:12px;padding:2rem;text-align:center;background:rgba(201,168,76,0.04);" class="reveal">
+        <div style="font-family:'Barlow',sans-serif;font-size:3.5rem;font-weight:800;color:#C9A84C;line-height:1;margin-bottom:0.5rem;">3x</div>
+        <div style="font-size:0.9rem;font-weight:600;margin-bottom:0.5rem;font-family:'Barlow',sans-serif;color:#F0F0F0;">Lead Conversion Uplift</div>
+        <div style="font-size:0.8125rem;color:#555;">In enterprise sales automation deployments</div>
+      </div>
+      <div style="border:1px solid rgba(200,23,42,0.2);border-radius:12px;padding:2rem;text-align:center;background:rgba(200,23,42,0.04);" class="reveal">
+        <div style="font-family:'Barlow',sans-serif;font-size:3.5rem;font-weight:800;color:#C8172A;line-height:1;margin-bottom:0.5rem;">90</div>
+        <div style="font-size:0.9rem;font-weight:600;margin-bottom:0.5rem;font-family:'Barlow',sans-serif;color:#F0F0F0;">Days to First ROI</div>
+        <div style="font-size:0.8125rem;color:#555;">Guaranteed timeline from engagement start</div>
+      </div>
+      <div style="border:1px solid rgba(201,168,76,0.2);border-radius:12px;padding:2rem;text-align:center;background:rgba(201,168,76,0.04);" class="reveal">
+        <div style="font-family:'Barlow',sans-serif;font-size:3.5rem;font-weight:800;color:#C9A84C;line-height:1;margin-bottom:0.5rem;">60%</div>
+        <div style="font-size:0.9rem;font-weight:600;margin-bottom:0.5rem;font-family:'Barlow',sans-serif;color:#F0F0F0;">Less Manual Dependency</div>
+        <div style="font-size:0.8125rem;color:#555;">After autonomous business systems deployment</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================== PROCESS ======================== -->
+<section id="process" style="padding:7rem 2rem;background:#0D0D0D;border-top:1px solid rgba(255,255,255,0.05);">
+  <div style="max-width:1280px;margin:0 auto;">
+    <div style="text-align:center;max-width:560px;margin:0 auto 5rem;" class="reveal">
+      <span class="section-label">How It Works</span>
+      <h2 style="font-size:clamp(2rem,4vw,3rem);font-weight:800;margin-top:1rem;color:#F0F0F0;">From Audit to ROI<br />in 4 Structured Phases</h2>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:2rem;position:relative;">
+      <div style="position:absolute;top:24px;left:10%;right:10%;height:1px;background:linear-gradient(90deg,transparent,rgba(200,23,42,0.3),rgba(200,23,42,0.3),transparent);pointer-events:none;" class="hidden-mobile"></div>
+      <div style="text-align:center;" class="reveal"><div class="step-num" style="margin:0 auto 1.5rem;">01</div><h4 style="font-size:1.125rem;font-weight:700;margin-bottom:0.75rem;color:#F0F0F0;">AI Opportunity Audit</h4><p style="font-size:0.875rem;color:#666;line-height:1.7;">We map your current operations, identify AI-ready processes, and quantify the ROI potential across cost reduction and revenue growth.</p></div>
+      <div style="text-align:center;" class="reveal"><div class="step-num" style="margin:0 auto 1.5rem;">02</div><h4 style="font-size:1.125rem;font-weight:700;margin-bottom:0.75rem;color:#F0F0F0;">Solution Architecture</h4><p style="font-size:0.875rem;color:#666;line-height:1.7;">Our AI architects design a custom transformation roadmap — selecting the right tools, models, and integration points for your environment.</p></div>
+      <div style="text-align:center;" class="reveal"><div class="step-num" style="margin:0 auto 1.5rem;">03</div><h4 style="font-size:1.125rem;font-weight:700;margin-bottom:0.75rem;color:#F0F0F0;">Rapid Deployment</h4><p style="font-size:0.875rem;color:#666;line-height:1.7;">Agile implementation sprints deliver working solutions in weeks, not months. Every milestone tied to a measurable business outcome.</p></div>
+      <div style="text-align:center;" class="reveal"><div class="step-num" style="margin:0 auto 1.5rem;">04</div><h4 style="font-size:1.125rem;font-weight:700;margin-bottom:0.75rem;color:#F0F0F0;">Scale &amp; Optimize</h4><p style="font-size:0.875rem;color:#666;line-height:1.7;">Post-deployment optimization, AI model refinement, and executive reporting ensure your ROI compounds over time.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================== TESTIMONIALS ======================== -->
+<section style="padding:7rem 2rem;background:#080808;">
+  <div style="max-width:1280px;margin:0 auto;">
+    <div style="text-align:center;max-width:560px;margin:0 auto 4rem;" class="reveal">
+      <span class="section-label">Client Outcomes</span>
+      <h2 style="font-size:clamp(2rem,4vw,3rem);font-weight:800;margin-top:1rem;color:#F0F0F0;">What Executives Say</h2>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:1.5rem;">
+      <div class="card reveal" style="padding:2rem;"><div style="color:#C8172A;font-size:1rem;margin-bottom:1.25rem;">★★★★★</div><p style="color:#bbb;font-size:0.9375rem;line-height:1.7;margin-bottom:1.5rem;">"UKIYO AI reduced our operational costs by 38% within the first 60 days. The process was seamless and the team genuinely understood our business. This wasn't generic IT consulting — it was real transformation."</p><div style="display:flex;align-items:center;gap:1rem;padding-top:1.25rem;border-top:1px solid rgba(255,255,255,0.07);"><img src="https://placehold.co/48x48/1A1A1A/555555?text=AK" alt="Ahmed K." style="border-radius:50%;width:48px;height:48px;" /><div><div style="font-weight:700;font-size:0.9rem;color:#F0F0F0;font-family:'Barlow',sans-serif;">Ahmed K.</div><div style="font-size:0.8125rem;color:#555;">COO — Real Estate Developer, Dubai</div></div></div></div>
+      <div class="card reveal" style="padding:2rem;"><div style="color:#C8172A;font-size:1rem;margin-bottom:1.25rem;">★★★★★</div><p style="color:#bbb;font-size:0.9375rem;line-height:1.7;margin-bottom:1.5rem;">"Our sales team's conversion rate tripled after deploying the AI Revenue Engine. The lead scoring accuracy is remarkable. UKIYO AI delivered on every commitment made during the audit phase."</p><div style="display:flex;align-items:center;gap:1rem;padding-top:1.25rem;border-top:1px solid rgba(255,255,255,0.07);"><img src="https://placehold.co/48x48/1A1A1A/555555?text=SR" alt="Sarah R." style="border-radius:50%;width:48px;height:48px;" /><div><div style="font-weight:700;font-size:0.9rem;color:#F0F0F0;font-family:'Barlow',sans-serif;">Sarah R.</div><div style="font-size:0.8125rem;color:#555;">CEO — Healthcare Group, Riyadh</div></div></div></div>
+      <div class="card reveal" style="padding:2rem;"><div style="color:#C8172A;font-size:1rem;margin-bottom:1.25rem;">★★★★★</div><p style="color:#bbb;font-size:0.9375rem;line-height:1.7;margin-bottom:1.5rem;">"The Autonomous Business System transformed how we operate. Our customer support AI handles 80% of queries without human intervention. Revenue per customer is up 31% since deployment."</p><div style="display:flex;align-items:center;gap:1rem;padding-top:1.25rem;border-top:1px solid rgba(255,255,255,0.07);"><img src="https://placehold.co/48x48/1A1A1A/555555?text=MH" alt="Mohammed H." style="border-radius:50%;width:48px;height:48px;" /><div><div style="font-weight:700;font-size:0.9rem;color:#F0F0F0;font-family:'Barlow',sans-serif;">Mohammed H.</div><div style="font-size:0.8125rem;color:#555;">Founder — Retail eCommerce, Abu Dhabi</div></div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================== FAQ ======================== -->
+<section id="faq" style="padding:7rem 2rem;background:#0D0D0D;border-top:1px solid rgba(255,255,255,0.05);">
+  <div style="max-width:800px;margin:0 auto;">
+    <div style="text-align:center;margin-bottom:4rem;" class="reveal">
+      <span class="section-label">FAQ</span>
+      <h2 style="font-size:clamp(2rem,4vw,3rem);font-weight:800;margin-top:1rem;color:#F0F0F0;">Common Questions</h2>
+    </div>
+    <div>
+      <div class="faq-item reveal"><button class="faq-btn" onclick="toggleFaq(this)" aria-expanded="false"><span>What does "Guaranteed ROI" actually mean?</span><span class="faq-icon" aria-hidden="true">+</span></button><div class="faq-body"><p>We define specific, measurable ROI targets with you before the engagement begins — tied to your business KPIs. If we don't hit the agreed targets within the program timeline, we continue working at no additional cost until we do. This guarantee is documented in our engagement agreement.</p></div></div>
+      <div class="faq-item reveal"><button class="faq-btn" onclick="toggleFaq(this)" aria-expanded="false"><span>How long does the 90-Day Transformation Program take to start?</span><span class="faq-icon" aria-hidden="true">+</span></button><div class="faq-body"><p>After booking a Strategy Call, we typically complete the AI Opportunity Audit within 5-7 business days. Once confirmed, the 90-day clock starts. Most clients see initial quick wins within the first 30 days.</p></div></div>
+      <div class="faq-item reveal"><button class="faq-btn" onclick="toggleFaq(this)" aria-expanded="false"><span>Do you work with companies that have no existing AI infrastructure?</span><span class="faq-icon" aria-hidden="true">+</span></button><div class="faq-body"><p>Yes — most of our clients start from zero AI maturity. Our audit process identifies the highest-ROI entry points specific to your operations. We build the infrastructure, integrations, and systems from the ground up.</p></div></div>
+      <div class="faq-item reveal"><button class="faq-btn" onclick="toggleFaq(this)" aria-expanded="false"><span>Which industries do you specialize in?</span><span class="faq-icon" aria-hidden="true">+</span></button><div class="faq-body"><p>We have deep specialization in Real Estate, Healthcare, and Retail/eCommerce in UAE &amp; Saudi Arabia. We also serve enterprise clients in logistics, hospitality, and professional services.</p></div></div>
+      <div class="faq-item reveal"><button class="faq-btn" onclick="toggleFaq(this)" aria-expanded="false"><span>How do you ensure data security and compliance in UAE &amp; KSA?</span><span class="faq-icon" aria-hidden="true">+</span></button><div class="faq-body"><p>All solutions are designed with security-first architecture compliant with UAE PDPL, Saudi PDPL, and sector-specific regulations. Our cybersecurity team conducts pre-deployment vulnerability assessments and ongoing SOC monitoring.</p></div></div>
+      <div class="faq-item reveal"><button class="faq-btn" onclick="toggleFaq(this)" aria-expanded="false"><span>What happens after the 90-day program ends?</span><span class="faq-icon" aria-hidden="true">+</span></button><div class="faq-body"><p>We offer ongoing optimization retainers for AI model retraining, system expansion, and executive reporting. The 90-day program is the foundation — most enterprise transformations continue to expand from there.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================== FINAL CTA ======================== -->
+<section style="padding:8rem 2rem;position:relative;overflow:hidden;background:#C8172A;">
+  <div style="position:absolute;inset:0;pointer-events:none;">
+    <div style="position:absolute;top:-30%;left:-10%;width:700px;height:700px;border-radius:50%;background:radial-gradient(circle,rgba(255,255,255,0.08) 0%,transparent 70%);"></div>
+    <div style="position:absolute;bottom:-30%;right:-10%;width:500px;height:500px;border-radius:50%;background:radial-gradient(circle,rgba(0,0,0,0.15) 0%,transparent 70%);"></div>
+    <div style="position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,0.04) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.04) 1px,transparent 1px);background-size:80px 80px;"></div>
+  </div>
+  <div style="max-width:760px;margin:0 auto;text-align:center;position:relative;z-index:1;" class="reveal">
+    <span style="font-family:'Barlow',sans-serif;font-size:0.75rem;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:rgba(255,255,255,0.6);">Ready to Transform</span>
+    <h2 style="font-size:clamp(2.25rem,5vw,4rem);font-weight:800;margin:1.25rem 0 1.5rem;line-height:1.1;color:#fff;">Your Enterprise Deserves<br />AI That Delivers ROI.</h2>
+    <p style="color:rgba(255,255,255,0.75);font-size:1.125rem;margin-bottom:3rem;max-width:520px;margin-left:auto;margin-right:auto;">Stop paying for AI projects that don't move the needle. Book a free Strategy Call and get your custom AI Opportunity Audit — at no cost.</p>
+    <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:1rem;">
+      <a href="#contact" style="background:#fff;color:#C8172A;font-family:'Barlow',sans-serif;font-weight:700;font-size:1rem;padding:1rem 2.5rem;border-radius:6px;text-decoration:none;transition:transform 0.18s ease,box-shadow 0.18s ease;box-shadow:0 4px 20px rgba(0,0,0,0.2);display:inline-block;" onmouseover="this.style.transform='translateY(-2px)';this.style.boxShadow='0 12px 36px rgba(0,0,0,0.3)'" onmouseout="this.style.transform='translateY(0)';this.style.boxShadow='0 4px 20px rgba(0,0,0,0.2)'">Book a Strategy Call</a>
+      <a href="#contact" style="background:transparent;color:#fff;font-family:'Barlow',sans-serif;font-weight:600;font-size:1rem;padding:1rem 2.5rem;border-radius:6px;text-decoration:none;border:1.5px solid rgba(255,255,255,0.4);transition:transform 0.18s ease,background 0.18s ease;display:inline-block;" onmouseover="this.style.background='rgba(255,255,255,0.12)';this.style.transform='translateY(-2px)'" onmouseout="this.style.background='transparent';this.style.transform='translateY(0)'">Request AI Opportunity Audit</a>
+    </div>
+    <p style="margin-top:1.75rem;font-size:0.8125rem;color:rgba(255,255,255,0.4);">No commitment required. 45-minute call. Clear ROI estimate delivered within 48 hours.</p>
+  </div>
+</section>
+
+<!-- ======================== CONTACT ======================== -->
+<section id="contact" style="padding:7rem 2rem;background:#080808;border-top:1px solid rgba(255,255,255,0.05);">
+  <div id="contact-grid" style="max-width:1280px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:start;">
+    <div class="reveal">
+      <span class="section-label">Get in Touch</span>
+      <h2 style="font-size:clamp(1.75rem,3vw,2.5rem);font-weight:800;margin:1rem 0 1.25rem;color:#F0F0F0;">Start Your AI Transformation</h2>
+      <p style="color:#666;margin-bottom:2.5rem;line-height:1.8;">Schedule a strategy call with our enterprise AI team. We'll map your biggest opportunities and show you exactly what's possible — with real numbers.</p>
+      <div style="display:flex;flex-direction:column;gap:1.5rem;">
+        <div style="display:flex;align-items:flex-start;gap:1rem;"><div style="width:40px;height:40px;background:rgba(200,23,42,0.1);border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#C8172A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg></div><div><div style="font-weight:700;font-size:0.9rem;color:#F0F0F0;font-family:'Barlow',sans-serif;">Dubai, UAE</div><div style="font-size:0.875rem;color:#555;">Business Bay, Dubai, United Arab Emirates</div></div></div>
+        <div style="display:flex;align-items:flex-start;gap:1rem;"><div style="width:40px;height:40px;background:rgba(200,23,42,0.1);border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#C8172A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg></div><div><div style="font-weight:700;font-size:0.9rem;color:#F0F0F0;font-family:'Barlow',sans-serif;">Riyadh, Saudi Arabia</div><div style="font-size:0.875rem;color:#555;">King Fahd District, Riyadh, KSA</div></div></div>
+        <div style="display:flex;align-items:flex-start;gap:1rem;"><div style="width:40px;height:40px;background:rgba(200,23,42,0.1);border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#C8172A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div><div><div style="font-weight:700;font-size:0.9rem;color:#F0F0F0;font-family:'Barlow',sans-serif;">hello@ukiyoai.com</div><div style="font-size:0.875rem;color:#555;">We respond within 4 business hours</div></div></div>
+      </div>
+    </div>
+    <div class="reveal">
+      <form onsubmit="handleForm(event)" style="background:#111;border:1px solid rgba(255,255,255,0.07);border-radius:16px;padding:2.5rem;display:flex;flex-direction:column;gap:1.25rem;box-shadow:0 4px 32px rgba(0,0,0,0.4);">
+        <div id="form-name-row" style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;">
+          <div><label style="font-size:0.8125rem;font-weight:600;color:#777;display:block;margin-bottom:0.5rem;font-family:'Barlow',sans-serif;">Full Name</label><input type="text" placeholder="Ahmed Al-Rashid" required style="width:100%;background:#0D0D0D;border:1.5px solid rgba(255,255,255,0.1);border-radius:8px;padding:0.75rem 1rem;color:#F0F0F0;font-size:0.9rem;font-family:'Roboto',sans-serif;outline:none;transition:border-color 0.18s;" onfocus="this.style.borderColor='rgba(200,23,42,0.5)'" onblur="this.style.borderColor='rgba(255,255,255,0.1)'" /></div>
+          <div><label style="font-size:0.8125rem;font-weight:600;color:#777;display:block;margin-bottom:0.5rem;font-family:'Barlow',sans-serif;">Company</label><input type="text" placeholder="Your Company" required style="width:100%;background:#0D0D0D;border:1.5px solid rgba(255,255,255,0.1);border-radius:8px;padding:0.75rem 1rem;color:#F0F0F0;font-size:0.9rem;font-family:'Roboto',sans-serif;outline:none;transition:border-color 0.18s;" onfocus="this.style.borderColor='rgba(200,23,42,0.5)'" onblur="this.style.borderColor='rgba(255,255,255,0.1)'" /></div>
+        </div>
+        <div><label style="font-size:0.8125rem;font-weight:600;color:#777;display:block;margin-bottom:0.5rem;font-family:'Barlow',sans-serif;">Work Email</label><input type="email" placeholder="ahmed@company.com" required style="width:100%;background:#0D0D0D;border:1.5px solid rgba(255,255,255,0.1);border-radius:8px;padding:0.75rem 1rem;color:#F0F0F0;font-size:0.9rem;font-family:'Roboto',sans-serif;outline:none;transition:border-color 0.18s;" onfocus="this.style.borderColor='rgba(200,23,42,0.5)'" onblur="this.style.borderColor='rgba(255,255,255,0.1)'" /></div>
+        <div><label style="font-size:0.8125rem;font-weight:600;color:#777;display:block;margin-bottom:0.5rem;font-family:'Barlow',sans-serif;">What are you looking to achieve?</label><select required style="width:100%;background:#0D0D0D;border:1.5px solid rgba(255,255,255,0.1);border-radius:8px;padding:0.75rem 1rem;color:#F0F0F0;font-size:0.9rem;font-family:'Roboto',sans-serif;outline:none;transition:border-color 0.18s;appearance:none;" onfocus="this.style.borderColor='rgba(200,23,42,0.5)'" onblur="this.style.borderColor='rgba(255,255,255,0.1)'"><option value="" style="background:#111;">Select a goal</option><option value="cost" style="background:#111;">Reduce operational costs</option><option value="revenue" style="background:#111;">Increase revenue / conversions</option><option value="automation" style="background:#111;">Automate business processes</option><option value="transformation" style="background:#111;">Full digital transformation</option><option value="audit" style="background:#111;">AI Opportunity Audit</option></select></div>
+        <div><label style="font-size:0.8125rem;font-weight:600;color:#777;display:block;margin-bottom:0.5rem;font-family:'Barlow',sans-serif;">Message (optional)</label><textarea rows="3" placeholder="Briefly describe your current challenge..." style="width:100%;background:#0D0D0D;border:1.5px solid rgba(255,255,255,0.1);border-radius:8px;padding:0.75rem 1rem;color:#F0F0F0;font-size:0.9rem;font-family:'Roboto',sans-serif;outline:none;transition:border-color 0.18s;resize:vertical;" onfocus="this.style.borderColor='rgba(200,23,42,0.5)'" onblur="this.style.borderColor='rgba(255,255,255,0.1)'"></textarea></div>
+        <button type="submit" class="btn-red" style="font-size:1rem;padding:0.9rem;width:100%;border-radius:6px;">Book My Strategy Call &rarr;</button>
+        <p style="font-size:0.75rem;color:#444;text-align:center;">Free consultation. No obligation. Response within 4 hours.</p>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- ======================== FOOTER ======================== -->
+<footer style="background:#080808;border-top:1px solid rgba(255,255,255,0.06);padding:4rem 2rem 2rem;">
+  <div style="max-width:1280px;margin:0 auto;">
+    <div id="footer-grid" style="display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:3rem;margin-bottom:4rem;">
+      <div>
+        <img src="yukiyo.png" alt="UKIYO AI" style="height:52px;width:auto;margin-bottom:1.25rem;" />
+        <p style="font-size:0.875rem;color:#444;line-height:1.7;max-width:280px;margin-bottom:1.5rem;">AI transformation for enterprises in UAE &amp; Saudi Arabia. Measurable outcomes. Guaranteed ROI.</p>
+        <div style="display:flex;gap:0.75rem;">
+          <a href="#" aria-label="LinkedIn" style="width:36px;height:36px;background:#1A1A1A;border:1px solid rgba(255,255,255,0.07);border-radius:8px;display:flex;align-items:center;justify-content:center;transition:border-color 0.18s,background 0.18s;" onmouseover="this.style.borderColor='rgba(200,23,42,0.4)';this.style.background='rgba(200,23,42,0.1)'" onmouseout="this.style.borderColor='rgba(255,255,255,0.07)';this.style.background='#1A1A1A'"><svg width="16" height="16" viewBox="0 0 24 24" fill="#666"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg></a>
+          <a href="#" aria-label="Twitter" style="width:36px;height:36px;background:#1A1A1A;border:1px solid rgba(255,255,255,0.07);border-radius:8px;display:flex;align-items:center;justify-content:center;transition:border-color 0.18s,background 0.18s;" onmouseover="this.style.borderColor='rgba(200,23,42,0.4)';this.style.background='rgba(200,23,42,0.1)'" onmouseout="this.style.borderColor='rgba(255,255,255,0.07)';this.style.background='#1A1A1A'"><svg width="16" height="16" viewBox="0 0 24 24" fill="#666"><path d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z"/></svg></a>
+        </div>
+      </div>
+      <div>
+        <div style="font-family:'Barlow',sans-serif;font-size:0.8125rem;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:#F0F0F0;margin-bottom:1.25rem;">Services</div>
+        <div style="display:flex;flex-direction:column;gap:0.75rem;">
+          <a href="#services" style="font-size:0.875rem;color:#444;text-decoration:none;transition:color 0.18s;" onmouseover="this.style.color='#C8172A'" onmouseout="this.style.color='#444'">AI + Automation</a>
+          <a href="#services" style="font-size:0.875rem;color:#444;text-decoration:none;transition:color 0.18s;" onmouseover="this.style.color='#C8172A'" onmouseout="this.style.color='#444'">Cloud &amp; DevOps</a>
+          <a href="#services" style="font-size:0.875rem;color:#444;text-decoration:none;transition:color 0.18s;" onmouseover="this.style.color='#C8172A'" onmouseout="this.style.color='#444'">SaaS Products</a>
+          <a href="#services" style="font-size:0.875rem;color:#444;text-decoration:none;transition:color 0.18s;" onmouseover="this.style.color='#C8172A'" onmouseout="this.style.color='#444'">Cybersecurity</a>
+          <a href="#services" style="font-size:0.875rem;color:#444;text-decoration:none;transition:color 0.18s;" onmouseover="this.style.color='#C8172A'" onmouseout="this.style.color='#444'">Data &amp; Analytics</a>
+        </div>
+      </div>
+      <div>
+        <div style="font-family:'Barlow',sans-serif;font-size:0.8125rem;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:#F0F0F0;margin-bottom:1.25rem;">Industries</div>
+        <div style="display:flex;flex-direction:column;gap:0.75rem;">
+          <a href="#industries" style="font-size:0.875rem;color:#444;text-decoration:none;transition:color 0.18s;" onmouseover="this.style.color='#C8172A'" onmouseout="this.style.color='#444'">Real Estate</a>
+          <a href="#industries" style="font-size:0.875rem;color:#444;text-decoration:none;transition:color 0.18s;" onmouseover="this.style.color='#C8172A'" onmouseout="this.style.color='#444'">Healthcare</a>
+          <a href="#industries" style="font-size:0.875rem;color:#444;text-decoration:none;transition:color 0.18s;" onmouseover="this.style.color='#C8172A'" onmouseout="this.style.color='#444'">Retail &amp; eCommerce</a>
+          <a href="#industries" style="font-size:0.875rem;color:#444;text-decoration:none;transition:color 0.18s;" onmouseover="this.style.color='#C8172A'" onmouseout="this.style.color='#444'">Logistics</a>
+        </div>
+      </div>
+      <div>
+        <div style="font-family:'Barlow',sans-serif;font-size:0.8125rem;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:#F0F0F0;margin-bottom:1.25rem;">Company</div>
+        <div style="display:flex;flex-direction:column;gap:0.75rem;">
+          <a href="#" style="font-size:0.875rem;color:#444;text-decoration:none;transition:color 0.18s;" onmouseover="this.style.color='#C8172A'" onmouseout="this.style.color='#444'">About</a>
+          <a href="#offer" style="font-size:0.875rem;color:#444;text-decoration:none;transition:color 0.18s;" onmouseover="this.style.color='#C8172A'" onmouseout="this.style.color='#444'">90-Day Program</a>
+          <a href="#contact" style="font-size:0.875rem;color:#444;text-decoration:none;transition:color 0.18s;" onmouseover="this.style.color='#C8172A'" onmouseout="this.style.color='#444'">Contact</a>
+          <a href="#" style="font-size:0.875rem;color:#444;text-decoration:none;transition:color 0.18s;" onmouseover="this.style.color='#C8172A'" onmouseout="this.style.color='#444'">Privacy Policy</a>
+        </div>
+      </div>
+    </div>
+    <div style="border-top:1px solid rgba(255,255,255,0.06);padding-top:2rem;display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:1rem;">
+      <div style="font-size:0.8125rem;color:#333;">&copy; 2026 UKIYO AI. All rights reserved. Dubai, UAE &amp; Riyadh, KSA.</div>
+      <div style="font-size:0.8125rem;color:#333;">AI Transformation &bull; Guaranteed ROI &bull; UAE &amp; Saudi Arabia</div>
+    </div>
+  </div>
+</footer>
+
+<!-- ======================== SCRIPTS ======================== -->
+<script>
+  // Mobile menu
+  const menuToggle = document.getElementById('menu-toggle');
+  const mobileMenu = document.getElementById('mobile-menu');
+  menuToggle.addEventListener('click', () => {
+    const isOpen = mobileMenu.classList.toggle('open');
+    menuToggle.setAttribute('aria-expanded', isOpen);
+  });
+  function closeMobileMenu() {
+    mobileMenu.classList.remove('open');
+    menuToggle.setAttribute('aria-expanded', 'false');
+  }
+
+  // ---- BANNER SLIDER ----
+  const slides = document.querySelectorAll('.slide');
+  const dots = document.querySelectorAll('.slider-dot');
+  let current = 0;
+  let sliderTimer = null;
+
+  function goToSlide(n) {
+    slides[current].classList.remove('active');
+    dots[current].classList.remove('active');
+    current = (n + slides.length) % slides.length;
+    slides[current].classList.add('active');
+    dots[current].classList.add('active');
+  }
+
+  function changeSlide(dir) {
+    goToSlide(current + dir);
+    resetTimer();
+  }
+
+  function startTimer() {
+    sliderTimer = setInterval(() => goToSlide(current + 1), 8000);
+  }
+  function resetTimer() {
+    clearInterval(sliderTimer);
+    startTimer();
+  }
+  function pauseSlider() { clearInterval(sliderTimer); }
+  function resumeSlider() { startTimer(); }
+
+  startTimer();
+
+  // Reveal on scroll
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); }
+    });
+  }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+  reveals.forEach(r => observer.observe(r));
+
+  // Animated counters
+  function animateCounter(el) {
+    const target = parseInt(el.dataset.target);
+    const suffix = el.dataset.suffix || '';
+    const start = performance.now();
+    const duration = 1400;
+    function step(now) {
+      const p = Math.min((now - start) / duration, 1);
+      const eased = 1 - Math.pow(1 - p, 3);
+      el.textContent = Math.floor(eased * target) + suffix;
+      if (p < 1) requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
+  }
+  const statsObs = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { animateCounter(e.target); statsObs.unobserve(e.target); } });
+  }, { threshold: 0.5 });
+  document.querySelectorAll('[data-target]').forEach(el => statsObs.observe(el));
+
+  // Industry tabs
+  function showIndustry(id) {
+    document.querySelectorAll('.ind-tab').forEach(t => { t.classList.remove('active'); t.setAttribute('aria-selected', 'false'); });
+    document.querySelectorAll('.ind-panel').forEach(p => p.classList.remove('active'));
+    const panel = document.getElementById('ind-' + id);
+    if (panel) panel.classList.add('active');
+    const map = { 'real-estate': 0, 'healthcare': 1, 'retail': 2 };
+    const tabs = document.querySelectorAll('.ind-tab');
+    if (tabs[map[id]]) { tabs[map[id]].classList.add('active'); tabs[map[id]].setAttribute('aria-selected', 'true'); }
+  }
+
+  // FAQ
+  function toggleFaq(btn) {
+    const body = btn.nextElementSibling;
+    const icon = btn.querySelector('.faq-icon');
+    const isOpen = body.classList.contains('open');
+    document.querySelectorAll('.faq-body').forEach(b => b.classList.remove('open'));
+    document.querySelectorAll('.faq-icon').forEach(i => i.classList.remove('open'));
+    document.querySelectorAll('.faq-btn').forEach(b => b.setAttribute('aria-expanded', 'false'));
+    if (!isOpen) { body.classList.add('open'); icon.classList.add('open'); btn.setAttribute('aria-expanded', 'true'); }
+  }
+
+  // Form
+  function handleForm(e) {
+    e.preventDefault();
+    const btn = e.target.querySelector('button[type="submit"]');
+    btn.textContent = 'Sending...';
+    btn.disabled = true;
+    setTimeout(() => {
+      btn.textContent = 'Request Submitted!';
+      btn.style.background = '#1a7a4a';
+      btn.style.boxShadow = 'none';
+      e.target.reset();
+    }, 1200);
+  }
+</script>
+</body>
+</html>
