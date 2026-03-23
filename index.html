@@ -6,7 +6,7 @@
 <title>UKIYO AI — AI Transformation for Enterprises in UAE & Saudi Arabia</title>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Barlow:wght@300;400;500;600;700;800&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;800;900&family=Barlow:wght@300;400;500;600;700;800&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet" />
 <script src="https://cdn.tailwindcss.com"></script>
 <script>
   tailwind.config = {
@@ -29,19 +29,35 @@
   *, *::before, *::after { box-sizing: border-box; }
   html { scroll-behavior: smooth; }
   body {
-    background: #080808;
+    background: #050508;
     color: #F0F0F0;
     font-family: 'Roboto', sans-serif;
     line-height: 1.7;
     overflow-x: hidden;
   }
 
-  h1, h2, h3, h4 { font-family: 'Barlow', sans-serif; letter-spacing: -0.02em; }
+  body::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background: repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 2px,
+      rgba(0,245,255,0.015) 2px,
+      rgba(0,245,255,0.015) 4px
+    );
+    pointer-events: none;
+    z-index: 9998;
+  }
+
+  h1, h2 { font-family: 'Orbitron', sans-serif; letter-spacing: -0.02em; }
+  h3, h4 { font-family: 'Barlow', sans-serif; letter-spacing: -0.02em; }
 
   /* Scrollbar */
   ::-webkit-scrollbar { width: 4px; }
-  ::-webkit-scrollbar-track { background: #080808; }
-  ::-webkit-scrollbar-thumb { background: #C8172A; border-radius: 2px; }
+  ::-webkit-scrollbar-track { background: #050508; }
+  ::-webkit-scrollbar-thumb { background: #00F5FF; border-radius: 2px; }
 
   /* ========== NAVBAR ========== */
   .nav-link {
@@ -128,7 +144,7 @@
     display: inline-block;
     text-decoration: none;
   }
-  .btn-red:hover { transform: translateY(-2px); box-shadow: 0 12px 36px rgba(200,23,42,0.45); }
+  .btn-red:hover { transform: translateY(-2px); box-shadow: 0 0 16px rgba(200,23,42,0.7), 0 0 40px rgba(200,23,42,0.3), 0 12px 36px rgba(200,23,42,0.3); }
   .btn-red:focus-visible { outline: 2px solid #C8172A; outline-offset: 3px; }
   .btn-red:active { transform: translateY(0); }
 
@@ -152,17 +168,33 @@
 
   /* ========== CARDS ========== */
   .card {
-    background: #111111;
-    border: 1px solid rgba(255,255,255,0.07);
+    background: #080810;
+    border: 1px solid rgba(0,245,255,0.1);
     border-radius: 12px;
     overflow: hidden;
     box-shadow: 0 2px 16px rgba(0,0,0,0.4);
     transition: transform 0.22s ease, box-shadow 0.22s ease, border-color 0.22s ease;
+    position: relative;
+  }
+  .card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 12px;
+    background: linear-gradient(135deg, transparent 40%, rgba(0,245,255,0.12) 50%, rgba(255,0,160,0.12) 60%, transparent 70%);
+    background-size: 200% 200%;
+    animation: holoBorder 4s linear infinite;
+    pointer-events: none;
+    z-index: 0;
+  }
+  @keyframes holoBorder {
+    0% { background-position: 0% 0%; }
+    100% { background-position: 200% 200%; }
   }
   .card:hover {
     transform: translateY(-4px);
-    box-shadow: 0 16px 48px rgba(200,23,42,0.18), 0 4px 16px rgba(0,0,0,0.5);
-    border-color: rgba(200,23,42,0.3);
+    box-shadow: 0 0 20px rgba(0,245,255,0.25), 0 0 60px rgba(0,245,255,0.1), 0 4px 16px rgba(0,0,0,0.5);
+    border-color: rgba(0,245,255,0.4);
   }
 
   .section-label {
@@ -171,11 +203,12 @@
     font-weight: 700;
     letter-spacing: 0.15em;
     text-transform: uppercase;
-    color: #C8172A;
+    color: #00F5FF;
+    text-shadow: 0 0 8px rgba(0,245,255,0.6);
   }
 
   .gradient-text {
-    background: linear-gradient(135deg, #fff 0%, #ff8080 50%, #C8172A 100%);
+    background: linear-gradient(135deg, #00F5FF 0%, #fff 40%, #FF00A0 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -185,9 +218,10 @@
     display: inline-block;
     width: 40px;
     height: 3px;
-    background: #C8172A;
+    background: #00F5FF;
     border-radius: 2px;
     vertical-align: middle;
+    box-shadow: 0 0 8px rgba(0,245,255,0.6);
   }
 
   .stat-number {
@@ -216,19 +250,20 @@
     content: '';
     position: absolute;
     inset: 0;
-    background: linear-gradient(to top, rgba(200,23,42,0.25) 0%, transparent 60%);
+    background: linear-gradient(to top, rgba(0,245,255,0.2) 0%, transparent 60%);
   }
 
   /* Tag pills */
   .tag-red {
     font-size: 0.72rem;
     padding: 0.25rem 0.625rem;
-    background: rgba(200,23,42,0.15);
-    border: 1px solid rgba(200,23,42,0.3);
+    background: rgba(0,245,255,0.08);
+    border: 1px solid rgba(0,245,255,0.3);
     border-radius: 20px;
-    color: #ff8080;
+    color: #00F5FF;
     font-family: 'Barlow', sans-serif;
     font-weight: 600;
+    text-shadow: 0 0 6px rgba(0,245,255,0.4);
   }
   .tag-gray {
     font-size: 0.72rem;
@@ -375,6 +410,16 @@
     0% { transform: scale(1); opacity: 0.5; }
     100% { transform: scale(1.22); opacity: 0; }
   }
+  @keyframes glitch {
+    0%,100% { text-shadow: none; transform: none; }
+    92% { text-shadow: none; transform: none; }
+    93% { text-shadow: -2px 0 #FF00A0, 2px 0 #00F5FF; transform: translateX(2px); }
+    94% { text-shadow: 2px 0 #FF00A0, -2px 0 #00F5FF; transform: translateX(-2px); }
+    95% { text-shadow: none; transform: none; }
+    97% { text-shadow: -1px 0 #00F5FF; transform: translateX(1px); }
+    98% { text-shadow: none; transform: none; }
+  }
+
   @keyframes fadeSlideIn {
     from { opacity: 0; transform: translateY(16px); }
     to { opacity: 1; transform: translateY(0); }
@@ -630,7 +675,7 @@
       <!-- Text left -->
       <div class="slide-1-text">
         <div class="slide-label">AI Agency — UAE &amp; Saudi Arabia</div>
-        <h1>We Don't Sell AI.<br /><span>We Deliver Measurable Business Outcomes.</span></h1>
+        <h1 style="animation: glitch 6s infinite;">We Don't Sell AI.<br /><span>We Deliver Measurable Business Outcomes.</span></h1>
         <p>UKIYO AI helps enterprises in UAE &amp; Saudi Arabia reduce costs and increase revenue using AI, automation, and intelligent systems — with guaranteed ROI.</p>
         <div class="slide-btns">
           <a href="#contact" class="btn-primary" style="font-size:1rem;padding:0.9rem 2.25rem;">Book a Strategy Call</a>
@@ -828,14 +873,6 @@
         </div>
       </div>
 
-      <div class="card reveal">
-        <div class="svc-img-wrap"><img src="https://images.unsplash.com/photo-1614064641938-3bbee52942c7?w=600&q=80" alt="Cybersecurity" loading="lazy" /></div>
-        <div style="padding:1.75rem;">
-          <h3 style="font-size:1.125rem;font-weight:700;margin-bottom:0.75rem;color:#F0F0F0;">Cybersecurity</h3>
-          <p style="color:#777;font-size:0.9rem;margin-bottom:1.25rem;line-height:1.7;">Vulnerability assessments, SOC-as-a-Service, compliance frameworks, and cloud security — protecting enterprise data in regulated markets.</p>
-          <div style="display:flex;flex-wrap:wrap;gap:0.5rem;"><span class="tag-red">SOC-as-a-Service</span><span class="tag-gray">Compliance</span></div>
-        </div>
-      </div>
 
       <div class="card reveal">
         <div class="svc-img-wrap"><img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=600&q=80" alt="Digital Transformation" loading="lazy" /></div>
@@ -843,6 +880,15 @@
           <h3 style="font-size:1.125rem;font-weight:700;margin-bottom:0.75rem;color:#F0F0F0;">Digital Transformation</h3>
           <p style="color:#777;font-size:0.9rem;margin-bottom:1.25rem;line-height:1.7;">End-to-end transformation bundles: CRM + automation + mobile app + analytics — packaged for speed and immediate ROI.</p>
           <div style="display:flex;flex-wrap:wrap;gap:0.5rem;"><span class="tag-red">CRM Bundles</span><span class="tag-gray">Full Stack</span></div>
+        </div>
+      </div>
+
+      <div class="card reveal">
+        <div class="svc-img-wrap"><img src="https://images.unsplash.com/photo-1568992687947-868a62a9f521?w=600&q=80" alt="HR Tech and Recruitment Automation" loading="lazy" /></div>
+        <div style="padding:1.75rem;">
+          <h3 style="font-size:1.125rem;font-weight:700;margin-bottom:0.75rem;color:#F0F0F0;">HR Tech &amp; Recruitment Automation</h3>
+          <p style="color:#777;font-size:0.9rem;margin-bottom:1.25rem;line-height:1.7;">Streamline your entire hiring pipeline with AI — from automated CV screening and candidate scoring to interview scheduling and onboarding workflows. Reduce time-to-hire by up to 60% while ensuring only the best-fit talent reaches your desk.</p>
+          <div style="display:flex;flex-wrap:wrap;gap:0.5rem;"><span class="tag-red">AI Screening</span><span class="tag-gray">Candidate Scoring</span><span class="tag-gray">Onboarding Automation</span><span class="tag-gray">ATS Integration</span></div>
         </div>
       </div>
 
