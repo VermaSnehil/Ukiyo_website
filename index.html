@@ -441,21 +441,8 @@
     98% { text-shadow: none; transform: none; }
   }
 
-  @keyframes logoGlitch {
-    0%,100% { transform: none; opacity: 1; }
-    10%  { transform: translateX(2px) skewX(-1deg); opacity: 0.92; }
-    11%  { transform: translateX(-2px) skewX(1deg); opacity: 1; }
-    12%  { transform: none; }
-    31%  { transform: translateX(3px) scaleX(1.01); opacity: 0.95; }
-    32%  { transform: none; opacity: 1; }
-    56%  { transform: translateX(-1px) scaleX(1.01) skewX(-0.5deg); opacity: 0.93; }
-    57%  { transform: none; opacity: 1; }
-    81%  { transform: translateX(2px) skewX(1deg); opacity: 0.95; }
-    82%  { transform: none; opacity: 1; }
-  }
-
   .logo-glitch {
-    animation: logoGlitch 4s infinite;
+    animation: glitch 2s infinite;
     display: block;
   }
 
