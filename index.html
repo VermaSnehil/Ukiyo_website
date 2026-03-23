@@ -195,21 +195,6 @@
     transition: transform 0.22s ease, box-shadow 0.22s ease, border-color 0.22s ease;
     position: relative;
   }
-  .card::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    border-radius: 12px;
-    background: linear-gradient(135deg, transparent 40%, rgba(200,23,42,0.18) 50%, rgba(255,80,80,0.12) 60%, transparent 70%);
-    background-size: 200% 200%;
-    animation: holoBorder 4s linear infinite;
-    pointer-events: none;
-    z-index: 0;
-  }
-  @keyframes holoBorder {
-    0% { background-position: 0% 0%; }
-    100% { background-position: 200% 200%; }
-  }
   .card:hover {
     transform: translateY(-4px);
     box-shadow: 0 0 20px rgba(200,23,42,0.4), 0 0 60px rgba(200,23,42,0.15), 0 4px 16px rgba(0,0,0,0.5);
