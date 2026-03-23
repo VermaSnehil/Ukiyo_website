@@ -441,6 +441,27 @@
     98% { text-shadow: none; transform: none; }
   }
 
+  @keyframes logoGlitch {
+    0%,100% { filter: none; transform: none; opacity: 1; }
+    10%  { filter: drop-shadow(-2px 0 #00F5FF) drop-shadow(2px 0 #FF00A0); transform: translateX(2px) skewX(-1deg); opacity: 0.95; }
+    11%  { filter: drop-shadow(2px 0 #00F5FF) drop-shadow(-2px 0 #FF00A0); transform: translateX(-2px) skewX(1deg); }
+    12%  { filter: none; transform: none; opacity: 1; }
+    30%  { filter: drop-shadow(0 0 6px #00F5FF); transform: none; opacity: 1; }
+    31%  { filter: drop-shadow(-3px 0 #FF00A0) brightness(1.2); transform: translateX(3px); }
+    32%  { filter: none; transform: none; }
+    55%  { filter: drop-shadow(0 0 8px #C8172A) drop-shadow(0 0 16px #FF00A0); opacity: 1; }
+    56%  { filter: drop-shadow(2px 0 #00F5FF) drop-shadow(-1px 0 #FF00A0); transform: translateX(-1px) scaleX(1.01); }
+    57%  { filter: none; transform: none; opacity: 1; }
+    80%  { filter: drop-shadow(0 0 4px #00F5FF) brightness(1.1); }
+    81%  { filter: drop-shadow(-2px 0 #C8172A) drop-shadow(2px 0 #00F5FF); transform: translateX(2px); }
+    82%  { filter: none; transform: none; }
+  }
+
+  .logo-glitch {
+    animation: logoGlitch 4s infinite;
+    display: block;
+  }
+
   @keyframes fadeSlideIn {
     from { opacity: 0; transform: translateY(16px); }
     to { opacity: 1; transform: translateY(0); }
@@ -661,7 +682,7 @@
     </div>
     <!-- CENTER: logo -->
     <a href="#" class="nav-logo" style="display:flex;align-items:center;justify-content:center;text-decoration:none;">
-      <img src="yukiyo.png" alt="UKIYO AI" style="height:64px;width:auto;" />
+      <img src="yukiyo.png" alt="UKIYO AI" class="logo-glitch" style="height:64px;width:auto;" />
     </a>
     <!-- RIGHT: CTA buttons -->
     <div style="display:flex;align-items:center;gap:1rem;justify-content:flex-end;" class="hidden-mobile">
