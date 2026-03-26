@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>SEO &amp; GEO for Brands — Full Capabilities | UKIYO AI</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;800;900&family=Barlow:wght@300;400;500;600;700;800&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet" />
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          brand: '#C8172A',
+          'brand-dim': '#9E1221',
+          gold: '#C9A84C',
+        },
+        fontFamily: {
+          display: ['Barlow', 'sans-serif'],
+          body: ['Roboto', 'sans-serif'],
+        },
+      }
+    }
+  };
+</script>
+<style>
+  *, *::before, *::after { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: #050508;
+    color: #F0F0F0;
+    font-family: 'Roboto', sans-serif;
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  /* Matrix red tile grid background */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(200,23,42,0.07) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(200,23,42,0.07) 1px, transparent 1px),
+      radial-gradient(ellipse at 20% 30%, rgba(200,23,42,0.12) 0%, transparent 55%),
+      radial-gradient(ellipse at 80% 70%, rgba(200,23,42,0.1) 0%, transparent 55%),
+      radial-gradient(ellipse at 50% 50%, rgba(100,0,10,0.15) 0%, transparent 70%);
+    background-size: 60px 60px, 60px 60px, 100% 100%, 100% 100%, 100% 100%;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* Scanline overlay */
+  body::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background: repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 2px,
+      rgba(0,245,255,0.012) 2px,
+      rgba(0,245,255,0.012) 4px
+    );
+    pointer-events: none;
+    z-index: 9998;
+  }
+
+  h1, h2 { font-family: 'Orbitron', sans-serif; letter-spacing: -0.02em; }
+  h3, h4 { font-family: 'Barlow', sans-serif; letter-spacing: -0.02em; }
+
+  /* Scrollbar */
+  ::-webkit-scrollbar { width: 4px; }
+  ::-webkit-scrollbar-track { background: #050508; }
+  ::-webkit-scrollbar-thumb { background: #00F5FF; border-radius: 2px; }
+
+  /* ========== NAVBAR ========== */
+  .nav-link {
+    color: rgba(255,255,255,0.85);
+    font-size: 1.075rem;
+    font-weight: 600;
+    font-family: 'Barlow', sans-serif;
+    transition: color 0.2s;
+    position: relative;
+    text-decoration: none;
+  }
+  .nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: -2px; left: 0; right: 100%;
+    height: 2px;
+    background: rgba(255,255,255,0.7);
+    transition: right 0.25s ease;
+  }
+  .nav-link:hover { color: #fff; }
+  .nav-link:hover::after { right: 0; }
+
+  /* ========== BUTTONS ========== */
+  .btn-primary {
+    background: #fff;
+    color: #C8172A;
+    font-family: 'Barlow', sans-serif;
+    font-weight: 700;
+    font-size: 0.875rem;
+    padding: 0.65rem 1.5rem;
+    border-radius: 6px;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.2);
+    transition: transform 0.18s ease, box-shadow 0.18s ease, opacity 0.18s ease;
+    display: inline-block;
+    text-decoration: none;
+    letter-spacing: 0.01em;
+  }
+  .btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+    opacity: 0.93;
+  }
+  .btn-primary:focus-visible { outline: 2px solid #fff; outline-offset: 3px; }
+  .btn-primary:active { transform: translateY(0); }
+
+  .btn-red {
+    background: #C8172A;
+    color: #fff;
+    font-family: 'Barlow', sans-serif;
+    font-weight: 700;
+    font-size: 0.9rem;
+    padding: 0.8rem 2rem;
+    border-radius: 6px;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 4px 20px rgba(200,23,42,0.35);
+    transition: transform 0.18s ease, box-shadow 0.18s ease;
+    display: inline-block;
+    text-decoration: none;
+  }
+  .btn-red:hover { transform: translateY(-2px); box-shadow: 0 0 16px rgba(200,23,42,0.7), 0 0 40px rgba(200,23,42,0.3), 0 12px 36px rgba(200,23,42,0.3); }
+  .btn-red:focus-visible { outline: 2px solid #C8172A; outline-offset: 3px; }
+  .btn-red:active { transform: translateY(0); }
+
+  /* Back button */
+  .btn-back {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: rgba(255,255,255,0.75);
+    font-family: 'Barlow', sans-serif;
+    font-weight: 600;
+    font-size: 0.875rem;
+    text-decoration: none;
+    transition: color 0.18s ease, gap 0.18s ease;
+    border: none;
+    background: none;
+    cursor: pointer;
+    padding: 0.5rem 0;
+  }
+  .btn-back:hover { color: #fff; gap: 0.75rem; }
+
+  /* ========== SECTION LABEL ========== */
+  .section-label {
+    font-family: 'Barlow', sans-serif;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: #00F5FF;
+    text-shadow: 0 0 8px rgba(0,245,255,0.6);
+  }
+
+  .gradient-text {
+    background: linear-gradient(135deg, #00F5FF 0%, #fff 40%, #FF00A0 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* ========== FEATURE CARD ========== */
+  .feature-card {
+    background: rgba(8,8,18,0.9);
+    border: 1px solid rgba(200,23,42,0.15);
+    border-radius: 16px;
+    padding: 2rem;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 2px 24px rgba(0,0,0,0.4);
+    transition: transform 0.22s ease, box-shadow 0.22s ease, border-color 0.22s ease;
+  }
+  .feature-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 16px;
+    background: linear-gradient(315deg, rgba(200,23,42,0.12) 0%, rgba(255,80,80,0.04) 30%, transparent 55%);
+    pointer-events: none;
+    z-index: 0;
+  }
+  .feature-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 0 20px rgba(200,23,42,0.25), 0 0 48px rgba(200,23,42,0.08), 0 8px 28px rgba(0,0,0,0.5);
+    border-color: rgba(200,23,42,0.35);
+  }
+  .feature-card > * { position: relative; z-index: 1; }
+
+  /* Icon container */
+  .feature-icon {
+    width: 44px;
+    height: 44px;
+    border-radius: 10px;
+    background: rgba(200,23,42,0.1);
+    border: 1px solid rgba(200,23,42,0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1.25rem;
+    flex-shrink: 0;
+  }
+
+  /* Tag pills */
+  .tag-cyan {
+    font-size: 0.72rem;
+    padding: 0.25rem 0.625rem;
+    background: rgba(0,245,255,0.08);
+    border: 1px solid rgba(0,245,255,0.3);
+    border-radius: 20px;
+    color: #00F5FF;
+    font-family: 'Barlow', sans-serif;
+    font-weight: 600;
+    text-shadow: 0 0 6px rgba(0,245,255,0.4);
+  }
+  .tag-gray {
+    font-size: 0.72rem;
+    padding: 0.25rem 0.625rem;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 20px;
+    color: #888;
+    font-family: 'Barlow', sans-serif;
+    font-weight: 600;
+  }
+
+  /* ========== GLITCH ========== */
+  @keyframes glitch {
+    0%,100% { text-shadow: none; transform: none; }
+    92% { text-shadow: none; transform: none; }
+    93% { text-shadow: -2px 0 #FF00A0, 2px 0 #00F5FF; transform: translateX(2px); }
+    94% { text-shadow: 2px 0 #FF00A0, -2px 0 #00F5FF; transform: translateX(-2px); }
+    95% { text-shadow: none; transform: none; }
+    97% { text-shadow: -1px 0 #00F5FF; transform: translateX(1px); }
+    98% { text-shadow: none; transform: none; }
+  }
+  .logo-glitch { animation: glitch 2s infinite; display: block; }
+
+  /* ========== REVEAL ========== */
+  .reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+
+  /* ========== BREADCRUMB ========== */
+  .breadcrumb {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: 'Barlow', sans-serif;
+    font-size: 0.8rem;
+    color: #555;
+  }
+  .breadcrumb a { color: #777; text-decoration: none; transition: color 0.18s; }
+  .breadcrumb a:hover { color: #C8172A; }
+  .breadcrumb span { color: #444; }
+
+  /* ========== DIVIDER ========== */
+  .section-divider {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(200,23,42,0.3), transparent);
+    margin: 4rem 0;
+  }
+
+  /* ========== MOBILE ========== */
+  @media (max-width: 900px) {
+    .hidden-mobile { display: none !important; }
+    #menu-toggle { display: block !important; grid-column: 3; grid-row: 1; justify-self: end; }
+    .nav-logo { grid-column: 2; grid-row: 1; }
+  }
+  @media (max-width: 768px) {
+    .features-grid { grid-template-columns: 1fr !important; }
+  }
+  @media (max-width: 600px) {
+    .nav-logo img { height: 52px !important; }
+    #menu-toggle { padding: 0.75rem !important; }
+  }
+
+  #mobile-menu { display: none; }
+  #mobile-menu.open { display: block; }
+</style>
+</head>
+<body>
+
+<!-- ======================== NAVBAR ======================== -->
+<nav id="navbar" style="position:fixed;top:0;left:0;right:0;z-index:100;background:#C8172A;border-bottom:1px solid rgba(0,0,0,0.15);" role="navigation" aria-label="Main navigation">
+  <div style="max-width:1280px;margin:0 auto;padding:0 2rem;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;height:90px;">
+    <!-- LEFT: back link -->
+    <div style="display:flex;align-items:center;" id="nav-left" class="hidden-mobile">
+      <a href="index.html#services" class="btn-back">
+        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+        Back to Services
+      </a>
+    </div>
+    <!-- CENTER: logo -->
+    <a href="index.html" class="nav-logo" style="display:flex;align-items:center;justify-content:center;text-decoration:none;">
+      <img src="yukiyo.png" alt="UKIYO AI" class="logo-glitch" style="height:80px;width:auto;" />
+    </a>
+    <!-- RIGHT: CTA -->
+    <div style="display:flex;align-items:center;gap:1rem;justify-content:flex-end;" class="hidden-mobile">
+      <a href="index.html#contact" class="btn-primary">Book a Strategy Call</a>
+    </div>
+    <!-- Mobile hamburger -->
+    <button id="menu-toggle" aria-label="Open menu" aria-expanded="false" style="display:none;background:none;border:none;color:#fff;cursor:pointer;padding:0.5rem;">
+      <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+    </button>
+  </div>
+  <!-- Mobile menu -->
+  <div id="mobile-menu" style="background:#9E1221;padding:1.25rem 2rem;border-top:1px solid rgba(0,0,0,0.15);">
+    <div style="display:flex;flex-direction:column;gap:1rem;">
+      <a href="index.html#services" class="nav-link" onclick="closeMobileMenu()">← Back to Services</a>
+      <a href="index.html#contact" class="nav-link" onclick="closeMobileMenu()">Book a Strategy Call</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ======================== HERO ======================== -->
+<section style="padding:11rem 2rem 5rem;position:relative;z-index:1;background:linear-gradient(to bottom,rgba(5,5,8,0.88) 0%,rgba(8,8,18,0.70) 45%,rgba(8,8,18,0.96) 100%),linear-gradient(135deg,rgba(200,23,42,0.18) 0%,transparent 55%),url('https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1600&q=80') center/cover no-repeat;">
+  <div style="max-width:780px;margin:0 auto;text-align:center;" class="reveal">
+    <!-- Breadcrumb -->
+    <div class="breadcrumb" style="justify-content:center;margin-bottom:2rem;">
+      <a href="index.html">Home</a>
+      <span>›</span>
+      <a href="index.html#services">Services</a>
+      <span>›</span>
+      <span style="color:#C8172A;">SEO &amp; GEO</span>
+    </div>
+    <span class="section-label">Full Capabilities</span>
+    <h1 style="font-size:clamp(2rem,4.5vw,3.25rem);font-weight:800;margin-top:1rem;margin-bottom:1.25rem;color:#F0F0F0;animation:glitch 7s infinite;">SEO &amp; GEO<br /><span class="gradient-text">For Brands</span></h1>
+    <p style="color:#777;font-size:1rem;max-width:560px;margin:0 auto 2rem;">
+      End-to-end SEO and Generative Engine Optimization — from deep technical audits to AI-powered visibility on Google, ChatGPT, Perplexity, and beyond.
+    </p>
+    <div style="display:flex;justify-content:center;flex-wrap:wrap;gap:0.5rem;">
+      <span class="tag-cyan">GEO / AI Search</span>
+      <span class="tag-gray">Technical SEO</span>
+      <span class="tag-gray">Content Strategy</span>
+      <span class="tag-gray">Schema Markup</span>
+      <span class="tag-gray">Programmatic SEO</span>
+    </div>
+  </div>
+</section>
+
+<!-- ======================== FEATURES GRID ======================== -->
+<section style="padding:4rem 2rem 6rem;position:relative;z-index:1;">
+  <div style="max-width:1200px;margin:0 auto;">
+
+    <div style="text-align:center;margin-bottom:3.5rem;" class="reveal">
+      <span class="section-label">What We Cover</span>
+      <h2 style="font-size:clamp(1.5rem,3vw,2.25rem);font-weight:800;margin-top:0.75rem;color:#F0F0F0;">13 Specialized Services</h2>
+      <p style="color:#666;font-size:0.95rem;margin-top:0.75rem;max-width:480px;margin-left:auto;margin-right:auto;">Every dimension of modern search — technical, content, AI, and international — handled with precision.</p>
+    </div>
+
+    <div class="features-grid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:1.5rem;">
+
+      <!-- 1. Full Audit -->
+      <div class="feature-card reveal">
+        <div class="feature-icon">
+          <svg width="22" height="22" fill="none" stroke="#C8172A" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+        </div>
+        <h3 style="font-size:1.05rem;font-weight:700;margin-bottom:0.6rem;color:#F0F0F0;">Full Website Audit</h3>
+        <p style="color:#888;font-size:0.875rem;line-height:1.7;">Comprehensive site-wide SEO health check using parallel analysis across all major ranking factors — on-page, technical, backlink profile, and content gaps — delivered as a prioritized action plan.</p>
+      </div>
+
+      <!-- 2. Page Analysis -->
+      <div class="feature-card reveal">
+        <div class="feature-icon">
+          <svg width="22" height="22" fill="none" stroke="#C8172A" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+        </div>
+        <h3 style="font-size:1.05rem;font-weight:700;margin-bottom:0.6rem;color:#F0F0F0;">Deep Single-Page Analysis</h3>
+        <p style="color:#888;font-size:0.875rem;line-height:1.7;">Granular inspection of any individual URL — title and meta optimization, heading hierarchy, keyword density, internal linking, Core Web Vitals, and structured data validation all in one report.</p>
+      </div>
+
+      <!-- 3. Sitemap Analysis -->
+      <div class="feature-card reveal">
+        <div class="feature-icon">
+          <svg width="22" height="22" fill="none" stroke="#C8172A" stroke-width="2" viewBox="0 0 24 24"><path d="M3 12h18M3 6h18M3 18h18"/></svg>
+        </div>
+        <h3 style="font-size:1.05rem;font-weight:700;margin-bottom:0.6rem;color:#F0F0F0;">Sitemap Analysis</h3>
+        <p style="color:#888;font-size:0.875rem;line-height:1.7;">Parses your existing XML sitemap to surface indexability issues — missing pages, blocked URLs, orphaned content, incorrect priority signals, and crawl budget waste before they cost you rankings.</p>
+      </div>
+
+      <!-- 4. Sitemap Generation -->
+      <div class="feature-card reveal">
+        <div class="feature-icon">
+          <svg width="22" height="22" fill="none" stroke="#C8172A" stroke-width="2" viewBox="0 0 24 24"><path d="M12 2v20M2 12h20"/></svg>
+        </div>
+        <h3 style="font-size:1.05rem;font-weight:700;margin-bottom:0.6rem;color:#F0F0F0;">Sitemap Generation</h3>
+        <p style="color:#888;font-size:0.875rem;line-height:1.7;">Builds production-ready XML sitemaps from industry-specific templates — tuned for SaaS, eCommerce, local business, or publisher architectures with correct priority, changefreq, and hreflang tags.</p>
+      </div>
+
+      <!-- 5. Schema Markup -->
+      <div class="feature-card reveal">
+        <div class="feature-icon">
+          <svg width="22" height="22" fill="none" stroke="#C8172A" stroke-width="2" viewBox="0 0 24 24"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+        </div>
+        <h3 style="font-size:1.05rem;font-weight:700;margin-bottom:0.6rem;color:#F0F0F0;">Schema.org Markup</h3>
+        <p style="color:#888;font-size:0.875rem;line-height:1.7;">Detects existing structured data, validates it against Google's rich-result requirements, and generates new Schema.org markup for products, services, reviews, FAQs, events, and organizations.</p>
+      </div>
+
+      <!-- 6. Image Optimization -->
+      <div class="feature-card reveal">
+        <div class="feature-icon">
+          <svg width="22" height="22" fill="none" stroke="#C8172A" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+        </div>
+        <h3 style="font-size:1.05rem;font-weight:700;margin-bottom:0.6rem;color:#F0F0F0;">Image SEO Optimization</h3>
+        <p style="color:#888;font-size:0.875rem;line-height:1.7;">Audits every image across your site for missing alt text, oversized file weights, wrong formats, lazy-load issues, and filename conventions — with actionable fixes that improve both rankings and page speed.</p>
+      </div>
+
+      <!-- 7. Technical SEO -->
+      <div class="feature-card reveal">
+        <div class="feature-icon">
+          <svg width="22" height="22" fill="none" stroke="#C8172A" stroke-width="2" viewBox="0 0 24 24"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20z"/><path d="M12 8v4l3 3"/></svg>
+        </div>
+        <h3 style="font-size:1.05rem;font-weight:700;margin-bottom:0.6rem;color:#F0F0F0;">Technical SEO Audit</h3>
+        <p style="color:#888;font-size:0.875rem;line-height:1.7;">Nine-category deep-dive covering crawlability, indexation, site speed, mobile usability, HTTPS security, canonical tags, redirect chains, structured data, and JavaScript rendering — the full technical picture.</p>
+      </div>
+
+      <!-- 8. Content Quality -->
+      <div class="feature-card reveal">
+        <div class="feature-icon">
+          <svg width="22" height="22" fill="none" stroke="#C8172A" stroke-width="2" viewBox="0 0 24 24"><path d="M12 20h9M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4 12.5-12.5z"/></svg>
+        </div>
+        <h3 style="font-size:1.05rem;font-weight:700;margin-bottom:0.6rem;color:#F0F0F0;">Content Quality &amp; E-E-A-T Analysis</h3>
+        <p style="color:#888;font-size:0.875rem;line-height:1.7;">Evaluates your content through Google's Experience, Expertise, Authoritativeness, and Trustworthiness framework — identifying thin content, missing author signals, and gaps that reduce ranking potential.</p>
+      </div>
+
+      <!-- 9. GEO / AI Overviews -->
+      <div class="feature-card reveal" style="border-color:rgba(200,23,42,0.35);">
+        <div style="position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,#C8172A 30%,#FF4444 50%,#C8172A 70%,transparent);border-radius:16px 16px 0 0;"></div>
+        <div class="feature-icon" style="background:rgba(200,23,42,0.18);border-color:rgba(200,23,42,0.5);">
+          <svg width="22" height="22" fill="none" stroke="#C8172A" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+        </div>
+        <div style="display:inline-flex;align-items:center;gap:0.375rem;font-family:'Barlow',sans-serif;font-size:0.68rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:#C8172A;background:rgba(200,23,42,0.12);border:1px solid rgba(200,23,42,0.35);border-radius:20px;padding:0.25rem 0.65rem;margin-bottom:0.85rem;">
+          <span style="width:6px;height:6px;border-radius:50%;background:#C8172A;box-shadow:0 0 6px rgba(200,23,42,0.8);animation:ai-blink 1.5s ease-in-out infinite;"></span>
+          Core Service
+        </div>
+        <h3 style="font-size:1.05rem;font-weight:700;margin-bottom:0.6rem;color:#F0F0F0;">Generative Engine Optimization (GEO)</h3>
+        <p style="color:#aaa;font-size:0.875rem;line-height:1.7;">Optimizes your brand for AI-powered answer engines — Google AI Overviews, ChatGPT browsing, and Perplexity. Makes your content the cited source when AI summarizes answers for your target queries.</p>
+      </div>
+
+      <!-- 10. Strategic Planning -->
+      <div class="feature-card reveal">
+        <div class="feature-icon">
+          <svg width="22" height="22" fill="none" stroke="#C8172A" stroke-width="2" viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+        </div>
+        <h3 style="font-size:1.05rem;font-weight:700;margin-bottom:0.6rem;color:#F0F0F0;">Strategic SEO Planning</h3>
+        <p style="color:#888;font-size:0.875rem;line-height:1.7;">Tailored 90-day to 12-month SEO roadmaps built for your business model — SaaS, local, eCommerce, publishing, or agency. Covers keyword architecture, content calendars, link-building strategy, and KPI targets.</p>
+      </div>
+
+      <!-- 11. Programmatic SEO -->
+      <div class="feature-card reveal">
+        <div class="feature-icon">
+          <svg width="22" height="22" fill="none" stroke="#C8172A" stroke-width="2" viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+        </div>
+        <h3 style="font-size:1.05rem;font-weight:700;margin-bottom:0.6rem;color:#F0F0F0;">Programmatic SEO</h3>
+        <p style="color:#888;font-size:0.875rem;line-height:1.7;">Identifies opportunities to scale content through templated, data-driven page generation — location pages, comparison pages, product variants — so you can rank for thousands of long-tail queries efficiently.</p>
+      </div>
+
+      <!-- 12. Competitor Pages -->
+      <div class="feature-card reveal">
+        <div class="feature-icon">
+          <svg width="22" height="22" fill="none" stroke="#C8172A" stroke-width="2" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        </div>
+        <h3 style="font-size:1.05rem;font-weight:700;margin-bottom:0.6rem;color:#F0F0F0;">Competitor Comparison Pages</h3>
+        <p style="color:#888;font-size:0.875rem;line-height:1.7;">Generates high-converting "vs" and alternative pages by analyzing competitor positioning, extracting differentiation angles, and building SEO-optimised comparison content that captures bottom-of-funnel intent.</p>
+      </div>
+
+      <!-- 13. Hreflang -->
+      <div class="feature-card reveal">
+        <div class="feature-icon">
+          <svg width="22" height="22" fill="none" stroke="#C8172A" stroke-width="2" viewBox="0 0 24 24"><path d="M5 8l6 6M4 14l6-6 2-3M2 5h12M7 2h1M21 15a2 2 0 1 1-4 0 2 2 0 0 1 4 0zM13 9l5.7 5.7"/></svg>
+        </div>
+        <h3 style="font-size:1.05rem;font-weight:700;margin-bottom:0.6rem;color:#F0F0F0;">Hreflang &amp; International SEO</h3>
+        <p style="color:#888;font-size:0.875rem;line-height:1.7;">Audits and generates hreflang tags for multi-language and multi-region sites — detecting mismatches, missing return tags, and incorrect locale codes, then producing a corrected implementation plan.</p>
+      </div>
+
+    </div>
+
+    <div class="section-divider" style="margin-top:5rem;"></div>
+
+    <!-- CTA block -->
+    <div style="text-align:center;" class="reveal">
+      <span class="section-label">Ready to Dominate Search?</span>
+      <h2 style="font-size:clamp(1.5rem,3vw,2rem);font-weight:800;margin-top:0.75rem;margin-bottom:1rem;color:#F0F0F0;">Start With a Free SEO Audit</h2>
+      <p style="color:#666;font-size:0.95rem;max-width:440px;margin:0 auto 2rem;">Tell us your URL and we'll show you exactly what's holding your rankings back — no commitment required.</p>
+      <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;">
+        <a href="index.html#contact" class="btn-red">Book a Strategy Call</a>
+        <a href="index.html#services" style="background:transparent;color:#F0F0F0;font-family:'Barlow',sans-serif;font-weight:600;font-size:0.9rem;padding:0.8rem 2rem;border-radius:6px;border:1.5px solid rgba(255,255,255,0.18);cursor:pointer;transition:transform 0.18s ease,border-color 0.18s ease,background 0.18s ease;display:inline-block;text-decoration:none;" onmouseover="this.style.borderColor='rgba(200,23,42,0.5)';this.style.background='rgba(200,23,42,0.08)'" onmouseout="this.style.borderColor='rgba(255,255,255,0.18)';this.style.background='transparent'">View All Services</a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ======================== FOOTER ======================== -->
+<footer style="padding:2.5rem 2rem;background:rgba(0,0,0,0.4);border-top:1px solid rgba(255,255,255,0.04);position:relative;z-index:1;">
+  <div style="max-width:1280px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;">
+    <a href="index.html" style="text-decoration:none;">
+      <img src="yukiyo.png" alt="UKIYO AI" style="height:36px;width:auto;opacity:0.7;" />
+    </a>
+    <span style="font-family:'Barlow',sans-serif;font-size:0.8rem;color:#333;">© 2026 UKIYO AI. All rights reserved.</span>
+    <a href="index.html#services" style="font-family:'Barlow',sans-serif;font-size:0.8rem;color:#555;text-decoration:none;transition:color 0.18s;" onmouseover="this.style.color='#C8172A'" onmouseout="this.style.color='#555'">← Back to Services</a>
+  </div>
+</footer>
+
+<style>
+  @keyframes ai-blink {
+    0%,100% { opacity: 1; }
+    50% { opacity: 0.3; }
+  }
+</style>
+
+<script>
+  // Mobile menu toggle
+  const menuToggle = document.getElementById('menu-toggle');
+  const mobileMenu = document.getElementById('mobile-menu');
+  function closeMobileMenu() {
+    mobileMenu.classList.remove('open');
+    menuToggle.setAttribute('aria-expanded', 'false');
+  }
+  menuToggle.addEventListener('click', () => {
+    const isOpen = mobileMenu.classList.toggle('open');
+    menuToggle.setAttribute('aria-expanded', isOpen);
+  });
+
+  // Reveal on scroll
+  const revealEls = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  revealEls.forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
