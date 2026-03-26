@@ -1,0 +1,635 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>AI Receptionist — Retainer Plans | UKIYO AI</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;800;900&family=Barlow:wght@300;400;500;600;700;800&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet" />
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          brand: '#C8172A',
+          'brand-dim': '#9E1221',
+          gold: '#C9A84C',
+        },
+        fontFamily: {
+          display: ['Barlow', 'sans-serif'],
+          body: ['Roboto', 'sans-serif'],
+        },
+      }
+    }
+  };
+</script>
+<style>
+  *, *::before, *::after { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: #050508;
+    color: #F0F0F0;
+    font-family: 'Roboto', sans-serif;
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  /* Matrix red tile grid background */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(200,23,42,0.07) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(200,23,42,0.07) 1px, transparent 1px),
+      radial-gradient(ellipse at 20% 30%, rgba(200,23,42,0.12) 0%, transparent 55%),
+      radial-gradient(ellipse at 80% 70%, rgba(200,23,42,0.1) 0%, transparent 55%),
+      radial-gradient(ellipse at 50% 50%, rgba(100,0,10,0.15) 0%, transparent 70%);
+    background-size: 60px 60px, 60px 60px, 100% 100%, 100% 100%, 100% 100%;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* Scanline overlay */
+  body::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background: repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 2px,
+      rgba(0,245,255,0.012) 2px,
+      rgba(0,245,255,0.012) 4px
+    );
+    pointer-events: none;
+    z-index: 9998;
+  }
+
+  h1, h2 { font-family: 'Orbitron', sans-serif; letter-spacing: -0.02em; }
+  h3, h4 { font-family: 'Barlow', sans-serif; letter-spacing: -0.02em; }
+
+  /* Scrollbar */
+  ::-webkit-scrollbar { width: 4px; }
+  ::-webkit-scrollbar-track { background: #050508; }
+  ::-webkit-scrollbar-thumb { background: #00F5FF; border-radius: 2px; }
+
+  /* ========== NAVBAR ========== */
+  .nav-link {
+    color: rgba(255,255,255,0.85);
+    font-size: 1.075rem;
+    font-weight: 600;
+    font-family: 'Barlow', sans-serif;
+    transition: color 0.2s;
+    position: relative;
+    text-decoration: none;
+  }
+  .nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: -2px; left: 0; right: 100%;
+    height: 2px;
+    background: rgba(255,255,255,0.7);
+    transition: right 0.25s ease;
+  }
+  .nav-link:hover { color: #fff; }
+  .nav-link:hover::after { right: 0; }
+
+  /* ========== BUTTONS ========== */
+  .btn-primary {
+    background: #fff;
+    color: #C8172A;
+    font-family: 'Barlow', sans-serif;
+    font-weight: 700;
+    font-size: 0.875rem;
+    padding: 0.65rem 1.5rem;
+    border-radius: 6px;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.2);
+    transition: transform 0.18s ease, box-shadow 0.18s ease, opacity 0.18s ease;
+    display: inline-block;
+    text-decoration: none;
+    letter-spacing: 0.01em;
+  }
+  .btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+    opacity: 0.93;
+  }
+  .btn-primary:focus-visible { outline: 2px solid #fff; outline-offset: 3px; }
+  .btn-primary:active { transform: translateY(0); }
+
+  .btn-red {
+    background: #C8172A;
+    color: #fff;
+    font-family: 'Barlow', sans-serif;
+    font-weight: 700;
+    font-size: 0.9rem;
+    padding: 0.8rem 2rem;
+    border-radius: 6px;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 4px 20px rgba(200,23,42,0.35);
+    transition: transform 0.18s ease, box-shadow 0.18s ease;
+    display: inline-block;
+    text-decoration: none;
+  }
+  .btn-red:hover { transform: translateY(-2px); box-shadow: 0 0 16px rgba(200,23,42,0.7), 0 0 40px rgba(200,23,42,0.3), 0 12px 36px rgba(200,23,42,0.3); }
+  .btn-red:focus-visible { outline: 2px solid #C8172A; outline-offset: 3px; }
+  .btn-red:active { transform: translateY(0); }
+
+  .btn-outline-dark {
+    background: transparent;
+    color: #F0F0F0;
+    font-family: 'Barlow', sans-serif;
+    font-weight: 600;
+    font-size: 0.9rem;
+    padding: 0.8rem 2rem;
+    border-radius: 6px;
+    border: 1.5px solid rgba(255,255,255,0.18);
+    cursor: pointer;
+    transition: transform 0.18s ease, border-color 0.18s ease, background 0.18s ease;
+    display: inline-block;
+    text-decoration: none;
+  }
+  .btn-outline-dark:hover { border-color: rgba(200,23,42,0.5); background: rgba(200,23,42,0.08); transform: translateY(-2px); color: #fff; }
+
+  /* Back button */
+  .btn-back {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: rgba(255,255,255,0.75);
+    font-family: 'Barlow', sans-serif;
+    font-weight: 600;
+    font-size: 0.875rem;
+    text-decoration: none;
+    transition: color 0.18s ease, gap 0.18s ease;
+    border: none;
+    background: none;
+    cursor: pointer;
+    padding: 0.5rem 0;
+  }
+  .btn-back:hover { color: #fff; gap: 0.75rem; }
+
+  /* ========== SECTION LABEL ========== */
+  .section-label {
+    font-family: 'Barlow', sans-serif;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: #00F5FF;
+    text-shadow: 0 0 8px rgba(0,245,255,0.6);
+  }
+
+  .gradient-text {
+    background: linear-gradient(135deg, #00F5FF 0%, #fff 40%, #FF00A0 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* ========== PRICING CARDS ========== */
+  .pricing-card {
+    background: rgba(8,8,18,0.9);
+    border: 1px solid rgba(200,23,42,0.15);
+    border-radius: 16px;
+    padding: 2.5rem;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 2px 24px rgba(0,0,0,0.4);
+    transition: transform 0.22s ease, box-shadow 0.22s ease, border-color 0.22s ease;
+    display: flex;
+    flex-direction: column;
+  }
+  .pricing-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 16px;
+    background: linear-gradient(315deg, rgba(200,23,42,0.18) 0%, rgba(255,80,80,0.06) 30%, transparent 55%);
+    background-size: 300% 300%;
+    animation: shimmerBR 3s ease-in-out infinite;
+    pointer-events: none;
+    z-index: 0;
+  }
+  @keyframes shimmerBR {
+    0%   { background-position: 100% 100%; opacity: 0.6; }
+    50%  { background-position: 0% 0%;   opacity: 1; }
+    100% { background-position: 100% 100%; opacity: 0.6; }
+  }
+  .pricing-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 0 24px rgba(200,23,42,0.35), 0 0 64px rgba(200,23,42,0.12), 0 8px 32px rgba(0,0,0,0.5);
+    border-color: rgba(200,23,42,0.45);
+  }
+  .pricing-card > * { position: relative; z-index: 1; }
+
+  /* Featured card */
+  .pricing-card.featured {
+    border-color: rgba(200,23,42,0.5);
+    background: linear-gradient(160deg, rgba(30,5,8,0.95) 0%, rgba(8,8,18,0.95) 100%);
+    box-shadow: 0 0 32px rgba(200,23,42,0.25), 0 0 80px rgba(200,23,42,0.1), 0 4px 24px rgba(0,0,0,0.5);
+    transform: scale(1.03);
+  }
+  .pricing-card.featured::after {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, transparent, #C8172A 30%, #FF4444 50%, #C8172A 70%, transparent);
+    border-radius: 16px 16px 0 0;
+  }
+  .pricing-card.featured:hover {
+    transform: scale(1.03) translateY(-6px);
+  }
+
+  /* Featured badge */
+  .badge-featured {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.375rem;
+    font-family: 'Barlow', sans-serif;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #C8172A;
+    background: rgba(200,23,42,0.12);
+    border: 1px solid rgba(200,23,42,0.35);
+    border-radius: 20px;
+    padding: 0.3rem 0.75rem;
+    margin-bottom: 1.25rem;
+    width: fit-content;
+  }
+  .badge-featured::before {
+    content: '';
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: #C8172A;
+    box-shadow: 0 0 6px rgba(200,23,42,0.8);
+    animation: ai-blink 1.5s ease-in-out infinite;
+  }
+  @keyframes ai-blink {
+    0%,100% { opacity: 1; }
+    50% { opacity: 0.3; }
+  }
+
+  /* Tag pills */
+  .tag-red {
+    font-size: 0.72rem;
+    padding: 0.25rem 0.625rem;
+    background: rgba(0,245,255,0.08);
+    border: 1px solid rgba(0,245,255,0.3);
+    border-radius: 20px;
+    color: #00F5FF;
+    font-family: 'Barlow', sans-serif;
+    font-weight: 600;
+    text-shadow: 0 0 6px rgba(0,245,255,0.4);
+  }
+
+  /* Feature list */
+  .feature-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    font-family: 'Barlow', sans-serif;
+    font-size: 0.9rem;
+    color: #bbb;
+    line-height: 1.5;
+    padding: 0.5rem 0;
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+  }
+  .feature-item:last-child { border-bottom: none; }
+  .feature-check {
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: rgba(200,23,42,0.12);
+    border: 1px solid rgba(200,23,42,0.35);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    margin-top: 0.1rem;
+  }
+  .feature-check svg { width: 10px; height: 10px; }
+  .pricing-card.featured .feature-item { color: #ddd; }
+
+  /* Divider */
+  .price-divider {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(200,23,42,0.3), transparent);
+    margin: 1.5rem 0;
+  }
+  .pricing-card.featured .price-divider {
+    background: linear-gradient(90deg, transparent, rgba(200,23,42,0.55), transparent);
+  }
+
+  /* ========== GLITCH ========== */
+  @keyframes glitch {
+    0%,100% { text-shadow: none; transform: none; }
+    92% { text-shadow: none; transform: none; }
+    93% { text-shadow: -2px 0 #FF00A0, 2px 0 #00F5FF; transform: translateX(2px); }
+    94% { text-shadow: 2px 0 #FF00A0, -2px 0 #00F5FF; transform: translateX(-2px); }
+    95% { text-shadow: none; transform: none; }
+    97% { text-shadow: -1px 0 #00F5FF; transform: translateX(1px); }
+    98% { text-shadow: none; transform: none; }
+  }
+  .logo-glitch { animation: glitch 2s infinite; display: block; }
+
+  /* ========== REVEAL ========== */
+  .reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+
+  /* ========== BREADCRUMB ========== */
+  .breadcrumb {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: 'Barlow', sans-serif;
+    font-size: 0.8rem;
+    color: #555;
+  }
+  .breadcrumb a { color: #777; text-decoration: none; transition: color 0.18s; }
+  .breadcrumb a:hover { color: #C8172A; }
+  .breadcrumb span { color: #444; }
+
+  /* ========== MOBILE ========== */
+  @media (max-width: 900px) {
+    .hidden-mobile { display: none !important; }
+    #menu-toggle { display: block !important; grid-column: 3; grid-row: 1; justify-self: end; }
+    .nav-logo { grid-column: 2; grid-row: 1; }
+  }
+  @media (max-width: 768px) {
+    .pricing-card.featured { transform: none; }
+    .pricing-card.featured:hover { transform: translateY(-6px); }
+    .pricing-grid { grid-template-columns: 1fr !important; }
+    .pricing-grid { max-width: 420px !important; margin-left: auto !important; margin-right: auto !important; }
+  }
+  @media (max-width: 600px) {
+    .nav-logo img { height: 52px !important; }
+    #menu-toggle { padding: 0.75rem !important; }
+    input, select, textarea { font-size: 16px !important; }
+  }
+
+  #mobile-menu { display: none; }
+  #mobile-menu.open { display: block; }
+</style>
+</head>
+<body>
+
+<!-- ======================== NAVBAR ======================== -->
+<nav id="navbar" style="position:fixed;top:0;left:0;right:0;z-index:100;background:#C8172A;border-bottom:1px solid rgba(0,0,0,0.15);" role="navigation" aria-label="Main navigation">
+  <div style="max-width:1280px;margin:0 auto;padding:0 2rem;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;height:90px;">
+    <!-- LEFT: back link -->
+    <div style="display:flex;align-items:center;" id="nav-left" class="hidden-mobile">
+      <a href="index.html#services" class="btn-back">
+        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+        Back to Services
+      </a>
+    </div>
+    <!-- CENTER: logo -->
+    <a href="index.html" class="nav-logo" style="display:flex;align-items:center;justify-content:center;text-decoration:none;">
+      <img src="yukiyo.png" alt="UKIYO AI" class="logo-glitch" style="height:80px;width:auto;" />
+    </a>
+    <!-- RIGHT: CTA -->
+    <div style="display:flex;align-items:center;gap:1rem;justify-content:flex-end;" class="hidden-mobile">
+      <a href="index.html#contact" class="btn-primary">Book a Strategy Call</a>
+    </div>
+    <!-- Mobile hamburger -->
+    <button id="menu-toggle" aria-label="Open menu" aria-expanded="false" style="display:none;background:none;border:none;color:#fff;cursor:pointer;padding:0.5rem;">
+      <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+    </button>
+  </div>
+  <!-- Mobile menu -->
+  <div id="mobile-menu" style="background:#9E1221;padding:1.25rem 2rem;border-top:1px solid rgba(0,0,0,0.15);">
+    <div style="display:flex;flex-direction:column;gap:1rem;">
+      <a href="index.html#services" class="nav-link" onclick="closeMobileMenu()">← Back to Services</a>
+      <a href="index.html#contact" class="nav-link" onclick="closeMobileMenu()">Book a Strategy Call</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ======================== HERO ======================== -->
+<section style="padding:11rem 2rem 5rem;background:#080808;position:relative;z-index:1;">
+  <div style="max-width:780px;margin:0 auto;text-align:center;" class="reveal">
+    <!-- Breadcrumb -->
+    <div class="breadcrumb" style="justify-content:center;margin-bottom:2rem;">
+      <a href="index.html">Home</a>
+      <span>›</span>
+      <a href="index.html#services">Services</a>
+      <span>›</span>
+      <span style="color:#C8172A;">AI Receptionist</span>
+    </div>
+    <span class="section-label">Retainer Plans</span>
+    <h1 style="font-size:clamp(2rem,4.5vw,3.25rem);font-weight:800;margin-top:1rem;margin-bottom:1.25rem;color:#F0F0F0;animation:glitch 7s infinite;">AI Receptionist<br /><span class="gradient-text">Monthly Plans</span></h1>
+    <p style="color:#777;font-size:1rem;max-width:540px;margin:0 auto 2rem;">
+      Pick the call volume that fits your business. All plans include 24/7 AI-powered reception with zero wait time — fully managed, fully automated.
+    </p>
+    <!-- Call volume tags -->
+    <div style="display:flex;justify-content:center;flex-wrap:wrap;gap:0.5rem;">
+      <span class="tag-red">24/7 Availability</span>
+      <span style="font-size:0.72rem;padding:0.25rem 0.625rem;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);border-radius:20px;color:#888;font-family:'Barlow',sans-serif;font-weight:500;">AED Pricing</span>
+      <span style="font-size:0.72rem;padding:0.25rem 0.625rem;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);border-radius:20px;color:#888;font-family:'Barlow',sans-serif;font-weight:500;">No Setup Fee</span>
+      <span style="font-size:0.72rem;padding:0.25rem 0.625rem;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);border-radius:20px;color:#888;font-family:'Barlow',sans-serif;font-weight:500;">Cancel Anytime</span>
+    </div>
+  </div>
+</section>
+
+<!-- ======================== PRICING CARDS ======================== -->
+<section style="padding:1rem 2rem 7rem;background:#080808;position:relative;z-index:1;">
+  <div style="max-width:1100px;margin:0 auto;">
+    <div class="pricing-grid" style="display:grid;grid-template-columns:repeat(3,1fr);gap:1.75rem;align-items:start;">
+
+      <!-- STARTER -->
+      <div class="pricing-card reveal">
+        <div style="margin-bottom:0.5rem;">
+          <span style="font-family:'Barlow',sans-serif;font-size:0.72rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:#666;">Starter</span>
+        </div>
+        <div style="margin-bottom:0.25rem;">
+          <span style="font-family:'Orbitron',sans-serif;font-size:2.5rem;font-weight:800;color:#F0F0F0;letter-spacing:-0.03em;">300</span>
+          <span style="font-family:'Barlow',sans-serif;font-size:1.1rem;font-weight:600;color:#C8172A;margin-left:0.25rem;">AED</span>
+          <span style="font-family:'Barlow',sans-serif;font-size:0.8rem;color:#555;margin-left:0.125rem;">/ month</span>
+        </div>
+        <div style="font-family:'Barlow',sans-serif;font-size:0.85rem;color:#555;margin-bottom:1.5rem;">Up to <strong style="color:#888;">100 calls</strong> / month</div>
+
+        <div class="price-divider"></div>
+
+        <ul style="list-style:none;padding:0;margin:0 0 2rem;flex:1;">
+          <li class="feature-item">
+            <span class="feature-check"><svg fill="none" stroke="#C8172A" stroke-width="2.5" viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></span>
+            24/7 AI call answering
+          </li>
+          <li class="feature-item">
+            <span class="feature-check"><svg fill="none" stroke="#C8172A" stroke-width="2.5" viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></span>
+            Appointment booking
+          </li>
+          <li class="feature-item">
+            <span class="feature-check"><svg fill="none" stroke="#C8172A" stroke-width="2.5" viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></span>
+            FAQ handling
+          </li>
+          <li class="feature-item">
+            <span class="feature-check"><svg fill="none" stroke="#C8172A" stroke-width="2.5" viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></span>
+            Basic call routing
+          </li>
+          <li class="feature-item">
+            <span class="feature-check"><svg fill="none" stroke="#C8172A" stroke-width="2.5" viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></span>
+            Monthly usage report
+          </li>
+        </ul>
+
+        <a href="index.html#contact" class="btn-outline-dark" style="text-align:center;width:100%;">Get Started</a>
+      </div>
+
+      <!-- GROWTH (FEATURED) -->
+      <div class="pricing-card featured reveal" style="transition-delay:0.1s;">
+        <div class="badge-featured">Most Popular</div>
+        <div style="margin-bottom:0.5rem;">
+          <span style="font-family:'Barlow',sans-serif;font-size:0.72rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:#C8172A;">Growth</span>
+        </div>
+        <div style="margin-bottom:0.25rem;">
+          <span style="font-family:'Orbitron',sans-serif;font-size:2.5rem;font-weight:800;color:#F0F0F0;letter-spacing:-0.03em;">500</span>
+          <span style="font-family:'Barlow',sans-serif;font-size:1.1rem;font-weight:600;color:#C8172A;margin-left:0.25rem;">AED</span>
+          <span style="font-family:'Barlow',sans-serif;font-size:0.8rem;color:#666;margin-left:0.125rem;">/ month</span>
+        </div>
+        <div style="font-family:'Barlow',sans-serif;font-size:0.85rem;color:#666;margin-bottom:1.5rem;">Up to <strong style="color:#aaa;">500 calls</strong> / month</div>
+
+        <div class="price-divider"></div>
+
+        <ul style="list-style:none;padding:0;margin:0 0 2rem;flex:1;">
+          <li class="feature-item">
+            <span class="feature-check"><svg fill="none" stroke="#C8172A" stroke-width="2.5" viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></span>
+            Everything in Starter
+          </li>
+          <li class="feature-item">
+            <span class="feature-check"><svg fill="none" stroke="#C8172A" stroke-width="2.5" viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></span>
+            Multi-language support
+          </li>
+          <li class="feature-item">
+            <span class="feature-check"><svg fill="none" stroke="#C8172A" stroke-width="2.5" viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></span>
+            Visitor check-in automation
+          </li>
+          <li class="feature-item">
+            <span class="feature-check"><svg fill="none" stroke="#C8172A" stroke-width="2.5" viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></span>
+            CRM integration
+          </li>
+          <li class="feature-item">
+            <span class="feature-check"><svg fill="none" stroke="#C8172A" stroke-width="2.5" viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></span>
+            Priority support
+          </li>
+        </ul>
+
+        <a href="index.html#contact" class="btn-red" style="text-align:center;width:100%;">Get Started</a>
+      </div>
+
+      <!-- ENTERPRISE -->
+      <div class="pricing-card reveal" style="transition-delay:0.2s;">
+        <div style="margin-bottom:0.5rem;">
+          <span style="font-family:'Barlow',sans-serif;font-size:0.72rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:#666;">Enterprise</span>
+        </div>
+        <div style="margin-bottom:0.25rem;">
+          <span style="font-family:'Orbitron',sans-serif;font-size:2.5rem;font-weight:800;color:#F0F0F0;letter-spacing:-0.03em;">800</span>
+          <span style="font-family:'Barlow',sans-serif;font-size:1.1rem;font-weight:600;color:#C8172A;margin-left:0.25rem;">AED</span>
+          <span style="font-family:'Barlow',sans-serif;font-size:0.8rem;color:#555;margin-left:0.125rem;">/ month</span>
+        </div>
+        <div style="font-family:'Barlow',sans-serif;font-size:0.85rem;color:#555;margin-bottom:1.5rem;">Up to <strong style="color:#888;">1,000 calls</strong> / month</div>
+
+        <div class="price-divider"></div>
+
+        <ul style="list-style:none;padding:0;margin:0 0 2rem;flex:1;">
+          <li class="feature-item">
+            <span class="feature-check"><svg fill="none" stroke="#C8172A" stroke-width="2.5" viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></span>
+            Everything in Growth
+          </li>
+          <li class="feature-item">
+            <span class="feature-check"><svg fill="none" stroke="#C8172A" stroke-width="2.5" viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></span>
+            Custom AI persona &amp; voice
+          </li>
+          <li class="feature-item">
+            <span class="feature-check"><svg fill="none" stroke="#C8172A" stroke-width="2.5" viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></span>
+            Advanced analytics dashboard
+          </li>
+          <li class="feature-item">
+            <span class="feature-check"><svg fill="none" stroke="#C8172A" stroke-width="2.5" viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></span>
+            Dedicated account manager
+          </li>
+          <li class="feature-item">
+            <span class="feature-check"><svg fill="none" stroke="#C8172A" stroke-width="2.5" viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></span>
+            Custom integrations
+          </li>
+        </ul>
+
+        <a href="index.html#contact" class="btn-outline-dark" style="text-align:center;width:100%;">Get Started</a>
+      </div>
+
+    </div>
+
+    <!-- Bottom note -->
+    <div class="reveal" style="text-align:center;margin-top:3rem;transition-delay:0.3s;">
+      <p style="color:#444;font-size:0.85rem;font-family:'Barlow',sans-serif;">
+        All plans billed monthly. No setup fee. Need more than 1,000 calls? <a href="index.html#contact" style="color:#C8172A;text-decoration:none;font-weight:600;">Contact us for a custom quote</a>.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ======================== CTA STRIP ======================== -->
+<section style="padding:5rem 2rem;background:#0D0D0D;position:relative;z-index:1;">
+  <div style="max-width:640px;margin:0 auto;text-align:center;" class="reveal">
+    <span class="section-label">Ready to Automate?</span>
+    <h2 style="font-size:clamp(1.75rem,3.5vw,2.5rem);font-weight:800;margin-top:1rem;margin-bottom:1.25rem;color:#F0F0F0;">Start with a Free Consultation</h2>
+    <p style="color:#666;font-size:0.95rem;margin-bottom:2rem;">We'll walk you through the right plan for your call volume and integrate the AI Receptionist into your existing workflow within days — not months.</p>
+    <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;">
+      <a href="index.html#contact" class="btn-red">Book a Strategy Call</a>
+      <a href="index.html#services" class="btn-outline-dark">View All Services</a>
+    </div>
+  </div>
+</section>
+
+<!-- ======================== FOOTER ======================== -->
+<footer style="padding:2rem;background:#050508;border-top:1px solid rgba(255,255,255,0.05);position:relative;z-index:1;">
+  <div style="max-width:1280px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;">
+    <a href="index.html" style="text-decoration:none;">
+      <img src="yukiyo.png" alt="UKIYO AI" style="height:36px;width:auto;opacity:0.7;" />
+    </a>
+    <span style="font-family:'Barlow',sans-serif;font-size:0.8rem;color:#333;">© 2026 UKIYO AI. All rights reserved.</span>
+    <a href="index.html#services" style="font-family:'Barlow',sans-serif;font-size:0.8rem;color:#555;text-decoration:none;transition:color 0.18s;" onmouseover="this.style.color='#C8172A'" onmouseout="this.style.color='#555'">← Back to Services</a>
+  </div>
+</footer>
+
+<script>
+  // Mobile menu toggle
+  const menuToggle = document.getElementById('menu-toggle');
+  const mobileMenu = document.getElementById('mobile-menu');
+  function closeMobileMenu() {
+    mobileMenu.classList.remove('open');
+    menuToggle.setAttribute('aria-expanded', 'false');
+  }
+  menuToggle.addEventListener('click', () => {
+    const isOpen = mobileMenu.classList.toggle('open');
+    menuToggle.setAttribute('aria-expanded', isOpen);
+  });
+
+  // Reveal on scroll
+  const revealEls = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12 });
+  revealEls.forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
