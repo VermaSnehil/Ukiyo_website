@@ -1,0 +1,658 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Ukiyo AI — SEO & GEO Services Brochure</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;800;900&family=Barlow:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet"/>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --red:    #C8172A;
+    --red-dim:#9E1221;
+    --gold:   #C9A84C;
+    --gold-lt:#E5C97A;
+    --dark:   #050508;
+    --dark2:  #0D0D14;
+    --dark3:  #13131C;
+    --mid:    #1C1C2A;
+    --border: rgba(200,23,42,0.25);
+    --text:   #F0F0F0;
+    --muted:  rgba(240,240,240,0.55);
+  }
+
+  body {
+    background: #111;
+    font-family: 'Barlow', sans-serif;
+    font-weight: 400;
+    line-height: 1.6;
+  }
+
+  /* ─── EACH PAGE IS EXACTLY A4 ─── */
+  .page {
+    width: 210mm;
+    height: 297mm;
+    margin: 0 auto;
+    background: var(--dark);
+    color: var(--text);
+    overflow: hidden;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    page-break-after: always;
+    break-after: page;
+  }
+
+  /* screen gap between pages */
+  .page + .page { margin-top: 16px; }
+
+  /* ─── NOISE ─── */
+  .page::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0.35;
+  }
+  .page > * { position: relative; z-index: 1; }
+
+  /* ─── SHARED FOOTER BAR ─── */
+  .pg-footer {
+    margin-top: auto;
+    padding: 10px 40px;
+    background: var(--dark);
+    border-top: 1px solid rgba(255,255,255,0.05);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-shrink: 0;
+  }
+  .pg-footer-logo {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 0.06em;
+    color: var(--red);
+  }
+  .pg-footer-logo span { color: var(--gold); }
+  .pg-footer-tag { font-size: 10px; color: var(--muted); letter-spacing: 0.04em; }
+  .pg-footer-num { font-size: 10px; color: rgba(240,240,240,0.22); }
+
+  /* ═══════════════════════════════════
+     PAGE 1
+  ═══════════════════════════════════ */
+
+  /* HERO */
+  .hero {
+    padding: 36px 40px 28px;
+    background: linear-gradient(135deg, #0A0A12 0%, #100816 50%, #0A0A12 100%);
+    border-bottom: 1px solid var(--border);
+    position: relative;
+    overflow: hidden;
+    flex-shrink: 0;
+  }
+  .hero-glow {
+    position: absolute;
+    top: -80px; right: -80px;
+    width: 380px; height: 380px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(200,23,42,0.18) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero-glow-2 {
+    position: absolute;
+    bottom: -60px; left: -40px;
+    width: 220px; height: 220px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(201,168,76,0.10) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    background: rgba(200,23,42,0.12);
+    border: 1px solid rgba(200,23,42,0.35);
+    border-radius: 4px;
+    padding: 3px 10px;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--red);
+    margin-bottom: 16px;
+  }
+  .tag span { width: 5px; height: 5px; background: var(--red); border-radius: 50%; display: inline-block; }
+  .hero h1 {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 36px;
+    font-weight: 900;
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    color: #fff;
+    margin-bottom: 10px;
+  }
+  .hero h1 em {
+    font-style: normal;
+    background: linear-gradient(90deg, var(--red), var(--gold));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .hero-sub {
+    font-size: 13.5px;
+    color: var(--muted);
+    max-width: 520px;
+    margin-bottom: 24px;
+    line-height: 1.6;
+  }
+  .hero-stats { display: flex; gap: 32px; }
+  .stat { display: flex; flex-direction: column; }
+  .stat-num {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 22px;
+    font-weight: 800;
+    color: var(--gold);
+    line-height: 1;
+  }
+  .stat-label { font-size: 10px; font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase; color: var(--muted); margin-top: 3px; }
+  .stat-divider { width: 1px; background: rgba(255,255,255,0.1); align-self: stretch; }
+
+  /* THE SHIFT */
+  .shift-section {
+    padding: 22px 40px;
+    background: var(--dark2);
+    border-bottom: 1px solid var(--border);
+    flex-shrink: 0;
+  }
+  .shift-section h2 {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--red);
+    margin-bottom: 10px;
+  }
+  .shift-section p {
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 1.6;
+    color: rgba(240,240,240,0.88);
+  }
+  .shift-section p strong { color: #fff; font-weight: 700; }
+  .shift-section p em { font-style: normal; color: var(--gold-lt); font-weight: 600; }
+
+  /* SERVICES */
+  .services {
+    padding: 24px 40px 20px;
+    background: var(--dark);
+    flex: 1;
+  }
+  .services-label {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 18px;
+  }
+  .services-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px;
+  }
+  .service-card {
+    background: var(--dark3);
+    border: 1px solid rgba(255,255,255,0.07);
+    border-radius: 8px;
+    padding: 22px 24px;
+    position: relative;
+    overflow: hidden;
+  }
+  .service-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+  }
+  .service-card:first-child { border-color: rgba(200,23,42,0.3); }
+  .service-card:first-child::before { background: linear-gradient(90deg, var(--red), transparent); }
+  .service-card:last-child  { border-color: rgba(201,168,76,0.3); }
+  .service-card:last-child::before  { background: linear-gradient(90deg, var(--gold), transparent); }
+  .service-badge {
+    display: inline-block;
+    padding: 2px 9px;
+    border-radius: 3px;
+    font-size: 9px;
+    font-weight: 800;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+  .badge-red  { background: rgba(200,23,42,0.2);  color: var(--red);  border: 1px solid rgba(200,23,42,0.4); }
+  .badge-gold { background: rgba(201,168,76,0.15); color: var(--gold-lt); border: 1px solid rgba(201,168,76,0.35); }
+  .service-card h3 {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 18px;
+    font-weight: 800;
+    letter-spacing: -0.01em;
+    margin-bottom: 8px;
+    color: #fff;
+  }
+  .service-card p { font-size: 12px; color: var(--muted); line-height: 1.6; margin-bottom: 14px; }
+  .service-list { list-style: none; display: flex; flex-direction: column; gap: 7px; }
+  .service-list li {
+    display: flex; align-items: flex-start; gap: 8px;
+    font-size: 12px; color: rgba(240,240,240,0.82); line-height: 1.35;
+  }
+  .service-list li::before { content: '→'; font-weight: 700; flex-shrink: 0; margin-top: 1px; }
+  .service-card:first-child .service-list li::before { color: var(--red); }
+  .service-card:last-child  .service-list li::before { color: var(--gold); }
+  .new-badge {
+    position: absolute; top: 12px; right: 12px;
+    background: var(--gold); color: #000;
+    font-size: 8px; font-weight: 800; letter-spacing: 0.1em; text-transform: uppercase;
+    padding: 2px 7px; border-radius: 3px;
+  }
+
+  /* ═══════════════════════════════════
+     PAGE 2
+  ═══════════════════════════════════ */
+
+  /* WHY */
+  .why {
+    padding: 28px 40px 24px;
+    background: var(--dark2);
+    border-bottom: 1px solid var(--border);
+    flex-shrink: 0;
+  }
+  .why-label {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 10px; font-weight: 700;
+    letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--red); margin-bottom: 20px;
+  }
+  .why-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 14px; }
+  .why-item { padding: 18px 16px; background: var(--mid); border-radius: 6px; border: 1px solid rgba(255,255,255,0.06); }
+  .why-icon { font-size: 20px; margin-bottom: 8px; display: block; }
+  .why-item h4 { font-family: 'Barlow',sans-serif; font-size: 13px; font-weight: 700; color: #fff; margin-bottom: 5px; letter-spacing: -0.01em; }
+  .why-item p { font-size: 11px; color: var(--muted); line-height: 1.5; }
+
+  /* PROCESS */
+  .process {
+    padding: 24px 40px;
+    background: var(--dark);
+    border-bottom: 1px solid var(--border);
+    flex-shrink: 0;
+  }
+  .process-label {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 10px; font-weight: 700;
+    letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--gold); margin-bottom: 20px;
+  }
+  .process-steps { display: grid; grid-template-columns: repeat(4,1fr); gap: 0; position: relative; }
+  .process-steps::after {
+    content: ''; position: absolute;
+    top: 18px; left: 10%; right: 10%; height: 1px;
+    background: linear-gradient(90deg, transparent, var(--red), var(--gold), transparent);
+    z-index: 0;
+  }
+  .step { display: flex; flex-direction: column; align-items: center; text-align: center; padding: 0 10px; position: relative; z-index: 1; }
+  .step-num {
+    width: 36px; height: 36px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Orbitron', sans-serif; font-size: 12px; font-weight: 800;
+    margin-bottom: 12px; background: var(--dark2); border: 2px solid;
+  }
+  .step:nth-child(1) .step-num { border-color: var(--red);  color: var(--red); }
+  .step:nth-child(2) .step-num { border-color: #a0123f;     color: #a0123f; }
+  .step:nth-child(3) .step-num { border-color: #c0943a;     color: #c0943a; }
+  .step:nth-child(4) .step-num { border-color: var(--gold); color: var(--gold); }
+  .step h4 { font-size: 12px; font-weight: 700; color: #fff; margin-bottom: 5px; }
+  .step p  { font-size: 11px; color: var(--muted); line-height: 1.45; }
+
+  /* CTA */
+  .cta {
+    padding: 32px 40px;
+    background: linear-gradient(135deg, #0f0208 0%, #140510 40%, #0a030e 100%);
+    position: relative; overflow: hidden; flex: 1;
+    display: flex; align-items: center;
+  }
+  .cta-glow {
+    position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%);
+    width: 500px; height: 240px;
+    background: radial-gradient(ellipse, rgba(200,23,42,0.15) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .cta-inner { position: relative; display: flex; align-items: center; justify-content: space-between; gap: 36px; width: 100%; }
+  .cta h2 {
+    font-family: 'Orbitron', sans-serif; font-size: 22px; font-weight: 900;
+    line-height: 1.2; color: #fff; letter-spacing: -0.02em; max-width: 340px;
+  }
+  .cta h2 em { font-style: normal; color: var(--red); }
+  .cta-right { display: flex; flex-direction: column; gap: 10px; flex-shrink: 0; }
+  .cta-offer {
+    background: rgba(200,23,42,0.12); border: 1px solid rgba(200,23,42,0.3);
+    border-radius: 6px; padding: 14px 20px; text-align: center;
+  }
+  .cta-offer p { font-size: 10px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); margin-bottom: 3px; }
+  .cta-offer strong { font-size: 14px; font-weight: 700; color: #fff; display: block; }
+  .cta-contact { display: flex; flex-direction: column; gap: 5px; }
+  .contact-line { display: flex; align-items: center; gap: 7px; font-size: 12px; color: rgba(240,240,240,0.7); }
+  .contact-line .icon { font-size: 13px; }
+  .contact-line strong { color: #fff; font-weight: 600; }
+
+  /* ═══════════════════════════════════
+     PAGE 3 — SEO SERVICES
+  ═══════════════════════════════════ */
+
+  .page3-header {
+    padding: 28px 40px 20px;
+    background: linear-gradient(135deg, #0A0A12 0%, #100816 50%, #0A0A12 100%);
+    border-bottom: 1px solid var(--border);
+    display: flex; align-items: center; justify-content: space-between;
+    flex-shrink: 0;
+  }
+  .page3-label {
+    font-family: 'Orbitron', sans-serif; font-size: 10px; font-weight: 700;
+    letter-spacing: 0.14em; text-transform: uppercase; color: var(--gold); margin-bottom: 8px;
+  }
+  .page3-title {
+    font-family: 'Orbitron', sans-serif; font-size: 24px; font-weight: 900;
+    color: #fff; letter-spacing: -0.02em; line-height: 1.1;
+  }
+  .page3-title em {
+    font-style: normal;
+    background: linear-gradient(90deg, var(--red), var(--gold));
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+  }
+  .seo-grid-wrap { padding: 18px 40px 16px; background: var(--dark); flex: 1; }
+  .seo-grid {
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    gap: 12px;
+  }
+  .seo-item {
+    background: var(--dark3);
+    border: 1px solid rgba(255,255,255,0.07);
+    border-radius: 6px;
+    padding: 14px 14px 12px;
+    position: relative;
+    overflow: hidden;
+  }
+  .seo-item::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+    background: linear-gradient(90deg, var(--red), transparent);
+  }
+  .seo-item-num {
+    font-family: 'Orbitron', sans-serif; font-size: 9px; font-weight: 800;
+    color: rgba(200,23,42,0.45); letter-spacing: 0.1em; margin-bottom: 5px;
+  }
+  .seo-item h4 {
+    font-family: 'Barlow', sans-serif; font-size: 11.5px; font-weight: 700;
+    color: #fff; margin-bottom: 5px; letter-spacing: -0.01em; line-height: 1.3;
+  }
+  .seo-item p { font-size: 10.5px; color: var(--muted); line-height: 1.5; }
+  .seo-item.featured-seo {
+    border-color: rgba(200,23,42,0.4);
+    background: linear-gradient(160deg, rgba(20,4,6,0.95) 0%, var(--dark3) 100%);
+  }
+  .seo-item.featured-seo::before { background: linear-gradient(90deg, var(--red), #FF4444 50%, transparent); }
+  .seo-featured-badge {
+    display: inline-flex; align-items: center; gap: 4px;
+    font-size: 8px; font-weight: 800; letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--red); background: rgba(200,23,42,0.12); border: 1px solid rgba(200,23,42,0.3);
+    border-radius: 3px; padding: 2px 6px; margin-bottom: 5px;
+  }
+  .seo-featured-badge::before { content: ''; width: 4px; height: 4px; border-radius: 50%; background: var(--red); flex-shrink: 0; }
+
+  /* ─── PRINT ─── */
+  @media print {
+    * { animation: none !important; transition: none !important; }
+    body { background: var(--dark) !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .page { margin: 0 !important; }
+    .page + .page { margin-top: 0 !important; }
+    .hero h1 em, .page3-title em {
+      background: none !important;
+      -webkit-text-fill-color: #C8172A !important; color: #C8172A !important;
+    }
+  }
+</style>
+</head>
+<body>
+
+<!-- ═══════════════ PAGE 1 ═══════════════ -->
+<div class="page">
+
+  <div class="hero">
+    <div class="hero-glow"></div>
+    <div class="hero-glow-2"></div>
+    <img src="sam.png" alt="UKIYO AI" style="height:100px;width:auto;margin-bottom:20px;display:block;"/>
+    <div class="tag"><span></span> Ukiyo AI — Digital Growth Services</div>
+    <h1>Dominate Google.<br/><em>Own AI Search.</em></h1>
+    <p class="hero-sub">
+      While your competitors fight for Google rankings, a new search revolution is happening.
+      Clients are asking ChatGPT, Perplexity, and Google AI who to hire — and most businesses don't show up. We change that.
+    </p>
+    <div class="hero-stats">
+      <div class="stat"><span class="stat-num">40%</span><span class="stat-label">of searches now go to AI tools</span></div>
+      <div class="stat-divider"></div>
+      <div class="stat"><span class="stat-num">3×</span><span class="stat-label">more leads from SEO + GEO combined</span></div>
+      <div class="stat-divider"></div>
+      <div class="stat"><span class="stat-num">Dubai</span><span class="stat-label">focused — UAE market specialists</span></div>
+    </div>
+  </div>
+
+  <div class="shift-section">
+    <h2>⚡ The Search Shift</h2>
+    <p>
+      Search has split in two. <strong>Google still matters</strong> — but your clients are now also asking
+      <em>ChatGPT, Perplexity, and Google AI Overview</em> for recommendations.
+      If you're only doing traditional SEO, you're <strong>invisible to half your potential clients.</strong>
+      The businesses that win in 2025–2026 will dominate both.
+    </p>
+  </div>
+
+  <div class="services">
+    <div class="services-label">— Our Services</div>
+    <div class="services-grid">
+      <div class="service-card">
+        <div class="service-badge badge-red">Core Service</div>
+        <h3>SEO</h3>
+        <p>Search Engine Optimization — get your business ranked at the top of Google when clients search for your service in Dubai.</p>
+        <ul class="service-list">
+          <li>Full website audit &amp; technical fixes</li>
+          <li>Dubai-focused keyword research</li>
+          <li>On-page content optimization</li>
+          <li>Google Business Profile (Maps) optimization</li>
+          <li>Local backlink building &amp; authority growth</li>
+          <li>Monthly ranking reports &amp; analytics</li>
+        </ul>
+      </div>
+      <div class="service-card">
+        <div class="new-badge">New</div>
+        <div class="service-badge badge-gold">Next Generation</div>
+        <h3>GEO</h3>
+        <p>Generative Engine Optimization — get recommended by name when clients ask ChatGPT, Perplexity &amp; Google AI.</p>
+        <ul class="service-list">
+          <li>AI citation &amp; entity optimization</li>
+          <li>ChatGPT &amp; Perplexity visibility audit</li>
+          <li>Structured data &amp; knowledge graph setup</li>
+          <li>AI-ready content strategy &amp; copywriting</li>
+          <li>Brand mention seeding across trusted sources</li>
+          <li>Monthly AI search visibility reports</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="pg-footer">
+    <div class="pg-footer-logo">UKIYO<span>AI</span></div>
+    <div class="pg-footer-tag">SEO · GEO · AI-Powered Growth · Dubai, UAE</div>
+    <div class="pg-footer-num">1 / 3</div>
+  </div>
+
+</div>
+
+<!-- ═══════════════ PAGE 2 ═══════════════ -->
+<div class="page">
+
+  <div class="why">
+    <div class="why-label">— Why Ukiyo AI</div>
+    <div class="why-grid">
+      <div class="why-item"><span class="why-icon">🎯</span><h4>Dubai-Specialist</h4><p>We know the Dubai market, its search behavior, and what it takes to rank locally in a highly competitive landscape.</p></div>
+      <div class="why-item"><span class="why-icon">🤖</span><h4>AI-First Approach</h4><p>GEO is our core expertise. We are one of the few agencies in the region specializing in AI search visibility.</p></div>
+      <div class="why-item"><span class="why-icon">📊</span><h4>Full Transparency</h4><p>Monthly reports showing your exact rankings on Google, your citations in AI tools, and your ROI — no fluff.</p></div>
+      <div class="why-item"><span class="why-icon">⚡</span><h4>Fast Execution</h4><p>Onboarding in 48 hours. First results visible within 30 days. No 6-month waiting periods to see impact.</p></div>
+      <div class="why-item"><span class="why-icon">🔒</span><h4>No Lock-In Contracts</h4><p>Month-to-month flexible retainers. We earn your business every month through results — not binding contracts.</p></div>
+      <div class="why-item"><span class="why-icon">🌍</span><h4>Multi-Language SEO</h4><p>English and Arabic SEO — reach both international clients and the large Arabic-speaking audience in Dubai.</p></div>
+    </div>
+  </div>
+
+  <div class="process">
+    <div class="process-label">— How It Works</div>
+    <div class="process-steps">
+      <div class="step"><div class="step-num">01</div><h4>Free Audit</h4><p>We analyze your current Google + AI visibility and show you exactly what's missing.</p></div>
+      <div class="step"><div class="step-num">02</div><h4>Custom Strategy</h4><p>We build a tailored SEO + GEO plan specific to your industry and Dubai location.</p></div>
+      <div class="step"><div class="step-num">03</div><h4>Execution</h4><p>Our team implements everything — technical, content, AI optimization — end to end.</p></div>
+      <div class="step"><div class="step-num">04</div><h4>Grow &amp; Report</h4><p>Track rankings, leads, and AI mentions monthly. Scale what works.</p></div>
+    </div>
+  </div>
+
+  <div class="cta">
+    <div class="cta-glow"></div>
+    <div class="cta-inner">
+      <h2>Ready to be found on Google<br/><em>and AI</em> — before your competitors?</h2>
+      <div class="cta-right">
+        <div class="cta-offer"><p>🎁 Limited Offer</p><strong>Free SEO + GEO Audit</strong></div>
+        <div class="cta-contact">
+          <div class="contact-line"><span class="icon">✉</span><strong>info@ukiyoai.de</strong></div>
+          <div class="contact-line"><span class="icon">📱</span><strong>+49 176 82289927</strong></div>
+          <div class="contact-line"><span class="icon">🌐</span><strong>ukiyoai.de</strong></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="pg-footer">
+    <div class="pg-footer-logo">UKIYO<span>AI</span></div>
+    <div class="pg-footer-tag">SEO · GEO · AI-Powered Growth · Dubai, UAE</div>
+    <div class="pg-footer-num">2 / 3</div>
+  </div>
+
+</div>
+
+<!-- ═══════════════ PAGE 3 — SEO SERVICES ═══════════════ -->
+<div class="page">
+
+  <div class="page3-header">
+    <div>
+      <div class="page3-label">— Full SEO Capabilities</div>
+      <div class="page3-title">13 Specialized <em>SEO Services</em></div>
+    </div>
+    <img src="sam.png" alt="UKIYO AI" style="height:72px;width:auto;opacity:0.9;"/>
+  </div>
+
+  <div class="seo-grid-wrap">
+    <div class="seo-grid">
+
+      <div class="seo-item">
+        <div class="seo-item-num">01</div>
+        <h4>Full Website Audit</h4>
+        <p>Site-wide SEO health check — on-page, technical, backlinks, and content gaps — delivered as a prioritized action plan.</p>
+      </div>
+
+      <div class="seo-item">
+        <div class="seo-item-num">02</div>
+        <h4>Deep Single-Page Analysis</h4>
+        <p>Granular inspection of any URL — title, meta, heading hierarchy, keyword density, Core Web Vitals, and structured data.</p>
+      </div>
+
+      <div class="seo-item">
+        <div class="seo-item-num">03</div>
+        <h4>Sitemap Analysis</h4>
+        <p>Parses your XML sitemap to surface missing pages, blocked URLs, orphaned content, and crawl budget waste.</p>
+      </div>
+
+      <div class="seo-item">
+        <div class="seo-item-num">04</div>
+        <h4>Sitemap Generation</h4>
+        <p>Production-ready XML sitemaps from industry-specific templates — SaaS, eCommerce, local, or publisher architectures.</p>
+      </div>
+
+      <div class="seo-item">
+        <div class="seo-item-num">05</div>
+        <h4>Schema.org Markup</h4>
+        <p>Validates existing structured data against Google's rich-result requirements and generates Schema.org markup for all entity types.</p>
+      </div>
+
+      <div class="seo-item">
+        <div class="seo-item-num">06</div>
+        <h4>Image SEO Optimization</h4>
+        <p>Audits all images for missing alt text, oversized files, wrong formats, and lazy-load issues — improving rankings and speed.</p>
+      </div>
+
+      <div class="seo-item">
+        <div class="seo-item-num">07</div>
+        <h4>Technical SEO Audit</h4>
+        <p>Nine-category deep-dive: crawlability, indexation, speed, mobile, HTTPS, canonicals, redirects, structured data, JS rendering.</p>
+      </div>
+
+      <div class="seo-item">
+        <div class="seo-item-num">08</div>
+        <h4>Content Quality &amp; E-E-A-T</h4>
+        <p>Evaluates content against Google's Experience, Expertise, Authoritativeness, and Trustworthiness framework.</p>
+      </div>
+
+      <div class="seo-item featured-seo">
+        <div class="seo-featured-badge">Core Service</div>
+        <div class="seo-item-num">09</div>
+        <h4>Generative Engine Optimization</h4>
+        <p>Optimizes your brand for Google AI Overviews, ChatGPT, and Perplexity — making you the cited answer.</p>
+      </div>
+
+      <div class="seo-item">
+        <div class="seo-item-num">10</div>
+        <h4>Strategic SEO Planning</h4>
+        <p>90-day to 12-month roadmaps for SaaS, local, eCommerce, or publishing — keyword architecture and link-building included.</p>
+      </div>
+
+      <div class="seo-item">
+        <div class="seo-item-num">11</div>
+        <h4>Programmatic SEO</h4>
+        <p>Scale rankings through templated page generation — location pages, comparisons, and product variants for long-tail queries.</p>
+      </div>
+
+      <div class="seo-item">
+        <div class="seo-item-num">12</div>
+        <h4>Competitor Comparison Pages</h4>
+        <p>High-converting "vs" pages targeting bottom-of-funnel intent by analyzing competitor positioning and differentiation.</p>
+      </div>
+
+      <div class="seo-item">
+        <div class="seo-item-num">13</div>
+        <h4>Hreflang &amp; International SEO</h4>
+        <p>Audits and generates hreflang tags for multi-language sites — detecting mismatches and incorrect locale codes.</p>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="pg-footer">
+    <div class="pg-footer-logo">UKIYO<span>AI</span></div>
+    <div class="pg-footer-tag">info@ukiyoai.de · ukiyoai.de · +49 176 82289927</div>
+    <div class="pg-footer-num">3 / 3</div>
+  </div>
+
+</div>
+
+</body>
+</html>
