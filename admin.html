@@ -507,14 +507,38 @@
   // ── Activate Modal ────────────────────────────────────────────────────────
   let _activateTarget = null;
 
-  function openActivateModal(id, email, name) {
-    _activateTarget = { id, email, name };
+  async function openActivateModal(id, email, name) {
+    _activateTarget = { id, email, name, phoneNumberId: null };
     document.getElementById('modal-customer-name').textContent = `${name} · ${email}`;
-    document.getElementById('modal-phone').value = '+16812972541';
-    document.getElementById('modal-confirm-btn').disabled = false;
+    document.getElementById('modal-phone').value = 'Finding available number...';
+    document.getElementById('modal-phone').disabled = true;
+    document.getElementById('modal-confirm-btn').disabled = true;
     document.getElementById('modal-confirm-btn').textContent = 'Activate & Email';
     document.getElementById('activate-modal').classList.add('open');
-    setTimeout(() => document.getElementById('modal-phone').focus(), 100);
+
+    try {
+      // Pick first unassigned number from pool
+      const res = await fetch(`${SUPABASE_URL}/rest/v1/phone_numbers?is_assigned=eq.false&order=created_at.asc&limit=1`, {
+        headers: { 'apikey': SUPABASE_KEY, 'Authorization': `Bearer ${SUPABASE_KEY}` },
+      });
+      const numbers = await res.json();
+      if (!numbers.length) {
+        document.getElementById('modal-phone').value = '';
+        document.getElementById('modal-phone').placeholder = 'No numbers available — add more to pool';
+        document.getElementById('modal-phone').disabled = false;
+        document.getElementById('modal-confirm-btn').disabled = false;
+        return;
+      }
+      _activateTarget.phoneNumberId = numbers[0].id;
+      document.getElementById('modal-phone').value = numbers[0].number;
+      document.getElementById('modal-phone').disabled = false;
+      document.getElementById('modal-confirm-btn').disabled = false;
+    } catch (err) {
+      document.getElementById('modal-phone').value = '';
+      document.getElementById('modal-phone').placeholder = 'Enter number manually';
+      document.getElementById('modal-phone').disabled = false;
+      document.getElementById('modal-confirm-btn').disabled = false;
+    }
   }
 
   function closeModal() {
@@ -552,8 +576,19 @@
         },
         body: JSON.stringify({ status: 'active', vapi_phone_number: vapiPhone }),
       });
-
-      if (!res.ok) throw new Error(await res.text());
+      // Mark phone number as assigned in pool
+      if (_activateTarget.phoneNumberId) {
+        await fetch(`${SUPABASE_URL}/rest/v1/phone_numbers?id=eq.${_activateTarget.phoneNumberId}`, {
+          method: 'PATCH',
+          headers: {
+            'apikey': SUPABASE_KEY,
+            'Authorization': `Bearer ${SUPABASE_KEY}`,
+            'Content-Type': 'application/json',
+            'Prefer': 'return=minimal',
+          },
+          body: JSON.stringify({ is_assigned: true, assigned_to: id }),
+        });
+      }
 
       // Send "you're live" email with phone number
       await fetch(`${RAILWAY_URL}/api/notify-active`, {
