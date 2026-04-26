@@ -315,16 +315,16 @@
   const RAILWAY_URL = 'https://vapi-receptionist-production.up.railway.app';
 
   const PLAN_LABELS = {
-    starter: 'Starter — 300 AED/mo',
-    growth:  'Growth — 500 AED/mo',
-    enterprise: 'Enterprise — 800 AED/mo',
+    starter: 'Starter — $79/mo',
+    growth:  'Growth — $149/mo',
+    enterprise: 'Enterprise — $249/mo',
   };
 
   // Read plan from URL param
   const params = new URLSearchParams(window.location.search);
   const plan = params.get('plan') || 'starter';
   document.getElementById('plan_input').value = plan;
-  document.getElementById('plan-label').textContent = PLAN_LABELS[plan] || 'Starter — 300 AED/mo';
+  document.getElementById('plan-label').textContent = PLAN_LABELS[plan] || 'Starter — $79/mo';
 
   document.getElementById('onboarding-form').addEventListener('submit', async (e) => {
     e.preventDefault();
