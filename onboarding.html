@@ -112,6 +112,32 @@
 
   .btn-submit:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
 
+  .btn-google {
+    width: 100%;
+    background: #fff;
+    color: #1a1a1a;
+    border: none;
+    border-radius: 8px;
+    padding: 0.9rem 2rem;
+    font-family: 'Barlow', sans-serif;
+    font-size: 1rem;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    transition: background 0.18s, transform 0.18s, box-shadow 0.18s;
+    text-decoration: none;
+  }
+
+  .btn-google:hover {
+    background: #f0f0f0;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(255,255,255,0.15);
+  }
+
   .plan-badge {
     display: inline-flex;
     align-items: center;
@@ -141,10 +167,24 @@
     height: 8px;
     border-radius: 50%;
     background: rgba(255,255,255,0.15);
+    transition: background 0.3s;
   }
 
   .step-dot.active { background: #C8172A; box-shadow: 0 0 8px rgba(200,23,42,0.6); }
+  .step-dot.done { background: #4ade80; }
   .step-line { flex: 1; height: 1px; background: rgba(255,255,255,0.08); }
+
+  .step-label {
+    font-family: 'Barlow', sans-serif;
+    font-size: 0.72rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: #555;
+    margin-bottom: 1.5rem;
+  }
+
+  .step-label span { color: #C8172A; }
 
   .success-screen {
     display: none;
@@ -155,8 +195,8 @@
   .success-icon {
     width: 72px;
     height: 72px;
-    background: rgba(200,23,42,0.12);
-    border: 2px solid #C8172A;
+    background: rgba(74,222,128,0.1);
+    border: 2px solid #4ade80;
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -188,6 +228,52 @@
   }
 
   @keyframes spin { to { transform: rotate(360deg); } }
+
+  .paypal-wrap {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 12px;
+    padding: 1.5rem;
+    margin-top: 1rem;
+  }
+
+  .price-display {
+    text-align: center;
+    margin-bottom: 1.5rem;
+  }
+
+  .price-display .amount {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: #fff;
+  }
+
+  .price-display .period {
+    font-family: 'Barlow', sans-serif;
+    font-size: 0.9rem;
+    color: #666;
+    display: block;
+    margin-top: 0.25rem;
+  }
+
+  .calendar-info {
+    background: rgba(74,222,128,0.05);
+    border: 1px solid rgba(74,222,128,0.2);
+    border-radius: 10px;
+    padding: 1.25rem;
+    margin-bottom: 1.5rem;
+    font-family: 'Barlow', sans-serif;
+    font-size: 0.9rem;
+    color: #aaa;
+    line-height: 1.6;
+  }
+
+  .calendar-info strong { color: #4ade80; }
+
+  #paypal-button-container .paypal-buttons {
+    min-height: 50px;
+  }
 </style>
 </head>
 <body>
@@ -204,25 +290,43 @@
 <main style="position:relative;z-index:1;padding:7rem 1.5rem 5rem;min-height:100vh;display:flex;align-items:flex-start;justify-content:center;">
   <div style="width:100%;max-width:560px;">
 
-    <!-- Form screen -->
-    <div id="form-screen">
-      <div style="margin-bottom:2rem;">
-        <div class="plan-badge" id="plan-badge">
-          <span style="width:6px;height:6px;background:#C8172A;border-radius:50%;box-shadow:0 0 6px #C8172A;"></span>
-          <span id="plan-label">Starter Plan</span>
+    <!-- Header (shown across steps 1–3) -->
+    <div id="step-header" style="margin-bottom:2rem;">
+      <div class="plan-badge" id="plan-badge">
+        <span style="width:6px;height:6px;background:#C8172A;border-radius:50%;box-shadow:0 0 6px #C8172A;"></span>
+        <span id="plan-label">Starter Plan</span>
+      </div>
+      <h1 style="font-size:clamp(1.6rem,4vw,2.2rem);font-weight:800;color:#fff;margin-bottom:0.5rem;">Get your AI<br/>Receptionist set up</h1>
+      <p style="color:#666;font-family:'Barlow',sans-serif;font-size:1rem;">3 quick steps — live within 24 hours.</p>
+    </div>
+
+    <!-- Step indicator -->
+    <div class="step-indicator" id="step-indicator">
+      <div class="step-dot active" id="dot-1"></div>
+      <div class="step-line"></div>
+      <div class="step-dot" id="dot-2"></div>
+      <div class="step-line"></div>
+      <div class="step-dot" id="dot-3"></div>
+    </div>
+    <div class="step-label" id="step-label"><span>Step 1</span> — Payment</div>
+
+    <!-- ── STEP 1: PayPal Payment ── -->
+    <div id="step-1">
+      <div class="form-card">
+        <div class="price-display">
+          <div class="amount" id="price-amount">$79</div>
+          <span class="period">per month · cancel anytime</span>
         </div>
-        <h1 style="font-size:clamp(1.6rem,4vw,2.2rem);font-weight:800;color:#fff;margin-bottom:0.5rem;">Get your AI<br/>Receptionist set up</h1>
-        <p style="color:#666;font-family:'Barlow',sans-serif;font-size:1rem;">Fill in your details and we'll have your AI receptionist live within 24 hours.</p>
+        <div style="font-family:'Barlow',sans-serif;font-size:0.85rem;color:#555;text-align:center;margin-bottom:1.5rem;">
+          Secure payment via PayPal. No credit card stored on our servers.
+        </div>
+        <div id="paypal-button-container"></div>
+        <div class="error-msg" id="error-payment"></div>
       </div>
+    </div>
 
-      <div class="step-indicator">
-        <div class="step-dot active"></div>
-        <div class="step-line"></div>
-        <div class="step-dot active"></div>
-        <div class="step-line"></div>
-        <div class="step-dot active"></div>
-      </div>
-
+    <!-- ── STEP 2: Business Details ── -->
+    <div id="step-2" style="display:none;">
       <div class="form-card">
         <form id="onboarding-form" novalidate>
 
@@ -258,7 +362,7 @@
             </div>
             <div class="form-group">
               <label for="phone_number">Your Business Phone *</label>
-              <input type="tel" id="phone_number" name="phone_number" placeholder="+971 50 000 0000" required />
+              <input type="tel" id="phone_number" name="phone_number" placeholder="+49 30 000 0000" required />
             </div>
           </div>
 
@@ -273,77 +377,210 @@
           </div>
 
           <input type="hidden" id="plan_input" name="plan" value="starter" />
+          <input type="hidden" id="paypal_order_id" name="paypal_order_id" value="" />
 
-          <div class="error-msg" id="error-msg"></div>
+          <div class="error-msg" id="error-form"></div>
 
           <button type="submit" class="btn-submit" id="submit-btn">
-            Complete Signup
+            Continue to Calendar Setup →
           </button>
 
-          <p style="text-align:center;font-size:0.78rem;color:#444;font-family:'Barlow',sans-serif;margin-top:1rem;">
-            No payment required now. We'll contact you within 24 hours.
-          </p>
         </form>
       </div>
     </div>
 
-    <!-- Success screen -->
+    <!-- ── STEP 3: Connect Google Calendar ── -->
+    <div id="step-3" style="display:none;">
+      <div class="form-card">
+        <div class="calendar-info">
+          <strong>Almost done!</strong> Connect your Google Calendar so your AI receptionist can check availability and book appointments directly into your schedule.
+          <br /><br />
+          You'll be redirected to Google to approve access. It takes about 30 seconds.
+        </div>
+
+        <a id="google-connect-btn" href="#" class="btn-google">
+          <svg width="20" height="20" viewBox="0 0 48 48">
+            <path fill="#EA4335" d="M24 9.5c3.5 0 6.6 1.2 9.1 3.2l6.8-6.8C35.8 2.5 30.2 0 24 0 14.7 0 6.7 5.4 2.9 13.3l7.9 6.1C12.6 13.1 17.9 9.5 24 9.5z"/>
+            <path fill="#4285F4" d="M46.5 24.5c0-1.6-.1-3.1-.4-4.5H24v8.5h12.7c-.6 3-2.3 5.5-4.8 7.2l7.5 5.8c4.4-4.1 7.1-10.1 7.1-17z"/>
+            <path fill="#FBBC05" d="M10.8 28.6A14.6 14.6 0 0 1 9.5 24c0-1.6.3-3.1.7-4.6l-7.9-6.1A23.9 23.9 0 0 0 0 24c0 3.9.9 7.6 2.5 10.8l8.3-6.2z"/>
+            <path fill="#34A853" d="M24 48c6.2 0 11.4-2 15.2-5.5l-7.5-5.8c-2 1.4-4.6 2.3-7.7 2.3-6.1 0-11.3-4.1-13.2-9.6l-8.3 6.2C6.7 42.6 14.7 48 24 48z"/>
+          </svg>
+          Connect Google Calendar
+        </a>
+
+        <p style="text-align:center;font-size:0.78rem;color:#444;font-family:'Barlow',sans-serif;margin-top:1.25rem;">
+          We only request Calendar access. No data is shared with third parties.
+        </p>
+      </div>
+    </div>
+
+    <!-- ── SUCCESS ── -->
     <div class="success-screen" id="success-screen">
       <div class="success-icon">
-        <svg width="32" height="32" fill="none" stroke="#C8172A" stroke-width="2.5" viewBox="0 0 24 24">
+        <svg width="32" height="32" fill="none" stroke="#4ade80" stroke-width="2.5" viewBox="0 0 24 24">
           <polyline points="20,6 9,17 4,12"/>
         </svg>
       </div>
       <h2 style="font-size:1.8rem;font-weight:800;color:#fff;margin-bottom:0.75rem;">You're all set!</h2>
       <p style="color:#888;font-family:'Barlow',sans-serif;font-size:1rem;max-width:400px;margin:0 auto 0.5rem;">
-        We've received your signup and sent a confirmation to your email.
+        Payment confirmed. Google Calendar connected. We've sent a confirmation to your email.
       </p>
       <p style="color:#888;font-family:'Barlow',sans-serif;font-size:1rem;max-width:400px;margin:0 auto 2.5rem;">
-        Our team will contact you within <strong style="color:#fff;">24 hours</strong> to assign your AI receptionist phone number and complete setup.
+        Our team will assign your AI receptionist phone number within <strong style="color:#fff;">24 hours</strong>.
       </p>
       <a href="index.html" style="display:inline-block;background:#C8172A;color:#fff;font-family:'Barlow',sans-serif;font-weight:700;font-size:0.95rem;padding:0.85rem 2rem;border-radius:8px;text-decoration:none;transition:background 0.18s;" onmouseover="this.style.background='#9E1221'" onmouseout="this.style.background='#C8172A'">
         Back to Home
       </a>
     </div>
 
+    <!-- OAuth error screen -->
+    <div id="oauth-error-screen" style="display:none;text-align:center;padding:3rem 1rem;">
+      <div style="width:72px;height:72px;background:rgba(200,23,42,0.1);border:2px solid #C8172A;border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 1.5rem;">
+        <svg width="32" height="32" fill="none" stroke="#C8172A" stroke-width="2.5" viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </div>
+      <h2 style="font-size:1.5rem;font-weight:800;color:#fff;margin-bottom:0.75rem;">Calendar connection failed</h2>
+      <p style="color:#888;font-family:'Barlow',sans-serif;font-size:1rem;max-width:380px;margin:0 auto 2rem;">
+        Something went wrong connecting Google Calendar. Please try again or email us at info@ukiyoai.de.
+      </p>
+      <button onclick="retryOauth()" style="background:#C8172A;color:#fff;font-family:'Barlow',sans-serif;font-weight:700;font-size:0.95rem;padding:0.85rem 2rem;border-radius:8px;border:none;cursor:pointer;">
+        Try Again
+      </button>
+    </div>
+
   </div>
 </main>
 
+<!-- PayPal SDK — replace YOUR_PAYPAL_CLIENT_ID with your live/sandbox client ID -->
+<script src="https://www.paypal.com/sdk/js?client-id=YOUR_PAYPAL_CLIENT_ID&currency=USD&intent=capture"></script>
+
 <script>
-  const SUPABASE_URL = 'https://rtzdwgcpkkvdcdvukzly.supabase.co';
-  const SUPABASE_KEY = 'sb_publishable_uREILUSAbP7wDY7CKxR8Tg_Cl-qGWyA';
-  const RAILWAY_URL = 'https://vapi-receptionist-production.up.railway.app';
+  const SUPABASE_URL  = 'https://rtzdwgcpkkvdcdvukzly.supabase.co';
+  const SUPABASE_KEY  = 'sb_publishable_uREILUSAbP7wDY7CKxR8Tg_Cl-qGWyA';
+  const RAILWAY_URL   = 'https://vapi-receptionist-production.up.railway.app';
 
   const PLAN_LABELS = {
-    starter: 'Starter — $79/mo',
-    growth:  'Growth — $149/mo',
+    starter:    'Starter — $79/mo',
+    growth:     'Growth — $149/mo',
     enterprise: 'Enterprise — $249/mo',
   };
 
-  // Read plan from URL param
-  const params = new URLSearchParams(window.location.search);
-  const plan = params.get('plan') || 'starter';
+  const PLAN_PRICES = {
+    starter:    '79.00',
+    growth:     '149.00',
+    enterprise: '249.00',
+  };
+
+  // ── Read URL params ──────────────────────────────────────────────────────────
+  const params  = new URLSearchParams(window.location.search);
+  const plan    = params.get('plan') || 'starter';
+  const oauthResult = params.get('oauth');
+  const customerId  = params.get('customer');
+
   document.getElementById('plan_input').value = plan;
   document.getElementById('plan-label').textContent = PLAN_LABELS[plan] || 'Starter — $79/mo';
+  document.getElementById('price-amount').textContent = '$' + (PLAN_PRICES[plan] || '79').split('.')[0];
 
+  // ── Handle OAuth callback redirect ──────────────────────────────────────────
+  if (oauthResult === 'success') {
+    showSuccess();
+    // Send activation email
+    if (customerId) notifyActivation(customerId);
+  } else if (oauthResult === 'error') {
+    hideAll();
+    document.getElementById('oauth-error-screen').style.display = 'block';
+  }
+
+  // ── Step indicator helpers ───────────────────────────────────────────────────
+  function setStep(n) {
+    for (let i = 1; i <= 3; i++) {
+      const dot = document.getElementById('dot-' + i);
+      if (i < n)  { dot.className = 'step-dot done'; }
+      else if (i === n) { dot.className = 'step-dot active'; }
+      else { dot.className = 'step-dot'; }
+    }
+    const labels = { 1: 'Payment', 2: 'Business Details', 3: 'Connect Calendar' };
+    document.getElementById('step-label').innerHTML = `<span>Step ${n}</span> — ${labels[n]}`;
+  }
+
+  function showStep(n) {
+    [1,2,3].forEach(i => {
+      document.getElementById('step-' + i).style.display = (i === n) ? 'block' : 'none';
+    });
+    setStep(n);
+  }
+
+  function hideAll() {
+    ['step-header','step-indicator','step-label','step-1','step-2','step-3'].forEach(id => {
+      document.getElementById(id).style.display = 'none';
+    });
+  }
+
+  function showSuccess() {
+    hideAll();
+    document.getElementById('success-screen').style.display = 'block';
+  }
+
+  // ── Step 1: PayPal ───────────────────────────────────────────────────────────
+  let paypalOrderId = '';
+
+  if (!oauthResult) {
+    paypal.Buttons({
+      style: {
+        layout: 'vertical',
+        color:  'gold',
+        shape:  'rect',
+        label:  'pay',
+      },
+      createOrder: function(data, actions) {
+        return actions.order.create({
+          purchase_units: [{
+            amount: {
+              value: PLAN_PRICES[plan] || '79.00',
+              currency_code: 'USD',
+            },
+            description: 'UKIYO AI Receptionist — ' + (PLAN_LABELS[plan] || 'Starter Plan'),
+          }],
+        });
+      },
+      onApprove: function(data, actions) {
+        return actions.order.capture().then(function(details) {
+          paypalOrderId = details.id;
+          document.getElementById('paypal_order_id').value = paypalOrderId;
+          // Move to step 2
+          showStep(2);
+        });
+      },
+      onError: function(err) {
+        const errEl = document.getElementById('error-payment');
+        errEl.textContent = 'Payment failed. Please try again or contact info@ukiyoai.de.';
+        errEl.style.display = 'block';
+      },
+      onCancel: function() {
+        // user cancelled — stay on step 1
+      },
+    }).render('#paypal-button-container');
+  }
+
+  // ── Step 2: Business details form ────────────────────────────────────────────
   document.getElementById('onboarding-form').addEventListener('submit', async (e) => {
     e.preventDefault();
-    const btn = document.getElementById('submit-btn');
-    const errorEl = document.getElementById('error-msg');
+    const btn    = document.getElementById('submit-btn');
+    const errorEl = document.getElementById('error-form');
     errorEl.style.display = 'none';
 
     const data = {
-      full_name:      document.getElementById('full_name').value.trim(),
-      email:          document.getElementById('email').value.trim(),
-      business_name:  document.getElementById('business_name').value.trim(),
-      business_type:  document.getElementById('business_type').value,
-      phone_number:   document.getElementById('phone_number').value.trim(),
-      business_hours: document.getElementById('business_hours').value.trim(),
-      notes:          document.getElementById('notes').value.trim(),
-      plan:           plan,
+      full_name:       document.getElementById('full_name').value.trim(),
+      email:           document.getElementById('email').value.trim(),
+      business_name:   document.getElementById('business_name').value.trim(),
+      business_type:   document.getElementById('business_type').value,
+      phone_number:    document.getElementById('phone_number').value.trim(),
+      business_hours:  document.getElementById('business_hours').value.trim(),
+      notes:           document.getElementById('notes').value.trim(),
+      plan:            plan,
+      paypal_order_id: document.getElementById('paypal_order_id').value,
+      status:          'pending_calendar',
     };
 
-    // Basic validation
     const required = ['full_name','email','business_name','business_type','phone_number','business_hours'];
     for (const key of required) {
       if (!data[key]) {
@@ -354,17 +591,17 @@
     }
 
     btn.disabled = true;
-    btn.innerHTML = '<span class="spinner"></span> Submitting...';
+    btn.innerHTML = '<span class="spinner"></span> Saving...';
 
     try {
-      // 1. Save to Supabase
+      // Save to Supabase — return=representation to get back the ID
       const sbRes = await fetch(`${SUPABASE_URL}/rest/v1/customers`, {
         method: 'POST',
         headers: {
-          'apikey': SUPABASE_KEY,
-          'Authorization': `Bearer ${SUPABASE_KEY}`,
-          'Content-Type': 'application/json',
-          'Prefer': 'return=minimal',
+          'apikey':         SUPABASE_KEY,
+          'Authorization':  `Bearer ${SUPABASE_KEY}`,
+          'Content-Type':   'application/json',
+          'Prefer':         'return=representation',
         },
         body: JSON.stringify(data),
       });
@@ -374,25 +611,60 @@
         throw new Error('Database error: ' + err);
       }
 
-      // 2. Send email notifications via Railway
+      const rows = await sbRes.json();
+      const savedId = rows[0]?.id;
+
+      // Send signup notification email
       await fetch(`${RAILWAY_URL}/api/notify`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(data),
       });
 
-      // Show success
-      document.getElementById('form-screen').style.display = 'none';
-      document.getElementById('success-screen').style.display = 'block';
+      // Set Google OAuth link with customer ID
+      const oauthUrl = `${RAILWAY_URL}/api/oauth/google?customer_id=${savedId}&plan=${plan}`;
+      document.getElementById('google-connect-btn').href = oauthUrl;
+
+      // Move to step 3
+      showStep(3);
 
     } catch (err) {
       console.error(err);
       errorEl.textContent = 'Something went wrong. Please try again or email info@ukiyoai.de.';
       errorEl.style.display = 'block';
       btn.disabled = false;
-      btn.innerHTML = 'Complete Signup';
+      btn.innerHTML = 'Continue to Calendar Setup →';
     }
   });
+
+  // ── Retry OAuth ───────────────────────────────────────────────────────────────
+  function retryOauth() {
+    document.getElementById('oauth-error-screen').style.display = 'none';
+    document.getElementById('step-header').style.display = 'block';
+    document.getElementById('step-indicator').style.display = 'flex';
+    document.getElementById('step-label').style.display = 'block';
+    showStep(3);
+  }
+
+  // ── Notify activation (fires after OAuth success) ────────────────────────────
+  async function notifyActivation(custId) {
+    try {
+      // Fetch customer record from Supabase to get email
+      const res = await fetch(`${SUPABASE_URL}/rest/v1/customers?id=eq.${custId}&select=full_name,email`, {
+        headers: {
+          'apikey':        SUPABASE_KEY,
+          'Authorization': `Bearer ${SUPABASE_KEY}`,
+        },
+      });
+      const rows = await res.json();
+      if (!rows[0]) return;
+      await fetch(`${RAILWAY_URL}/api/notify-active`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ full_name: rows[0].full_name, email: rows[0].email }),
+      });
+    } catch (_) {}
+  }
 </script>
 </body>
 </html>
